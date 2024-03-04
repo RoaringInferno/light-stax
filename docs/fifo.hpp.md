@@ -6,10 +6,10 @@ A data structure to hold a data pointer and a pointer to another ```Fifo_Link<T>
 ```T* data```
 Pointer to the data stored by the link.
 
-```FIFO_LINK* next```
+```Fifo_Link<T>* next```
 Pointer to the next link in the chain.
 ### Constructors
-#### ```Fifo_Link(T* _data, FIFO_LINK* _previous = nullptr)```
+#### ```Fifo_Link(T* _data, Fifo_Link<T>* _previous = nullptr)```
 (```O(1)```)
 Constructs a ```Fifo_Link``` with the provided data pointer behind the provided link pointer. It's ```next``` member will be a ```nullptr```. If a pointer is provided, sets the ```next``` member of that link to ```this```.
 
@@ -40,10 +40,10 @@ Deletes all links and all data.
 #### ```size_t length```
 Length of the stack.
 
-#### ```FIFO_LINK* top```
+#### ```Fifo_Link<T>* top```
 Pointer to the top link (pop target).
 
-#### ```FIFO_LINK* bottom```
+#### ```Fifo_Link<T>* bottom```
 Pointer to the bottom link (push target).
 
 ### Methods
