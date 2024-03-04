@@ -20,7 +20,7 @@ Deletes ```data```.
 ### Methods
 None.
 
-## ```lstax::Fifo<typename T>```
+## ```lstax::Fifo<typename T> : public Stack<typename T>```
 A first-in-first-out stack of ```Fifo_Link<T>```s.
 
 ### Constructors

@@ -31,7 +31,7 @@ public:
 
 
 FIFO_TEMPLATE
-class Fifo : public Stack {
+class Fifo : public Stack<T> {
 public:
     size_t length; // Length of the stack.
     size_t length(); // Returns the length
@@ -74,10 +74,10 @@ FIFO_LINK::~Fifo_Link() {
 namespace lstax { // Fifo
 
 FIFO_TEMPLATE
-FIFO::Fifo() : length(0), top(nullptr), bottom(nullptr), Stack() {};
+FIFO::Fifo() : Stack<T>(), length(0), top(nullptr), bottom(nullptr) {};
 
 FIFO_TEMPLATE
-FIFO::Fifo(T* _data) : length(1), top(new FIFO_LINK(_data)), bottom(top), Stack() {};
+FIFO::Fifo(T* _data) : Stack<T>(), length(1), top(new FIFO_LINK(_data)), bottom(top) {};
 
 FIFO_TEMPLATE
 FIFO::~Fifo() {

@@ -20,7 +20,7 @@ Deletes ```data```.
 ### Methods
 None.
 
-## ```lstax::Filo<typename T>```
+## ```lstax::Filo<typename T> : public Stack<typename T>```
 A first-in-last-out stack of ```Filo_Link<T>```s.
 
 ### Constructors
