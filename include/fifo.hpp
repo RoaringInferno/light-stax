@@ -6,12 +6,16 @@
 
 #pragma once
 
+#include <cstddef>
+#include <stdexcept>
+
 #define FIFO_TEMPLATE template<typename T>
 #define FIFO Fifo<T>
 
 #define FIFO_LINK_TEMPLATE template<typename T>
 #define FIFO_LINK Fifo_Link<T>
 
+namespace lstax {
 
 FIFO_LINK_TEMPLATE
 class Fifo_Link {
@@ -19,50 +23,126 @@ public:
     T* data; // Pointer to stored data.
     FIFO_LINK* next; // Pointer to the next link.
 
-    // Creates a Fifo_Link with the given data.
-    Fifo_Link(T* data);
+    
+    Fifo_Link(T* _data, FIFO_LINK* _previous = nullptr); // Creates a Fifo_Link behind the given link, with the given data.
 
-    // Creates a Fifo_Link behind the given link, with the given data.
-    Fifo_Link(T* data, FIFO_LINK* link);
-
-    // Deletes the Fifo_Link.
-    // [!] DOES NOT delete the data, nor any other Fifo_Links. [!]
-    // [!] MUST free other memory items manually to avoid leaks. [!]
-    ~Fifo_Link();
+    ~Fifo_Link(); // Deletes the Fifo_Link, and associated data.
 };
 
 
 FIFO_TEMPLATE
 class Fifo {
 public:
-    size_t length;
+    size_t length; // Length of the stack.
+    size_t length(); // Returns the length
 
-    FIFO_LINK* top;
-    FIFO_LINK* bottom;
+    FIFO_LINK* top; // Pointer to the top link (pop target)
+    FIFO_LINK* bottom; // Pointer to the bottom link (push target)
 
-    // Constructs a stack with no data
-    Fifo();
+    Fifo(); // Constructs a stack with no data
+    Fifo(T* _data); // Constructs a stack with a single piece of data.
 
-    // Constructs a stack with a single piece of data.
-    Fifo(T* data);
+    ~Fifo(); // Deletes all links and all data.
 
-    // Adds a link with the given data.
-    // Returns a pointer to the data.
-    void push(const T* data);
-    void push(const T& data);
 
-    // Views the top element.
-    T* top()
+    void push(const T* _data); // Adds a link with the given data.
+    void push(const T& _data); // Adds a link with the given data.
 
-    // Removes the top element.
-    T* pop();
+    T* top(); // Views the top element.
+    void pop();  // Removes the top element.
+    void pop(T* _data); // Removes the top element. Overwrites the given pointer with a pointer to the data.
+    T* pop_off(); // Returns the held data. Requires 1 additional pointer.
 
-    // Indexing operator
-    T* operator[](size_t index);
-
-    // Returns the length
-    size_t length();
+    T* operator[](size_t _index); // Indexing operator
 };
+
+} // namespace lstax
+
+namespace lstax { // Fifo_Link
+
+FIFO_LINK_TEMPLATE
+FIFO_LINK::Fifo_Link(T* _data, FIFO_LINK* _previous = nullptr) : data(_data) {
+    if (_previous != nullptr) _previous->next = this;
+};
+
+FIFO_LINK_TEMPLATE
+FIFO_LINK::~Fifo_Link() {
+    delete data;
+};
+
+} // namespace lstax
+
+namespace lstax { // Fifo
+
+FIFO_TEMPLATE
+FIFO::Fifo() : length(0), top(nullptr), bottom(nullptr) {};
+
+FIFO_TEMPLATE
+FIFO::Fifo(T* _data) : length(1), top(new FIFO_LINK(_data)), bottom(top) {};
+
+FIFO_TEMPLATE
+FIFO::~Fifo() {
+    for (size_t i = 0; i < length; ++i)
+    {
+        bottom = top->next;
+        delete top;
+        top = bottom;
+    }
+};
+
+FIFO_TEMPLATE
+void FIFO::push(const T* _data) {
+    bottom = new FIFO_LINK(_data, bottom);
+    ++length;
+};
+
+FIFO_TEMPLATE
+void FIFO::push(const T& _data) {
+    push(*_data);
+};
+
+
+FIFO_TEMPLATE
+T* FIFO::top() {
+    return top->data;
+};
+
+FIFO_TEMPLATE
+void FIFO::pop() {
+    FIFO_LINK* interm = top->next;
+    delete top;
+    top = interm;
+    --length;
+};
+FIFO_TEMPLATE
+void FIFO::pop(T* _data) {
+    _data = top->data;
+    pop();
+};
+
+FIFO_TEMPLATE
+T* FIFO::pop_off() {
+    T* data = top->data;
+    pop();
+    return data;
+};
+
+FIFO_TEMPLATE
+T* FIFO::operator[](size_t _index) {
+    if (_index >= length) {throw std::out_of_range("Index out of bounds");}
+    FIFO_LINK* target = top;
+    for (size_t i = 0; i < _index; ++i) {
+        target = target->next;
+    }
+    return target->data;
+};
+
+FIFO_TEMPLATE
+size_t FIFO::length() {
+    return length;
+};
+
+} // namespace lstax
 
 
 #undef FIFO_TEMPLATE
