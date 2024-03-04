@@ -31,7 +31,7 @@ public:
 
 
 FILO_TEMPLATE
-class Filo {
+class Filo : public Stack {
 public:
     size_t length; // Length of the stack.
     size_t length(); // Returns the length
@@ -74,10 +74,10 @@ FILO_LINK::~Filo_Link() {
 namespace lstax { // Filo
 
 FILO_TEMPLATE
-FILO::Filo() : length(0), top(nullptr) {};
+FILO::Filo() : length(0), top(nullptr), Stack() {};
 
 FILO_TEMPLATE
-FILO::Filo(T* _data) : length(1), top(new FILO_LINK(_data)) {};
+FILO::Filo(T* _data) : length(1), top(new FILO_LINK(_data)), Stack() {};
 
 FILO_TEMPLATE
 FILO::~Filo() {
