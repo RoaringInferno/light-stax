@@ -64,11 +64,7 @@ Returnsa pointer to the data help by the top element.
 (```O(1)```)
 Removes the top element.
 
-#### ```void pop(T* _data)```
-(```O(1)```)
-Removes the top element. Overwrites the given pointer with a pointer to the data.
-
-#### ```T* pop_off()```
+#### ```T* popOff()```
 (```O(1)```)
 Returns the held data. Requires 1 additional ```T``` pointer.
 
