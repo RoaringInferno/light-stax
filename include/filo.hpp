@@ -49,7 +49,7 @@ public:
 
     T* top(); // Views the top element.
     void pop();  // Removes the top element.
-    T* pop_off(); // Returns the held data. Requires 1 additional pointer.
+    T* popOff(); // Returns the held data. Requires 1 additional pointer.
 
     T* operator[](size_t _index); // Indexing operator
 };
@@ -115,7 +115,7 @@ void FILO::pop() {
 };
 
 FILO_TEMPLATE
-T* FILO::pop_off() {
+T* FILO::popOff() {
     T* data = top->data;
     top->data = nullptr;
     pop();

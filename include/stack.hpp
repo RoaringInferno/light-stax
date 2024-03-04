@@ -20,7 +20,7 @@ virtual void push(const T& _data) = 0; // Adds a link with the given data.
 
 virtual T* top() = 0; // Views the top element.
 virtual void pop() = 0;  // Removes the top element.
-virtual T* pop_off() = 0; // Returns the held data. Requires 1 additional pointer.
+virtual T* popOff() = 0; // Returns the held data. Requires 1 additional pointer.
 
 virtual T* operator[](size_t _index) = 0; // Indexing operator
 };
