@@ -49,7 +49,6 @@ public:
 
     T* top(); // Views the top element.
     void pop();  // Removes the top element.
-    void pop(T* _data); // Removes the top element. Overwrites the given pointer with a pointer to the data.
     T* pop_off(); // Returns the held data. Requires 1 additional pointer.
 
     T* operator[](size_t _index); // Indexing operator
@@ -114,15 +113,11 @@ void FILO::pop() {
     top = interm;
     --length;
 };
-FILO_TEMPLATE
-void FILO::pop(T* _data) {
-    _data = top->data;
-    pop();
-};
 
 FILO_TEMPLATE
 T* FILO::pop_off() {
     T* data = top->data;
+    top->data = nullptr;
     pop();
     return data;
 };

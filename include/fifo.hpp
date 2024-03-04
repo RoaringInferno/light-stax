@@ -50,7 +50,6 @@ public:
 
     T* top(); // Views the top element.
     void pop();  // Removes the top element.
-    void pop(T* _data); // Removes the top element. Overwrites the given pointer with a pointer to the data.
     T* pop_off(); // Returns the held data. Requires 1 additional pointer.
 
     T* operator[](size_t _index); // Indexing operator
@@ -114,15 +113,11 @@ void FIFO::pop() {
     top = interm;
     --length;
 };
-FIFO_TEMPLATE
-void FIFO::pop(T* _data) {
-    _data = top->data;
-    pop();
-};
 
 FIFO_TEMPLATE
 T* FIFO::pop_off() {
     T* data = top->data;
+    top->data = nullptr;
     pop();
     return data;
 };
