@@ -20,7 +20,7 @@ Deletes ```data```.
 ### Methods
 None.
 
-## ```lstax::Fifo<typename T>```
+## ```lstax::Fifo<typename T> : public Stack<typename T>```
 A first-in-first-out stack of ```Fifo_Link<T>```s.
 
 ### Constructors
@@ -67,11 +67,7 @@ Returnsa pointer to the data help by the top element.
 (```O(1)```)
 Removes the top element.
 
-#### ```void pop(T* _data)```
-(```O(1)```)
-Removes the top element. Overwrites the given pointer with a pointer to the data.
-
-#### ```T* pop_off()```
+#### ```T* popOff()```
 (```O(1)```)
 Returns the held data. Requires 1 additional ```T``` pointer.
 

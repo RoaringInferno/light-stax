@@ -31,7 +31,7 @@ public:
 
 
 FIFO_TEMPLATE
-class Fifo {
+class Fifo : public Stack<T> {
 public:
     size_t length; // Length of the stack.
     size_t length(); // Returns the length
@@ -50,8 +50,7 @@ public:
 
     T* top(); // Views the top element.
     void pop();  // Removes the top element.
-    void pop(T* _data); // Removes the top element. Overwrites the given pointer with a pointer to the data.
-    T* pop_off(); // Returns the held data. Requires 1 additional pointer.
+    T* popOff(); // Returns the held data. Requires 1 additional pointer.
 
     T* operator[](size_t _index); // Indexing operator
 };
@@ -75,10 +74,10 @@ FIFO_LINK::~Fifo_Link() {
 namespace lstax { // Fifo
 
 FIFO_TEMPLATE
-FIFO::Fifo() : length(0), top(nullptr), bottom(nullptr) {};
+FIFO::Fifo() : Stack<T>(), length(0), top(nullptr), bottom(nullptr) {};
 
 FIFO_TEMPLATE
-FIFO::Fifo(T* _data) : length(1), top(new FIFO_LINK(_data)), bottom(top) {};
+FIFO::Fifo(T* _data) : Stack<T>(), length(1), top(new FIFO_LINK(_data)), bottom(top) {};
 
 FIFO_TEMPLATE
 FIFO::~Fifo() {
@@ -114,15 +113,11 @@ void FIFO::pop() {
     top = interm;
     --length;
 };
-FIFO_TEMPLATE
-void FIFO::pop(T* _data) {
-    _data = top->data;
-    pop();
-};
 
 FIFO_TEMPLATE
-T* FIFO::pop_off() {
+T* FIFO::popOff() {
     T* data = top->data;
+    top->data = nullptr;
     pop();
     return data;
 };
