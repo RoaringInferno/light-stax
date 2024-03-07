@@ -9,8 +9,9 @@
 #include <cstddef>
 #include <stdexcept>
 
-#define FIFO_TEMPLATE template<typename T>
-#define FIFO Fifo<T>
+#define FIFO_TEMPLATE_DECL template<typename Size_T = size_t, typename T>
+#define FIFO_TEMPLATE template<typename Size_T, typename T>
+#define FIFO Fifo<Size_T, T>
 
 #define FIFO_LINK_TEMPLATE template<typename T>
 #define FIFO_LINK Fifo_Link<T>
@@ -30,11 +31,11 @@ public:
 };
 
 
-FIFO_TEMPLATE
+FIFO_TEMPLATE_DECL
 class Fifo {
 public:
-    size_t length; // Length of the stack.
-    size_t length(); // Returns the length
+    Size_T length; // Length of the stack.
+    Size_T length(); // Returns the length
 
     FIFO_LINK* top; // Pointer to the top link (pop target)
     FIFO_LINK* bottom; // Pointer to the bottom link (push target)
@@ -138,7 +139,7 @@ T* FIFO::operator[](size_t _index) {
 };
 
 FIFO_TEMPLATE
-size_t FIFO::length() {
+Size_T FIFO::length() {
     return length;
 };
 
