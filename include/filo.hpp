@@ -9,8 +9,9 @@
 #include <cstddef>
 #include <stdexcept>
 
-#define FILO_TEMPLATE template<typename T>
-#define FILO Filo<T>
+#define FILO_TEMPLATE_DECL template<typename Size_T = size_t, typename T>
+#define FILO_TEMPLATE template<typename Size_T, typename T>
+#define FILO Filo<Size_T, T>
 
 #define FILO_LINK_TEMPLATE template<typename T>
 #define FILO_LINK Filo_Link<T>
@@ -30,11 +31,11 @@ public:
 };
 
 
-FILO_TEMPLATE
+FILO_TEMPLATE_DECL
 class Filo {
 public:
-    size_t length; // Length of the stack.
-    size_t length(); // Returns the length
+    Size_T length; // Length of the stack.
+    Size_T length(); // Returns the length
 
     FILO_LINK* top; // Pointer to the top link
 
@@ -138,7 +139,7 @@ T* FILO::operator[](size_t _index) {
 };
 
 FILO_TEMPLATE
-size_t FILO::length() {
+Size_T FILO::length() {
     return length;
 };
 
