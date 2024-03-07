@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <stdexcept>
 
+#include "stack.hpp"
+
 #define FIFOSTACK_TEMPLATE_DECL template<typename Size_T = size_t, typename T, Size_T size>
 #define FIFOSTACK_TEMPLATE template<typename Size_T, typename T, Size_T size>
 #define FIFOSTACK FifoStack<Size_T, T, size>
@@ -10,7 +12,7 @@
 namespace lstax
 {
 FIFOSTACK_TEMPLATE_DECL
-class FifoStack
+class FifoStack : Stack<Size_T, T>
 {
 public:
     T* data[size];
@@ -18,14 +20,16 @@ public:
 
     FifoStack();
     FifoStack(T* _data);
-    ~FiloStack(); // Deletes all data. Iterates through the whole array in order to ensure memory cleanup.
+    ~FifoStack(); // Deletes all data. Iterates through the whole array in order to ensure memory cleanup.
 
     T* top();
 
     void pop();
     void pop(T* _data);
+    T* popOff();
 
-    bool push(T* _data); // Returns true if the push was successful. If the stack is full, returns false.
+    bool push(const T* _data); // Returns true if the push was successful. If the stack is full, returns false.
+    bool push(const T& _data); // Returns true if the push was successful. If the stack is full, returns false.
 
     T* operator[](Size_T _index);
 };
@@ -34,11 +38,11 @@ public:
 namespace lstax
 {
 FIFOSTACK_TEMPLATE
-FIFOSTACK::FifoStack() : top(0) {
+FIFOSTACK::FifoStack() : Stack<Size_T, T>, top(0) {
     //
 };
 FIFOSTACK_TEMPLATE
-FIFOSTACK::FifoStack(T* _data) : top(1) {
+FIFOSTACK::FifoStack(T* _data) : Stack<Size_T, T>, top(1) {
     data[0] = _data;
 };
 FIFOSTACK_TEMPLATE
@@ -62,15 +66,25 @@ void FIFOSTACK::pop() {
 };
 FIFOSTACK_TEMPLATE
 void FIFOSTACK::pop(T* _data) {
-    return top();
+    _data = top();
     pop();
+};
+FIFOSTACK_TEMPLATE
+T* FIFOSTACK::popOff() {
+    T* temp = top();
+    pop();
+    return temp;
 };
 
 FIFOSTACK_TEMPLATE
-bool FIFOSTACK::push(T* _data) {
+bool FIFOSTACK::push(const T* _data) {
     if (top == size) return false;
     data[top++] = _data;
     return true;
+};
+FIFOSTACK_TEMPLATE
+bool FIFOSTACK::push(const T& _data) {
+    return push(&_data);
 };
 
 FIFOSTACK_TEMPLATE

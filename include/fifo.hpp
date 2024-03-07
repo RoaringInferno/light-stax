@@ -9,6 +9,8 @@
 #include <cstddef>
 #include <stdexcept>
 
+#include "stack.hpp"
+
 #define FIFO_TEMPLATE_DECL template<typename Size_T = size_t, typename T>
 #define FIFO_TEMPLATE template<typename Size_T, typename T>
 #define FIFO Fifo<Size_T, T>

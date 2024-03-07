@@ -9,6 +9,8 @@
 #include <cstddef>
 #include <stdexcept>
 
+#include "stack.hpp"
+
 #define FILO_TEMPLATE_DECL template<typename Size_T = size_t, typename T>
 #define FILO_TEMPLATE template<typename Size_T, typename T>
 #define FILO Filo<Size_T, T>
