@@ -32,7 +32,7 @@ public:
 
 
 FIFO_TEMPLATE_DECL
-class Fifo : public Stack<T> {
+class Fifo : public Stack<Size_T, T> {
 public:
     Size_T length; // Length of the stack.
     Size_T length(); // Returns the length

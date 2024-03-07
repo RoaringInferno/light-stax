@@ -32,7 +32,7 @@ public:
 
 
 FILO_TEMPLATE_DECL
-class Filo : public Stack<T>
+class Filo : public Stack<Size_T, T>
 {
 public:
     Size_T length; // Length of the stack.
