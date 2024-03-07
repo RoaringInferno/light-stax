@@ -32,7 +32,8 @@ public:
 
 
 FILO_TEMPLATE_DECL
-class Filo {
+class Filo : public Stack<T>
+{
 public:
     Size_T length; // Length of the stack.
     Size_T length(); // Returns the length
@@ -50,8 +51,7 @@ public:
 
     T* top(); // Views the top element.
     void pop();  // Removes the top element.
-    void pop(T* _data); // Removes the top element. Overwrites the given pointer with a pointer to the data.
-    T* pop_off(); // Returns the held data. Requires 1 additional pointer.
+    T* popOff(); // Returns the held data. Requires 1 additional pointer.
 
     T* operator[](size_t _index); // Indexing operator
 };
@@ -75,10 +75,10 @@ FILO_LINK::~Filo_Link() {
 namespace lstax { // Filo
 
 FILO_TEMPLATE
-FILO::Filo() : length(0), top(nullptr) {};
+FILO::Filo() : Stack<T>(), length(0), top(nullptr) {};
 
 FILO_TEMPLATE
-FILO::Filo(T* _data) : length(1), top(new FILO_LINK(_data)) {};
+FILO::Filo(T* _data) : Stack<T>(), length(1), top(new FILO_LINK(_data)) {};
 
 FILO_TEMPLATE
 FILO::~Filo() {
@@ -115,15 +115,11 @@ void FILO::pop() {
     top = interm;
     --length;
 };
-FILO_TEMPLATE
-void FILO::pop(T* _data) {
-    _data = top->data;
-    pop();
-};
 
 FILO_TEMPLATE
-T* FILO::pop_off() {
+T* FILO::popOff() {
     T* data = top->data;
+    top->data = nullptr;
     pop();
     return data;
 };
