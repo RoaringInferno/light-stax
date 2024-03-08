@@ -7,7 +7,6 @@
 #pragma once
 
 #include <cstddef>
-#include <stdexcept>
 
 #include "stack.hpp"
 
@@ -128,7 +127,6 @@ T* FILO::popOff() {
 
 FILO_TEMPLATE
 T* FILO::operator[](size_t _index) {
-    if (_index >= length) {throw std::out_of_range("Index out of bounds");}
     FILO_LINK* target = top;
     for (size_t i = 0; i < _index; ++i) {
         target = target->next;

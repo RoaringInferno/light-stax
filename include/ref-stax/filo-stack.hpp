@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstddef>
-#include <stdexcept>
 
 #include "stack.hpp"
 
@@ -28,8 +27,8 @@ public:
     void pop(T* _data);
     T* popOff();
 
-    bool push(const T* _data); // Returns true if the push was successful. If the stack is full, returns false.
-    bool push(const T& _data); // Returns true if the push was successful. If the stack is full, returns false.
+    void push(const T* _data);
+    void push(const T& _data);
 
     T* operator[](Size_T _index);
 };
@@ -74,19 +73,16 @@ T* FILOSTACK::popOff() {
 };
 
 FILOSTACK_TEMPLATE
-bool FILOSTACK::push(const T* _data) {
-    if (top == size) return false;
+void FILOSTACK::push(const T* _data) {
     data[top++] = _data;
-    return true;
 };
 FILOSTACK_TEMPLATE
-bool FILOSTACK::push(const T& _data) {
-    return push(&_data);
+void FILOSTACK::push(const T& _data) {
+    push(&_data);
 };
 
 FILOSTACK_TEMPLATE
 T* FILOSTACK::operator[](Size_T _index) {
-    if (_index >= top) throw std::out_of_range("Index out of range");
     return data[_index];
 };
 }

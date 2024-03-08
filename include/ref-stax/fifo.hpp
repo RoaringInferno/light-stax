@@ -7,7 +7,6 @@
 #pragma once
 
 #include <cstddef>
-#include <stdexcept>
 
 #include "stack.hpp"
 
@@ -127,7 +126,6 @@ T* FIFO::popOff() {
 
 FIFO_TEMPLATE
 T* FIFO::operator[](size_t _index) {
-    if (_index >= length) {throw std::out_of_range("Index out of bounds");}
     FIFO_LINK* target = top;
     for (size_t i = 0; i < _index; ++i) {
         target = target->next;
