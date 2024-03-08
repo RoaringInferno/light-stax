@@ -63,6 +63,7 @@ void LITFIFOSTACK::pop() {
     for (Size_T i = 0; i < size;) {
         data[i] = data[++i];
     }
+    --top;
 };
 LITFIFOSTACK_TEMPLATE
 void LITFIFOSTACK::pop(T* _data) {
