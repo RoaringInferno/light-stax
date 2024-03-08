@@ -63,6 +63,7 @@ void FIFOSTACK::pop() {
     for (Size_T i = 0; i < size;) {
         data[i] = data[++i];
     }
+    --top;
 };
 FIFOSTACK_TEMPLATE
 void FIFOSTACK::pop(T* _data) {
