@@ -1,38 +1,38 @@
 # Classes
-## ```lstax::Fifo_Link<typename T>```
-A data structure to hold a data pointer and a pointer to another ```Fifo_Link<T>```.
+## ```lstax::FifoLink<typename T>```
+A data structure to hold a data pointer and a pointer to another ```FifoLink<T>```.
 
 ### Members
 ```T* data```
 Pointer to the data stored by the link.
 
-```Fifo_Link<T>* next```
+```FifoLink<T>* next```
 Pointer to the next link in the chain.
 ### Constructors
-#### ```Fifo_Link(T* _data, Fifo_Link<T>* _previous = nullptr)```
+#### ```FifoLink(T* _data, FifoLink<T>* _previous = nullptr)```
 (```O(1)```)
-Constructs a ```Fifo_Link``` with the provided data pointer behind the provided link pointer. It's ```next``` member will be a ```nullptr```. If a pointer is provided, sets the ```next``` member of that link to ```this```.
+Constructs a ```FifoLink``` with the provided data pointer behind the provided link pointer. It's ```next``` member will be a ```nullptr```. If a pointer is provided, sets the ```next``` member of that link to ```this```.
 
 
-#### ```~Fifo_Link()```
+#### ```~FifoLink()```
 (```O(1)```)
 Deletes ```data```.
 ### Methods
 None.
 
-## ```lstax::Fifo<typename T> : public Stack<typename T>```
-A first-in-first-out stack of ```Fifo_Link<T>```s.
+## ```lstax::FifoList<typename T> : public Stack<typename T>```
+A first-in-first-out stack of ```FifoLink<T>```s.
 
 ### Constructors
-#### ```Fifo()```
+#### ```FifoList()```
 (```O(1)```)
 Constructs a stack with no data.
 
-#### ```Fifo(T* _data)```
+#### ```FifoList(T* _data)```
 (```O(1)```)
-Constructs a stack with a single piece of data. More efficient that making an empty stack and pushing a value, as the ```Fifo_Link``` constructor is embedded in ```Fifo(T* _data)```.
+Constructs a stack with a single piece of data. More efficient that making an empty stack and pushing a value, as the ```FifoLink``` constructor is embedded in ```FifoList(T* _data)```.
 
-#### ```~Fifo()```
+#### ```~FifoList()```
 (```O(length)```)
 Deletes all links and all data.
 
@@ -40,10 +40,10 @@ Deletes all links and all data.
 #### ```size_t length```
 Length of the stack.
 
-#### ```Fifo_Link<T>* top```
+#### ```FifoLink<T>* top```
 Pointer to the top link (pop target).
 
-#### ```Fifo_Link<T>* bottom```
+#### ```FifoLink<T>* bottom```
 Pointer to the bottom link (push target).
 
 ### Methods
