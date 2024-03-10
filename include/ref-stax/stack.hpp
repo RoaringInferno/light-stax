@@ -2,13 +2,12 @@
 
 #include <cstddef>
 
-#define STACK_TEMPLATE_DECL template<typename Size_T = size_t, typename T>
 #define STACK_TEMPLATE template<typename Size_T, typename T>
 #define STACK Stack<Size_T, T>
 
 namespace lstax
 {
-STACK_TEMPLATE_DECL
+STACK_TEMPLATE
 class Stack {
 public:
 Stack(); // Empty constructor

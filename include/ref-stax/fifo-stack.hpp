@@ -4,13 +4,12 @@
 
 #include "stack.hpp"
 
-#define FIFOSTACK_TEMPLATE_DECL template<typename Size_T = size_t, typename T, Size_T size>
 #define FIFOSTACK_TEMPLATE template<typename Size_T, typename T, Size_T size>
 #define FIFOSTACK FifoStack<Size_T, T, size>
 
 namespace lstax
 {
-FIFOSTACK_TEMPLATE_DECL
+FIFOSTACK_TEMPLATE
 class FifoStack : Stack<Size_T, T>
 {
 public:

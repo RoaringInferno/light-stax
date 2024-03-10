@@ -10,7 +10,6 @@
 
 #include "stack.hpp"
 
-#define FIFOLIST_TEMPLATE_DECL template<typename Size_T = size_t, typename T>
 #define FIFOLIST_TEMPLATE template<typename Size_T, typename T>
 #define FIFOLIST FifoList<Size_T, T>
 
@@ -32,7 +31,7 @@ public:
 };
 
 
-FIFOLIST_TEMPLATE_DECL
+FIFOLIST_TEMPLATE
 class FifoList : public Stack<Size_T, T> {
 public:
     Size_T length; // Length of the stack.

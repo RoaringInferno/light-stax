@@ -4,13 +4,12 @@
 
 #include "stack.hpp"
 
-#define FILOSTACK_TEMPLATE_DECL template<typename Size_T = size_t, typename T, Size_T size>
 #define FILOSTACK_TEMPLATE template<typename Size_T, typename T, Size_T size>
 #define FILOSTACK FiloStack<Size_T, T, size>
 
 namespace lstax
 {
-FILOSTACK_TEMPLATE_DECL
+FILOSTACK_TEMPLATE
 class FiloStack : Stack<Size_T, T>
 {
 public:

@@ -10,7 +10,6 @@
 
 #include "stack.hpp"
 
-#define FILOLIST_TEMPLATE_DECL template<typename Size_T = size_t, typename T>
 #define FILOLIST_TEMPLATE template<typename Size_T, typename T>
 #define FILOLIST FiloList<Size_T, T>
 
@@ -32,7 +31,7 @@ public:
 };
 
 
-FILOLIST_TEMPLATE_DECL
+FILOLIST_TEMPLATE
 class FiloList : public Stack<Size_T, T>
 {
 public:
