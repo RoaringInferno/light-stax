@@ -14,21 +14,21 @@
 #define FILO_TEMPLATE template<typename Size_T, typename T>
 #define FILO Filo<Size_T, T>
 
-#define FILO_LINK_TEMPLATE template<typename T>
-#define FILO_LINK Filo_Link<T>
+#define FILOLINK_TEMPLATE template<typename T>
+#define FILOLINK FiloLink<T>
 
 namespace lstax {
 
-FILO_LINK_TEMPLATE
-class Filo_Link {
+FILOLINK_TEMPLATE
+class FiloLink {
 public:
     T* data; // Pointer to stored data.
-    FILO_LINK* next; // Pointer to the next link.
+    FILOLINK* next; // Pointer to the next link.
 
     
-    Filo_Link(T* _data, FILO_LINK* _next = nullptr); // Creates a Filo_Link behind the given link, with the given data.
+    FiloLink(T* _data, FILOLINK* _next = nullptr); // Creates a FiloLink behind the given link, with the given data.
 
-    ~Filo_Link(); // Deletes the Filo_Link, and associated data.
+    ~FiloLink(); // Deletes the FiloLink, and associated data.
 };
 
 
@@ -39,7 +39,7 @@ public:
     Size_T length; // Length of the stack.
     Size_T length(); // Returns the length
 
-    FILO_LINK* top; // Pointer to the top link
+    FILOLINK* top; // Pointer to the top link
 
     Filo(); // Constructs a stack with no data
     Filo(T* _data); // Constructs a stack with a single piece of data.
@@ -59,15 +59,15 @@ public:
 
 } // namespace lstax
 
-namespace lstax { // Filo_Link
+namespace lstax { // FiloLink
 
-FILO_LINK_TEMPLATE
-FILO_LINK::Filo_Link(T* _data, FILO_LINK* _next = nullptr) : data(_data) {
+FILOLINK_TEMPLATE
+FILOLINK::FiloLink(T* _data, FILOLINK* _next = nullptr) : data(_data) {
     next = _next;
 };
 
-FILO_LINK_TEMPLATE
-FILO_LINK::~Filo_Link() {
+FILOLINK_TEMPLATE
+FILOLINK::~FiloLink() {
     delete data;
 };
 
@@ -79,11 +79,11 @@ FILO_TEMPLATE
 FILO::Filo() : Stack<T>(), length(0), top(nullptr) {};
 
 FILO_TEMPLATE
-FILO::Filo(T* _data) : Stack<T>(), length(1), top(new FILO_LINK(_data)) {};
+FILO::Filo(T* _data) : Stack<T>(), length(1), top(new FILOLINK(_data)) {};
 
 FILO_TEMPLATE
 FILO::~Filo() {
-    FILO_LINK* bottom;
+    FILOLINK* bottom;
     for (size_t i = 0; i < length; ++i)
     {
         bottom = top->next;
@@ -94,7 +94,7 @@ FILO::~Filo() {
 
 FILO_TEMPLATE
 void FILO::push(const T* _data) {
-    top = new FILO_LINK(_data, top);
+    top = new FILOLINK(_data, top);
     ++length;
 };
 
@@ -111,7 +111,7 @@ T* FILO::top() {
 
 FILO_TEMPLATE
 void FILO::pop() {
-    FILO_LINK* interm = top->next;
+    FILOLINK* interm = top->next;
     delete top;
     top = interm;
     --length;
@@ -127,7 +127,7 @@ T* FILO::popOff() {
 
 FILO_TEMPLATE
 T* FILO::operator[](size_t _index) {
-    FILO_LINK* target = top;
+    FILOLINK* target = top;
     for (size_t i = 0; i < _index; ++i) {
         target = target->next;
     }
