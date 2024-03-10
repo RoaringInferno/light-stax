@@ -1,38 +1,38 @@
 # Classes
-## ```lstax::Filo_Link<typename T>```
-A data structure to hold a data pointer and a pointer to another ```Filo_Link<T>```.
+## ```lstax::FiloLink<typename T>```
+A data structure to hold a data pointer and a pointer to another ```FiloLink<T>```.
 
 ### Members
 ```T* data```
 Pointer to the data stored by the link.
 
-```Filo_Link<T>* next```
+```FiloLink<T>* next```
 Pointer to the next link in the chain.
 ### Constructors
-#### ```Filo_Link(T* _data, Filo_Link<T>* _next = nullptr)```
+#### ```FiloLink(T* _data, FiloLink<T>* _next = nullptr)```
 (```O(1)```)
-Constructs a ```Filo_Link``` with the provided data pointer behind the provided link pointer. It's ```next``` member will be a ```nullptr```. If a pointer is provided, sets the ```next``` member of that link to ```this```.
+Constructs a ```FiloLink``` with the provided data pointer behind the provided link pointer. It's ```next``` member will be a ```nullptr```. If a pointer is provided, sets the ```next``` member of that link to ```this```.
 
 
-#### ```~Filo_Link()```
+#### ```~FiloLink()```
 (```O(1)```)
 Deletes ```data```.
 ### Methods
 None.
 
-## ```lstax::Filo<typename T> : public Stack<typename T>```
-A first-in-last-out stack of ```Filo_Link<T>```s.
+## ```lstax::FiloList<typename T> : public Stack<typename T>```
+A first-in-last-out stack of ```FiloLink<T>```s.
 
 ### Constructors
-#### ```Filo()```
+#### ```FiloList()```
 (```O(1)```)
 Constructs a stack with no data.
 
-#### ```Filo(T* _data)```
+#### ```FiloList(T* _data)```
 (```O(1)```)
-Constructs a stack with a single piece of data. More efficient that making an empty stack and pushing a value, as the ```Filo_Link``` constructor is embedded in ```Filo(T* _data)```.
+Constructs a stack with a single piece of data. More efficient that making an empty stack and pushing a value, as the ```FiloLink``` constructor is embedded in ```FiloList(T* _data)```.
 
-#### ```~Filo()```
+#### ```~FiloList()```
 (```O(length)```)
 Deletes all links and all data.
 
@@ -40,7 +40,7 @@ Deletes all links and all data.
 #### ```size_t length```
 Length of the stack.
 
-#### ```Filo_Link<T>* top```
+#### ```FiloLink<T>* top```
 Pointer to the top link (pop and push targets).
 
 ### Methods
