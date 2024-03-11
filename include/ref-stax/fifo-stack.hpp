@@ -14,7 +14,7 @@ class FifoStack : Stack<Size_T, T>
 {
 public:
     T* data[size];
-    Size_T top; // The first empty index
+    Size_T bottom; // The first empty index
 
     FifoStack();
     FifoStack(T* _data);
@@ -77,7 +77,7 @@ T* FIFOSTACK::popOff() {
 
 FIFOSTACK_TEMPLATE
 void FIFOSTACK::push(const T* _data) {
-    data[top++] = _data;
+    data[bottom++] = _data;
 };
 FIFOSTACK_TEMPLATE
 void FIFOSTACK::push(const T& _data) {
