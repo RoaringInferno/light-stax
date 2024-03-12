@@ -10,7 +10,7 @@
 namespace lstax
 {
 LITFIFOSTACK_TEMPLATE
-class LitFifoStack : Stack<Size_T, T>
+class LitFifoStack : stack<Size_T, T>
 {
 public:
     T data[size];
@@ -36,11 +36,11 @@ public:
 namespace lstax
 {
 LITFIFOSTACK_TEMPLATE
-LITFIFOSTACK::LitFifoStack() : Stack<Size_T, T>, top(0) {
+LITFIFOSTACK::LitFifoStack() : stack<Size_T, T>, top(0) {
     //
 };
 LITFIFOSTACK_TEMPLATE
-LITFIFOSTACK::LitFifoStack(T* _data) : Stack<Size_T, T>, top(1) {
+LITFIFOSTACK::LitFifoStack(T* _data) : stack<Size_T, T>, top(1) {
     data[0] = _data;
 };
 LITFIFOSTACK_TEMPLATE
