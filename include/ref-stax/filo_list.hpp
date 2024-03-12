@@ -8,7 +8,7 @@
 
 #include <cstddef>
 
-#include "stack.hpp"
+#include "../stack.hpp"
 
 #define FILO_LIST_TEMPLATE template<typename Size_T, typename T>
 #define FILO_LIST filo_list<Size_T, T>

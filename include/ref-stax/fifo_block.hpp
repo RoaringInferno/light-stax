@@ -2,7 +2,7 @@
 
 #include <cstddef>
 
-#include "stack.hpp"
+#include "../stack.hpp"
 
 #define FIFO_BLOCK_TEMPLATE template<typename Size_T, typename T, Size_T size>
 #define FIFO_STACK fifo_block<Size_T, T, size>

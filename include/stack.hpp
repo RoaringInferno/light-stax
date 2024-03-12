@@ -5,8 +5,18 @@
 #define STACK_TEMPLATE template<typename Size_T, typename T>
 #define STACK stack<Size_T, T>
 
+#define LINK_TEMPLATE template<typename T>
+#define LINK link<T>
+
 namespace lstax
 {
+LINK_TEMPLATE
+class link {
+public:
+T* data; // Pointer to stored data.
+LINK* next; // Pointer to the next link.
+};
+
 STACK_TEMPLATE
 class stack {
 public:
@@ -31,3 +41,9 @@ namespace lstax
 STACK_TEMPLATE
 STACK::stack() {};
 } // namespace lstax
+
+#undef STACK_TEMPLATE
+#undef STACK
+
+#undef LINK_TEMPLATE
+#undef LINK

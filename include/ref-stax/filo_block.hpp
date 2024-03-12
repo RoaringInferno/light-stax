@@ -2,7 +2,7 @@
 
 #include <cstddef>
 
-#include "stack.hpp"
+#include "../stack.hpp"
 
 #define FILO_BLOCK_TEMPLATE template<typename Size_T, typename T, Size_T size>
 #define FILO_BLOCK filo_block<Size_T, T, size>
