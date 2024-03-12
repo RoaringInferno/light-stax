@@ -22,8 +22,8 @@ public:
 
     T* top();
 
-    void pop();
-    void pop(T* _data);
+    void pop(); // Marks the top element as empty.
+    void pop(T* _data); // Marks the top element as empty. Sets the given pointer to the data.
     T* popOff();
 
     void push(const T* _data);
@@ -61,8 +61,7 @@ void FILO_BLOCK::pop() {
 };
 FILO_BLOCK_TEMPLATE
 void FILO_BLOCK::pop(T* _data) {
-    _data = data[--top]
-    delete data[top];
+    _data = data[--top];
 };
 FILO_BLOCK_TEMPLATE
 T* FILO_BLOCK::popOff() {

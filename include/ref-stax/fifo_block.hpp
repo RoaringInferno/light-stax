@@ -22,8 +22,8 @@ public:
 
     T* top();
 
-    void pop();
-    void pop(T* _data);
+    void pop(); // Deletes the top element.
+    void pop(T* _data); // Marks the top element as empty. Sets the given pointer to the data.
     T* popOff();
 
     void push(const T* _data);
@@ -66,7 +66,10 @@ void FIFO_STACK::pop() {
 FIFO_BLOCK_TEMPLATE
 void FIFO_STACK::pop(T* _data) {
     _data = top();
-    pop();
+    for (Size_T i = 0; i < size;) {
+        data[i] = data[++i];
+    }
+    --top;
 };
 FIFO_BLOCK_TEMPLATE
 T* FIFO_STACK::popOff() {
