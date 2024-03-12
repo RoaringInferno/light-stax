@@ -10,29 +10,29 @@
 
 #include "stack.hpp"
 
-#define FIFOLIST_TEMPLATE template<typename Size_T, typename T>
-#define FIFOLIST FifoList<Size_T, T>
+#define FIFO_LIST_TEMPLATE template<typename Size_T, typename T>
+#define FIFOLIST fifo_list<Size_T, T>
 
-#define FIFOLINK_TEMPLATE template<typename T>
-#define FIFOLINK FifoLink<T>
+#define FIFO_LIST_LINK_TEMPLATE template<typename T>
+#define FIFOLINK fifo_list_link<T>
 
 namespace lstax {
 
-FIFOLINK_TEMPLATE
-class FifoLink {
+FIFO_LIST_LINK_TEMPLATE
+class fifo_list_link {
 public:
     T* data; // Pointer to stored data.
     FIFOLINK* next; // Pointer to the next link.
 
     
-    FifoLink(T* _data, FIFOLINK* _previous = nullptr); // Creates a FifoLink behind the given link, with the given data.
+    fifo_list_link(T* _data, FIFOLINK* _previous = nullptr); // Creates a fifo_list_link behind the given link, with the given data.
 
-    ~FifoLink(); // Deletes the FifoLink, and associated data.
+    ~fifo_list_link(); // Deletes the fifo_list_link, and associated data.
 };
 
 
-FIFOLIST_TEMPLATE
-class FifoList : public Stack<Size_T, T> {
+FIFO_LIST_TEMPLATE
+class fifo_list : public stack<Size_T, T> {
 public:
     Size_T length; // Length of the stack.
     Size_T length(); // Returns the length
@@ -40,10 +40,10 @@ public:
     FIFOLINK* top; // Pointer to the top link (pop target)
     FIFOLINK* bottom; // Pointer to the bottom link (push target)
 
-    FifoList(); // Constructs a stack with no data
-    FifoList(T* _data); // Constructs a stack with a single piece of data.
+    fifo_list(); // Constructs a stack with no data
+    fifo_list(T* _data); // Constructs a stack with a single piece of data.
 
-    ~FifoList(); // Deletes all links and all data.
+    ~fifo_list(); // Deletes all links and all data.
 
 
     void push(const T* _data); // Adds a link with the given data.
@@ -58,30 +58,30 @@ public:
 
 } // namespace lstax
 
-namespace lstax { // FifoLink
+namespace lstax { // fifo_list_link
 
-FIFOLINK_TEMPLATE
-FIFOLINK::FifoLink(T* _data, FIFOLINK* _previous = nullptr) : data(_data) {
+FIFO_LIST_LINK_TEMPLATE
+FIFOLINK::fifo_list_link(T* _data, FIFOLINK* _previous = nullptr) : data(_data) {
     if (_previous != nullptr) _previous->next = this;
 };
 
-FIFOLINK_TEMPLATE
-FIFOLINK::~FifoLink() {
+FIFO_LIST_LINK_TEMPLATE
+FIFOLINK::~fifo_list_link() {
     delete data;
 };
 
 } // namespace lstax
 
-namespace lstax { // FifoList
+namespace lstax { // fifo_list
 
-FIFOLIST_TEMPLATE
-FIFOLIST::FifoList() : Stack<T>(), length(0), top(nullptr), bottom(nullptr) {};
+FIFO_LIST_TEMPLATE
+FIFOLIST::fifo_list() : stack<T>(), length(0), top(nullptr), bottom(nullptr) {};
 
-FIFOLIST_TEMPLATE
-FIFOLIST::FifoList(T* _data) : Stack<T>(), length(1), top(new FIFOLINK(_data)), bottom(top) {};
+FIFO_LIST_TEMPLATE
+FIFOLIST::fifo_list(T* _data) : stack<T>(), length(1), top(new FIFOLINK(_data)), bottom(top) {};
 
-FIFOLIST_TEMPLATE
-FIFOLIST::~FifoList() {
+FIFO_LIST_TEMPLATE
+FIFOLIST::~fifo_list() {
     for (size_t i = 0; i < length; ++i)
     {
         bottom = top->next;
@@ -90,24 +90,24 @@ FIFOLIST::~FifoList() {
     }
 };
 
-FIFOLIST_TEMPLATE
+FIFO_LIST_TEMPLATE
 void FIFOLIST::push(const T* _data) {
     bottom = new FIFOLINK(_data, bottom);
     ++length;
 };
 
-FIFOLIST_TEMPLATE
+FIFO_LIST_TEMPLATE
 void FIFOLIST::push(const T& _data) {
     push(*_data);
 };
 
 
-FIFOLIST_TEMPLATE
+FIFO_LIST_TEMPLATE
 T* FIFOLIST::top() {
     return top->data;
 };
 
-FIFOLIST_TEMPLATE
+FIFO_LIST_TEMPLATE
 void FIFOLIST::pop() {
     FIFOLINK* interm = top->next;
     delete top;
@@ -115,7 +115,7 @@ void FIFOLIST::pop() {
     --length;
 };
 
-FIFOLIST_TEMPLATE
+FIFO_LIST_TEMPLATE
 T* FIFOLIST::popOff() {
     T* data = top->data;
     top->data = nullptr;
@@ -123,7 +123,7 @@ T* FIFOLIST::popOff() {
     return data;
 };
 
-FIFOLIST_TEMPLATE
+FIFO_LIST_TEMPLATE
 T* FIFOLIST::operator[](size_t _index) {
     FIFOLINK* target = top;
     for (size_t i = 0; i < _index; ++i) {
@@ -132,7 +132,7 @@ T* FIFOLIST::operator[](size_t _index) {
     return target->data;
 };
 
-FIFOLIST_TEMPLATE
+FIFO_LIST_TEMPLATE
 Size_T FIFOLIST::length() {
     return length;
 };
@@ -140,8 +140,8 @@ Size_T FIFOLIST::length() {
 } // namespace lstax
 
 
-#undef FIFOLIST_TEMPLATE
+#undef FIFO_LIST_TEMPLATE
 #undef FIFO
 
-#undef FIFOLINK_TEMPLATE
+#undef FIFO_LIST_LINK_TEMPLATE
 #undef FIFOLINK

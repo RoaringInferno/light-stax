@@ -10,40 +10,40 @@
 
 #include "stack.hpp"
 
-#define FILOLIST_TEMPLATE template<typename Size_T, typename T>
-#define FILOLIST FiloList<Size_T, T>
+#define FILO_LIST_TEMPLATE template<typename Size_T, typename T>
+#define FILO_LIST filo_list<Size_T, T>
 
-#define FILOLINK_TEMPLATE template<typename T>
-#define FILOLINK FiloLink<T>
+#define FILO_LIST_LINK_TEMPLATE template<typename T>
+#define FILO_LIST_LINK filo_list_link<T>
 
 namespace lstax {
 
-FILOLINK_TEMPLATE
-class FiloLink {
+FILO_LIST_LINK_TEMPLATE
+class filo_list_link {
 public:
     T* data; // Pointer to stored data.
-    FILOLINK* next; // Pointer to the next link.
+    FILO_LIST_LINK* next; // Pointer to the next link.
 
     
-    FiloLink(T* _data, FILOLINK* _next = nullptr); // Creates a FiloLink behind the given link, with the given data.
+    filo_list_link(T* _data, FILO_LIST_LINK* _next = nullptr); // Creates a filo_list_link behind the given link, with the given data.
 
-    ~FiloLink(); // Deletes the FiloLink, and associated data.
+    ~filo_list_link(); // Deletes the filo_list_link, and associated data.
 };
 
 
-FILOLIST_TEMPLATE
-class FiloList : public Stack<Size_T, T>
+FILO_LIST_TEMPLATE
+class filo_list : public stack<Size_T, T>
 {
 public:
     Size_T length; // Length of the stack.
     Size_T length(); // Returns the length
 
-    FILOLINK* top; // Pointer to the top link
+    FILO_LIST_LINK* top; // Pointer to the top link
 
-    FiloList(); // Constructs a stack with no data
-    FiloList(T* _data); // Constructs a stack with a single piece of data.
+    filo_list(); // Constructs a stack with no data
+    filo_list(T* _data); // Constructs a stack with a single piece of data.
 
-    ~FiloList(); // Deletes all links and all data.
+    ~filo_list(); // Deletes all links and all data.
 
 
     void push(const T* _data); // Adds a link with the given data.
@@ -58,31 +58,31 @@ public:
 
 } // namespace lstax
 
-namespace lstax { // FiloLink
+namespace lstax { // filo_list_link
 
-FILOLINK_TEMPLATE
-FILOLINK::FiloLink(T* _data, FILOLINK* _next = nullptr) : data(_data) {
+FILO_LIST_LINK_TEMPLATE
+FILO_LIST_LINK::filo_list_link(T* _data, FILO_LIST_LINK* _next = nullptr) : data(_data) {
     next = _next;
 };
 
-FILOLINK_TEMPLATE
-FILOLINK::~FiloLink() {
+FILO_LIST_LINK_TEMPLATE
+FILO_LIST_LINK::~filo_list_link() {
     delete data;
 };
 
 } // namespace lstax
 
-namespace lstax { // FiloList
+namespace lstax { // filo_list
 
-FILOLIST_TEMPLATE
-FILOLIST::FiloList() : Stack<T>(), length(0), top(nullptr) {};
+FILO_LIST_TEMPLATE
+FILO_LIST::filo_list() : stack<T>(), length(0), top(nullptr) {};
 
-FILOLIST_TEMPLATE
-FILOLIST::FiloList(T* _data) : Stack<T>(), length(1), top(new FILOLINK(_data)) {};
+FILO_LIST_TEMPLATE
+FILO_LIST::filo_list(T* _data) : stack<T>(), length(1), top(new FILO_LIST_LINK(_data)) {};
 
-FILOLIST_TEMPLATE
-FILOLIST::~FiloList() {
-    FILOLINK* bottom;
+FILO_LIST_TEMPLATE
+FILO_LIST::~filo_list() {
+    FILO_LIST_LINK* bottom;
     for (size_t i = 0; i < length; ++i)
     {
         bottom = top->next;
@@ -91,50 +91,50 @@ FILOLIST::~FiloList() {
     }
 };
 
-FILOLIST_TEMPLATE
-void FILOLIST::push(const T* _data) {
-    top = new FILOLINK(_data, top);
+FILO_LIST_TEMPLATE
+void FILO_LIST::push(const T* _data) {
+    top = new FILO_LIST_LINK(_data, top);
     ++length;
 };
 
-FILOLIST_TEMPLATE
-void FILOLIST::push(const T& _data) {
+FILO_LIST_TEMPLATE
+void FILO_LIST::push(const T& _data) {
     push(*_data);
 };
 
 
-FILOLIST_TEMPLATE
-T* FILOLIST::top() {
+FILO_LIST_TEMPLATE
+T* FILO_LIST::top() {
     return top->data;
 };
 
-FILOLIST_TEMPLATE
-void FILOLIST::pop() {
-    FILOLINK* interm = top->next;
+FILO_LIST_TEMPLATE
+void FILO_LIST::pop() {
+    FILO_LIST_LINK* interm = top->next;
     delete top;
     top = interm;
     --length;
 };
 
-FILOLIST_TEMPLATE
-T* FILOLIST::popOff() {
+FILO_LIST_TEMPLATE
+T* FILO_LIST::popOff() {
     T* data = top->data;
     top->data = nullptr;
     pop();
     return data;
 };
 
-FILOLIST_TEMPLATE
-T* FILOLIST::operator[](size_t _index) {
-    FILOLINK* target = top;
+FILO_LIST_TEMPLATE
+T* FILO_LIST::operator[](size_t _index) {
+    FILO_LIST_LINK* target = top;
     for (size_t i = 0; i < _index; ++i) {
         target = target->next;
     }
     return target->data;
 };
 
-FILOLIST_TEMPLATE
-Size_T FILOLIST::length() {
+FILO_LIST_TEMPLATE
+Size_T FILO_LIST::length() {
     return length;
 };
 

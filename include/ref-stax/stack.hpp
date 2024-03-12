@@ -3,14 +3,14 @@
 #include <cstddef>
 
 #define STACK_TEMPLATE template<typename Size_T, typename T>
-#define STACK Stack<Size_T, T>
+#define STACK stack<Size_T, T>
 
 namespace lstax
 {
 STACK_TEMPLATE
-class Stack {
+class stack {
 public:
-Stack(); // Empty constructor
+stack(); // Empty constructor
 
 virtual Size_T length() = 0; // Returns the length
 
@@ -29,5 +29,5 @@ virtual T* operator[](Size_T _index) = 0; // Indexing operator
 namespace lstax
 {
 STACK_TEMPLATE
-STACK::Stack() {};
+STACK::stack() {};
 } // namespace lstax

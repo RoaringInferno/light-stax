@@ -4,21 +4,21 @@
 
 #include "stack.hpp"
 
-#define FIFOSTACK_TEMPLATE template<typename Size_T, typename T, Size_T size>
-#define FIFOSTACK FifoStack<Size_T, T, size>
+#define FIFO_BLOCK_TEMPLATE template<typename Size_T, typename T, Size_T size>
+#define FIFO_STACK fifo_block<Size_T, T, size>
 
 namespace lstax
 {
-FIFOSTACK_TEMPLATE
-class FifoStack : Stack<Size_T, T>
+FIFO_BLOCK_TEMPLATE
+class fifo_block : stack<Size_T, T>
 {
 public:
     T* data[size];
     Size_T bottom; // The first empty index
 
-    FifoStack();
-    FifoStack(T* _data);
-    ~FifoStack(); // Deletes all data. Iterates through the whole array in order to ensure memory cleanup.
+    fifo_block();
+    fifo_block(T* _data);
+    ~fifo_block(); // Deletes all data. Iterates through the whole array in order to ensure memory cleanup.
 
     T* top();
 
@@ -35,60 +35,60 @@ public:
 
 namespace lstax
 {
-FIFOSTACK_TEMPLATE
-FIFOSTACK::FifoStack() : Stack<Size_T, T>, top(0) {
+FIFO_BLOCK_TEMPLATE
+FIFO_STACK::fifo_block() : stack<Size_T, T>, top(0) {
     //
 };
-FIFOSTACK_TEMPLATE
-FIFOSTACK::FifoStack(T* _data) : Stack<Size_T, T>, top(1) {
+FIFO_BLOCK_TEMPLATE
+FIFO_STACK::fifo_block(T* _data) : stack<Size_T, T>, top(1) {
     data[0] = _data;
 };
-FIFOSTACK_TEMPLATE
-FIFOSTACK::~FifoStack() {
+FIFO_BLOCK_TEMPLATE
+FIFO_STACK::~fifo_block() {
     for (Size_T i = 0; i < size; ++i) {
         delete data[i];
     }
 };
 
-FIFOSTACK_TEMPLATE
-T* FIFOSTACK::top() {
+FIFO_BLOCK_TEMPLATE
+T* FIFO_STACK::top() {
     return data[0];
 };
 
-FIFOSTACK_TEMPLATE
-void FIFOSTACK::pop() {
+FIFO_BLOCK_TEMPLATE
+void FIFO_STACK::pop() {
     delete data[0];
     for (Size_T i = 0; i < size;) {
         data[i] = data[++i];
     }
     --top;
 };
-FIFOSTACK_TEMPLATE
-void FIFOSTACK::pop(T* _data) {
+FIFO_BLOCK_TEMPLATE
+void FIFO_STACK::pop(T* _data) {
     _data = top();
     pop();
 };
-FIFOSTACK_TEMPLATE
-T* FIFOSTACK::popOff() {
+FIFO_BLOCK_TEMPLATE
+T* FIFO_STACK::popOff() {
     T* temp = top();
     pop();
     return temp;
 };
 
-FIFOSTACK_TEMPLATE
-void FIFOSTACK::push(const T* _data) {
+FIFO_BLOCK_TEMPLATE
+void FIFO_STACK::push(const T* _data) {
     data[bottom++] = _data;
 };
-FIFOSTACK_TEMPLATE
-void FIFOSTACK::push(const T& _data) {
+FIFO_BLOCK_TEMPLATE
+void FIFO_STACK::push(const T& _data) {
     push(&_data);
 };
 
-FIFOSTACK_TEMPLATE
-T* FIFOSTACK::operator[](Size_T _index) {
+FIFO_BLOCK_TEMPLATE
+T* FIFO_STACK::operator[](Size_T _index) {
     return data[_index];
 };
 }
 
-#undef FILO_STACK_TEMPLATE
-#undef FILO_STACK
+#undef FIFO_STACK_TEMPLATE
+#undef FIFO_STACK

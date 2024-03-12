@@ -4,21 +4,21 @@
 
 #include "stack.hpp"
 
-#define FILOSTACK_TEMPLATE template<typename Size_T, typename T, Size_T size>
-#define FILOSTACK FiloStack<Size_T, T, size>
+#define FILO_BLOCK_TEMPLATE template<typename Size_T, typename T, Size_T size>
+#define FILO_BLOCK filo_block<Size_T, T, size>
 
 namespace lstax
 {
-FILOSTACK_TEMPLATE
-class FiloStack : Stack<Size_T, T>
+FILO_BLOCK_TEMPLATE
+class filo_block : stack<Size_T, T>
 {
 public:
     T* data[size];
     Size_T top; // The first empty index
 
-    FiloStack();
-    FiloStack(T* _data);
-    ~FiloStack(); // Deletes all data. Iterates through the whole array in order to ensure memory cleanup.
+    filo_block();
+    filo_block(T* _data);
+    ~filo_block(); // Deletes all data. Iterates through the whole array in order to ensure memory cleanup.
 
     T* top();
 
@@ -35,53 +35,53 @@ public:
 
 namespace lstax
 {
-FILOSTACK_TEMPLATE
-FILOSTACK::FiloStack() : Stack<Size_T, T>(), top(0) {
+FILO_BLOCK_TEMPLATE
+FILO_BLOCK::filo_block() : stack<Size_T, T>(), top(0) {
     //
 };
-FILOSTACK_TEMPLATE
-FILOSTACK::FiloStack(T* _data) : Stack<Size_T, T>(), top(1) {
+FILO_BLOCK_TEMPLATE
+FILO_BLOCK::filo_block(T* _data) : stack<Size_T, T>(), top(1) {
     data[0] = _data;
 };
-FILOSTACK_TEMPLATE
-FILOSTACK::~FiloStack() {
+FILO_BLOCK_TEMPLATE
+FILO_BLOCK::~filo_block() {
     for (Size_T i = 0; i < size; ++i) {
         delete data[i];
     }
 };
 
-FILOSTACK_TEMPLATE
-T* FILOSTACK::top() {
+FILO_BLOCK_TEMPLATE
+T* FILO_BLOCK::top() {
     return data[top-1];
 };
 
-FILOSTACK_TEMPLATE
-void FILOSTACK::pop() {
+FILO_BLOCK_TEMPLATE
+void FILO_BLOCK::pop() {
     delete data[--top];
 };
-FILOSTACK_TEMPLATE
-void FILOSTACK::pop(T* _data) {
+FILO_BLOCK_TEMPLATE
+void FILO_BLOCK::pop(T* _data) {
     _data = data[--top]
     delete data[top];
 };
-FILOSTACK_TEMPLATE
-T* FILOSTACK::popOff() {
+FILO_BLOCK_TEMPLATE
+T* FILO_BLOCK::popOff() {
     temp = top();
     pop();
     return temp;
 };
 
-FILOSTACK_TEMPLATE
-void FILOSTACK::push(const T* _data) {
+FILO_BLOCK_TEMPLATE
+void FILO_BLOCK::push(const T* _data) {
     data[top++] = _data;
 };
-FILOSTACK_TEMPLATE
-void FILOSTACK::push(const T& _data) {
+FILO_BLOCK_TEMPLATE
+void FILO_BLOCK::push(const T& _data) {
     push(&_data);
 };
 
-FILOSTACK_TEMPLATE
-T* FILOSTACK::operator[](Size_T _index) {
+FILO_BLOCK_TEMPLATE
+T* FILO_BLOCK::operator[](Size_T _index) {
     return data[_index];
 };
 }
