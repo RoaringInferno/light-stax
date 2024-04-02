@@ -59,7 +59,7 @@ namespace lstax
          *
          * @return The length of the stack.
          */
-        Size_T length();
+        Size_T length() const override;
 
         FILO_LIST_LINK *top; // Pointer to the top link
 
@@ -87,40 +87,40 @@ namespace lstax
          *
          * @param _data Pointer to the data to be added.
          */
-        void push(const T *_data);
+        void push(const T *_data) override;
 
         /**
          * @brief Adds a link with the given data to the top of the stack.
          *
          * @param _data Reference to the data to be added.
          */
-        void push(const T &_data);
+        void push(const T &_data) override;
 
         /**
          * @brief Views the top element of the stack.
          *
          * @return Pointer to the top element of the stack.
          */
-        T *top();
+        T *top() const override;
 
         /**
          * @brief Removes the top element of the stack.
          */
-        void pop();
+        void pop() override;
 
         /**
          * @brief Removes the top element of the stack and sets the given pointer to the data.
          *
          * @param _data Pointer to store the data of the removed element.
          */
-        void pop(T *_data);
+        void pop(T *_data) override;
 
         /**
          * @brief Removes the top element of the stack and returns the held data.
          *
          * @return Pointer to the data of the removed element.
          */
-        T *popOff();
+        T *popOff() override;
 
         /**
          * @brief Indexing operator to access elements in the stack.
@@ -128,7 +128,7 @@ namespace lstax
          * @param _index The index of the element to access.
          * @return Pointer to the data of the element at the given index.
          */
-        T *operator[](size_t _index);
+        T *operator[](size_t _index) const override;
     };
 
 } // namespace lstax
@@ -185,7 +185,7 @@ namespace lstax
     };
 
     FILO_LIST_TEMPLATE
-    T *FILO_LIST::top()
+    T *FILO_LIST::top() const
     {
         return top->data;
     };
@@ -217,7 +217,7 @@ namespace lstax
     };
 
     FILO_LIST_TEMPLATE
-    T *FILO_LIST::operator[](size_t _index)
+    T *FILO_LIST::operator[](size_t _index) const
     {
         FILO_LIST_LINK *target = top;
         for (size_t i = 0; i < _index; ++i)
@@ -228,7 +228,7 @@ namespace lstax
     };
 
     FILO_LIST_TEMPLATE
-    Size_T FILO_LIST::length()
+    Size_T FILO_LIST::length() const
     {
         return length;
     };

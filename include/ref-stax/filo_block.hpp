@@ -50,44 +50,51 @@ namespace lstax
         ~filo_block();
 
         /**
+         * @brief Returns the length of the filo block.
+         *
+         * @return The length of the filo block.
+         */
+        Size_T length() const override;
+
+        /**
          * @brief Get the top data element.
          *
          * @return Pointer to the top data element.
          */
-        T *top();
+        T *top() const override;
 
         /**
          * @brief Remove the top data element.
          */
-        void pop();
+        void pop() override;
 
         /**
          * @brief Remove the top data element and assign it to the given pointer.
          *
          * @param _data Pointer to store the top data element.
          */
-        void pop(T *_data);
+        void pop(T *_data) override;
 
         /**
          * @brief Remove the top data element and return it.
          *
          * @return Pointer to the removed top data element.
          */
-        T *popOff();
+        T *popOff() override;
 
         /**
          * @brief Push a new data element onto the filo_block.
          *
          * @param _data Pointer to the data element to be pushed.
          */
-        void push(const T *_data);
+        void push(const T *_data) override;
 
         /**
          * @brief Push a new data element onto the filo_block.
          *
          * @param _data Reference to the data element to be pushed.
          */
-        void push(const T &_data);
+        void push(const T &_data) override;
 
         /**
          * @brief Access the data element at the given index.
@@ -95,16 +102,14 @@ namespace lstax
          * @param _index The index of the data element to access.
          * @return Pointer to the data element at the given index.
          */
-        T *operator[](Size_T _index);
+        T *operator[](Size_T _index) const override;
     };
 }
 
 namespace lstax
 {
     FILO_BLOCK_TEMPLATE
-    FILO_BLOCK::filo_block() : stack<Size_T, T>(), top(0){
-                                                       //
-                                                   };
+    FILO_BLOCK::filo_block() : stack<Size_T, T>(), top(0){};
 
     FILO_BLOCK_TEMPLATE
     FILO_BLOCK::filo_block(T *_data) : stack<Size_T, T>(), top(1)
@@ -122,7 +127,13 @@ namespace lstax
     };
 
     FILO_BLOCK_TEMPLATE
-    T *FILO_BLOCK::top()
+    Size_T FILO_BLOCK::length() const
+    {
+        return top + 1;
+    };
+
+    FILO_BLOCK_TEMPLATE
+    T *FILO_BLOCK::top() const
     {
         return data[top - 1];
     };
@@ -160,7 +171,7 @@ namespace lstax
     };
 
     FILO_BLOCK_TEMPLATE
-    T *FILO_BLOCK::operator[](Size_T _index)
+    T *FILO_BLOCK::operator[](Size_T _index) const
     {
         return data[_index];
     };

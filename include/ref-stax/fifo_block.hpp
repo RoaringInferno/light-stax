@@ -54,18 +54,25 @@ namespace lstax
         ~fifo_block();
 
         /**
+         * @brief Returns the length of the FIFO block.
+         *
+         * @return The length of the FIFO block.
+         */
+        Size_T length() const override;
+
+        /**
          * @brief Get the top element of the fifo_block.
          *
          * @return T* A pointer to the top element of the fifo_block.
          */
-        T *top();
+        T *top() override;
 
         /**
          * @brief Remove the top element from the fifo_block.
          *
          * Deletes the top element from the fifo_block.
          */
-        void pop();
+        void pop() override;
 
         /**
          * @brief Remove the top element from the fifo_block and retrieve its data.
@@ -74,28 +81,28 @@ namespace lstax
          *
          * @param _data A pointer to store the data of the top element.
          */
-        void pop(T *_data);
+        void pop(T *_data) override;
 
         /**
          * @brief Remove the top element from the fifo_block and return its data.
          *
          * @return T* A pointer to the data of the top element.
          */
-        T *popOff();
+        T *popOff() override;
 
         /**
          * @brief Push an element into the fifo_block.
          *
          * @param _data The element to be pushed into the fifo_block.
          */
-        void push(const T *_data);
+        void push(const T *_data) override;
 
         /**
          * @brief Push an element into the fifo_block.
          *
          * @param _data The element to be pushed into the fifo_block.
          */
-        void push(const T &_data);
+        void push(const T &_data) override;
 
         /**
          * @brief Access an element in the fifo_block by index.
@@ -103,16 +110,15 @@ namespace lstax
          * @param _index The index of the element to be accessed.
          * @return T* A pointer to the element at the specified index.
          */
-        T *operator[](Size_T _index);
+        T *operator[](Size_T _index) override;
     };
 }
 
 namespace lstax
 {
     FIFO_BLOCK_TEMPLATE
-    FIFO_STACK::fifo_block() : stack<Size_T, T>, top(0){
-                                                     //
-                                                 };
+    FIFO_STACK::fifo_block() : stack<Size_T, T>, top(0){};
+    
     FIFO_BLOCK_TEMPLATE
     FIFO_STACK::fifo_block(T *_data) : stack<Size_T, T>, top(1)
     {
@@ -125,6 +131,12 @@ namespace lstax
         {
             delete data[i];
         }
+    };
+
+    FIFO_BLOCK_TEMPLATE
+    Size_T FIFO_STACK::length() const
+    {
+        return top + 1;
     };
 
     FIFO_BLOCK_TEMPLATE

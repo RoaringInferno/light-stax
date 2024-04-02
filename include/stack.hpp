@@ -11,19 +11,6 @@
 
 namespace lstax
 {
-    LINK_TEMPLATE
-    /**
-     * @brief A link for a linked list implementation of a stack.
-     * 
-     * @tparam T The type of data stored in the stack.
-     */
-    class link
-    {
-    public:
-        T *data;    // Pointer to stored data.
-        LINK *next; // Pointer to the next link.
-    };
-
     STACK_TEMPLATE
     /**
      * @brief An abstract base class for a stack.
@@ -44,7 +31,7 @@ namespace lstax
          * 
          * @return The length of the stack.
          */
-        virtual Size_T length() = 0;
+        virtual Size_T length() const = 0;
 
         /**
          * @brief Adds a link with the given data to the top of the stack.
@@ -65,7 +52,7 @@ namespace lstax
          * 
          * @return A pointer to the top element of the stack.
          */
-        virtual T *top() = 0;
+        virtual T *top() const = 0;
 
         /**
          * @brief Removes the top element from the stack.
@@ -92,7 +79,7 @@ namespace lstax
          * @param _index The index of the element to access.
          * @return A pointer to the element at the specified index.
          */
-        virtual T *operator[](Size_T _index) = 0;
+        virtual T *operator[](Size_T _index) const = 0;
     };
 } // namespace lstax
 

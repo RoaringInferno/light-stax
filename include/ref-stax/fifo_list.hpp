@@ -64,7 +64,7 @@ namespace lstax
          *
          * @return The length of the fifo_list.
          */
-        Size_T length();
+        Size_T length() const override;
 
         FIFO_LIST_LINK *top;    // Pointer to the top link (pop target)
         FIFO_LIST_LINK *bottom; // Pointer to the bottom link (push target)
@@ -87,46 +87,51 @@ namespace lstax
          * Deletes all links and associated data in the fifo_list.
          */
         ~fifo_list();
+        
+        /**
+         * @brief Represents the type used to store the size of a container or object.
+         */
+        Size_T length() const override;
 
         /**
          * @brief Adds a link with the given data to the fifo_list.
          *
          * @param _data Pointer to the data to be added to the fifo_list.
          */
-        void push(const T *_data);
+        void push(const T *_data) override;
 
         /**
          * @brief Adds a link with the given data to the fifo_list.
          *
          * @param _data Reference to the data to be added to the fifo_list.
          */
-        void push(const T &_data);
+        void push(const T &_data) override;
 
         /**
          * @brief Views the top element of the fifo_list.
          *
          * @return Pointer to the top element of the fifo_list.
          */
-        T *top();
+        T *top() const override;
 
         /**
          * @brief Removes the top element from the fifo_list.
          */
-        void pop();
+        void pop() override;
 
         /**
          * @brief Removes the top element from the fifo_list and sets the given pointer to the data.
          *
          * @param _data Pointer to store the data of the removed element.
          */
-        void pop(T *_data);
+        void pop(T *_data) override;
 
         /**
          * @brief Removes the top element from the fifo_list and returns the held data.
          *
          * @return Pointer to the held data. Requires 1 additional pointer.
          */
-        T *popOff();
+        T *popOff() override;
 
         /**
          * @brief Indexing operator for the fifo_list.
@@ -134,7 +139,7 @@ namespace lstax
          * @param _index The index of the element to access.
          * @return Pointer to the element at the specified index.
          */
-        T *operator[](size_t _index);
+        T *operator[](size_t _index) const override;
     };
 
 } // namespace lstax
@@ -196,6 +201,12 @@ namespace lstax
     };
 
     FIFO_LIST_TEMPLATE
+    Size_T FIFO_LIST::length() const
+    {
+        return length;
+    };
+
+    FIFO_LIST_TEMPLATE
     void FIFO_LIST::push(const T *_data)
     {
         bottom = new FIFO_LIST_LINK(_data, bottom);
@@ -209,7 +220,7 @@ namespace lstax
     };
 
     FIFO_LIST_TEMPLATE
-    T *FIFO_LIST::top()
+    T *FIFO_LIST::top() const
     {
         return top->data;
     };
@@ -240,7 +251,7 @@ namespace lstax
     };
 
     FIFO_LIST_TEMPLATE
-    T *FIFO_LIST::operator[](size_t _index)
+    T *FIFO_LIST::operator[](size_t _index) const
     {
         FIFO_LIST_LINK *target = top;
         for (size_t i = 0; i < _index; ++i)
@@ -251,7 +262,7 @@ namespace lstax
     };
 
     FIFO_LIST_TEMPLATE
-    Size_T FIFO_LIST::length()
+    Size_T FIFO_LIST::length() const
     {
         return length;
     };
