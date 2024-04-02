@@ -4,6 +4,7 @@ project(light-stax)
 
 add_library(light-stax INTERFACE)
 target_include_directories(light-stax INTERFACE
+    include/
     include/ref-stax/
     include/lit-stax/
 )
