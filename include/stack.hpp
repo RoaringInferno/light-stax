@@ -5,10 +5,6 @@
 
 #define STACK_TEMPLATE template <typename Size_T, typename T>
 #define STACK stack<Size_T, T>
-
-#define LINK_TEMPLATE template <typename T>
-#define LINK link<T>
-
 namespace lstax
 {
     STACK_TEMPLATE
@@ -91,6 +87,3 @@ namespace lstax
 
 #undef STACK_TEMPLATE
 #undef STACK
-
-#undef LINK_TEMPLATE
-#undef LINK
