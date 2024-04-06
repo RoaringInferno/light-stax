@@ -11,5 +11,5 @@
 #endif
 
 #ifndef _DEBUG_LIST_LOOPS
-    #define _DEBUG_LIST_LOOPS 10000000
+    #define _DEBUG_LIST_LOOPS 100000 // Light performance testing. 10^5 (100 thousand)
 #endif
