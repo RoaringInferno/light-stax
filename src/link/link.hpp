@@ -1,5 +1,7 @@
 #pragma once
 
+#include<type_traits>
+
 #define LINK_TEMPLATE template<typename T>
 #define LINK link<T>
 

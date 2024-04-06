@@ -4,13 +4,15 @@ project(light-stax)
 
 set(TESTING true)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Dnullptr=0")
+add_compile_definitions(
+    "nullptr=0"
+)
 
 add_library(light-stax INTERFACE)
 target_include_directories(light-stax INTERFACE
     src/
     src/link/
-    src/filo/
+    src/linked_list/
 )
 
 
