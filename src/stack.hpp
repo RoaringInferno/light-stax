@@ -13,7 +13,7 @@ namespace lstax
         stack() : length(0) {};
         ~stack() {};
 
-        virtual void push(const T _data) = 0;
+        virtual void push(const T& _data) = 0;
         virtual void pop() = 0;
         virtual T peek() const = 0;
     };
