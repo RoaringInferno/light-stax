@@ -516,53 +516,53 @@ fifo_list/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/fifo_list.dir/build.make CMakeFiles/fifo_list.dir/build
 .PHONY : fifo_list/fast
 
-testing/src/fifo_list_test.o: testing/src/fifo_list_test.cpp.o
-.PHONY : testing/src/fifo_list_test.o
+testing/fifo_list_test.o: testing/fifo_list_test.cpp.o
+.PHONY : testing/fifo_list_test.o
 
 # target to build an object file
-testing/src/fifo_list_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/fifo_list.dir/build.make CMakeFiles/fifo_list.dir/testing/src/fifo_list_test.cpp.o
-.PHONY : testing/src/fifo_list_test.cpp.o
+testing/fifo_list_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fifo_list.dir/build.make CMakeFiles/fifo_list.dir/testing/fifo_list_test.cpp.o
+.PHONY : testing/fifo_list_test.cpp.o
 
-testing/src/fifo_list_test.i: testing/src/fifo_list_test.cpp.i
-.PHONY : testing/src/fifo_list_test.i
+testing/fifo_list_test.i: testing/fifo_list_test.cpp.i
+.PHONY : testing/fifo_list_test.i
 
 # target to preprocess a source file
-testing/src/fifo_list_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/fifo_list.dir/build.make CMakeFiles/fifo_list.dir/testing/src/fifo_list_test.cpp.i
-.PHONY : testing/src/fifo_list_test.cpp.i
+testing/fifo_list_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fifo_list.dir/build.make CMakeFiles/fifo_list.dir/testing/fifo_list_test.cpp.i
+.PHONY : testing/fifo_list_test.cpp.i
 
-testing/src/fifo_list_test.s: testing/src/fifo_list_test.cpp.s
-.PHONY : testing/src/fifo_list_test.s
+testing/fifo_list_test.s: testing/fifo_list_test.cpp.s
+.PHONY : testing/fifo_list_test.s
 
 # target to generate assembly for a file
-testing/src/fifo_list_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/fifo_list.dir/build.make CMakeFiles/fifo_list.dir/testing/src/fifo_list_test.cpp.s
-.PHONY : testing/src/fifo_list_test.cpp.s
+testing/fifo_list_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fifo_list.dir/build.make CMakeFiles/fifo_list.dir/testing/fifo_list_test.cpp.s
+.PHONY : testing/fifo_list_test.cpp.s
 
-testing/src/filo_list_test.o: testing/src/filo_list_test.cpp.o
-.PHONY : testing/src/filo_list_test.o
+testing/filo_list_test.o: testing/filo_list_test.cpp.o
+.PHONY : testing/filo_list_test.o
 
 # target to build an object file
-testing/src/filo_list_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/filo_list.dir/build.make CMakeFiles/filo_list.dir/testing/src/filo_list_test.cpp.o
-.PHONY : testing/src/filo_list_test.cpp.o
+testing/filo_list_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/filo_list.dir/build.make CMakeFiles/filo_list.dir/testing/filo_list_test.cpp.o
+.PHONY : testing/filo_list_test.cpp.o
 
-testing/src/filo_list_test.i: testing/src/filo_list_test.cpp.i
-.PHONY : testing/src/filo_list_test.i
+testing/filo_list_test.i: testing/filo_list_test.cpp.i
+.PHONY : testing/filo_list_test.i
 
 # target to preprocess a source file
-testing/src/filo_list_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/filo_list.dir/build.make CMakeFiles/filo_list.dir/testing/src/filo_list_test.cpp.i
-.PHONY : testing/src/filo_list_test.cpp.i
+testing/filo_list_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/filo_list.dir/build.make CMakeFiles/filo_list.dir/testing/filo_list_test.cpp.i
+.PHONY : testing/filo_list_test.cpp.i
 
-testing/src/filo_list_test.s: testing/src/filo_list_test.cpp.s
-.PHONY : testing/src/filo_list_test.s
+testing/filo_list_test.s: testing/filo_list_test.cpp.s
+.PHONY : testing/filo_list_test.s
 
 # target to generate assembly for a file
-testing/src/filo_list_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/filo_list.dir/build.make CMakeFiles/filo_list.dir/testing/src/filo_list_test.cpp.s
-.PHONY : testing/src/filo_list_test.cpp.s
+testing/filo_list_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/filo_list.dir/build.make CMakeFiles/filo_list.dir/testing/filo_list_test.cpp.s
+.PHONY : testing/filo_list_test.cpp.s
 
 # Help Target
 help:
@@ -603,12 +603,12 @@ help:
 	@echo "... NightlyUpdate"
 	@echo "... fifo_list"
 	@echo "... filo_list"
-	@echo "... testing/src/fifo_list_test.o"
-	@echo "... testing/src/fifo_list_test.i"
-	@echo "... testing/src/fifo_list_test.s"
-	@echo "... testing/src/filo_list_test.o"
-	@echo "... testing/src/filo_list_test.i"
-	@echo "... testing/src/filo_list_test.s"
+	@echo "... testing/fifo_list_test.o"
+	@echo "... testing/fifo_list_test.i"
+	@echo "... testing/fifo_list_test.s"
+	@echo "... testing/filo_list_test.o"
+	@echo "... testing/filo_list_test.i"
+	@echo "... testing/filo_list_test.s"
 .PHONY : help
 
 

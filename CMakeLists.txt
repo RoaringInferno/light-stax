@@ -32,7 +32,7 @@ if(${TESTING})
 
     foreach(UNIT_TEST ${UNIT_TESTS})
         set(UNIT_TEST_EXEC "${UNIT_TEST}")
-        set(UNIT_TEST_SRC "testing/src/${UNIT_TEST}_test.cpp")
+        set(UNIT_TEST_SRC "testing/${UNIT_TEST}_test.cpp")
         add_executable("${UNIT_TEST}" ${UNIT_TEST_SRC})
         #target_include_directories("${UNIT_TEST_EXEC}" PUBLIC include/)
         target_link_libraries("${UNIT_TEST}" PUBLIC light-stax)
