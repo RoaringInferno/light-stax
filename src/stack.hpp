@@ -10,8 +10,8 @@ namespace lstax
     {
         Size_T length;
         
-        stack();
-        ~stack();
+        stack() : length(0) {};
+        ~stack() {};
 
         virtual void push(const T _data) = 0;
         virtual void pop() = 0;

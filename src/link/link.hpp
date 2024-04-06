@@ -11,9 +11,9 @@ namespace lstax
         T data;
         LINK* next;
 
-        Link(const LINK* _next = nullptr) : next(_next) {};
-        Link(const T _data, const LINK* _next = nullptr) : data(_data), next(_next) {};
-        ~Link() {delete data};
+        link() : next(nullptr) {};
+        link(const T _data, LINK* _next = nullptr) : data(_data), next(_next) {};
+        ~link() {};
     };
 } // namespace lstax
 
