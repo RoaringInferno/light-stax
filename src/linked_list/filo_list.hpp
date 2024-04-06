@@ -15,7 +15,7 @@ namespace lstax
         filo_list() : LINKED_LIST() {};
         ~filo_list() {};
 
-        void push(const T _data) override {
+        void push(const T& _data) override {
             this->top = new LINK(_data, this->top);
             ++this->length;
         };

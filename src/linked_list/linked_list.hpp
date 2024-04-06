@@ -34,7 +34,7 @@ namespace lstax
             return this->top->data;
         };
     };
-}
+} // namespace lstax
 
 #undef LINKED_LIST_TEMPLATE
 #undef LINKED_LIST

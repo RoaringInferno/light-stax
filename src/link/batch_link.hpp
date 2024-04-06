@@ -11,15 +11,13 @@ namespace lstax
         T data[Batch_Size];
         BATCH_LINK* next;
 
-        batch_link(const BATCH_LINK* _next = nullptr) : next(_next);
-        batch_link(const T (&_data)[Batch_Size], const BATCH_LINK* _next = nullptr) : _next(next) {
+        batch_link() : next(_next);
+        batch_link(const T &_data, const BATCH_LINK* _next = nullptr) : _next(next) {
             for (Size_T i = 0; i < Batch_Size; ++i) {
                 data[i] = _data[i];
             }
         };
-        ~batch_link() {
-            delete data; // CONFIRM_THIS
-        }
+        ~batch_link() {}
     };
 } // namespace lstax
 

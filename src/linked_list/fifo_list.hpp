@@ -17,7 +17,7 @@ namespace lstax
         fifo_list() : LINKED_LIST() {};
         ~fifo_list() {};
 
-        void push(const T _data) override {
+        void push(const T& _data) override {
             if (this->length != 0) {
                 LINK* temp = new LINK(_data);
                 this->bottom->next = temp;

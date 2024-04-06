@@ -1,7 +1,5 @@
 #pragma once
 
-#include<type_traits>
-
 #define LINK_TEMPLATE template<typename T>
 #define LINK link<T>
 
@@ -14,7 +12,7 @@ namespace lstax
         LINK* next;
 
         link() : next(nullptr) {};
-        link(const T _data, LINK* _next = nullptr) : data(_data), next(_next) {};
+        link(const T &_data, LINK* _next = nullptr) : data(_data), next(_next) {};
         ~link() {};
     };
 } // namespace lstax
