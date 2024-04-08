@@ -1,10 +1,6 @@
-name: CMake on multiple platforms
+name: Unit Testing
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -29,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set reusable strings
+    - name: Set Environment Variables
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
       id: strings
       shell: bash
