@@ -37,11 +37,11 @@ namespace lstax
          * @fn lstax::linked_list::linked_list()
          * @brief Constructor for the linked_list class.
          * 
-         * This constructor initializes the top pointer to 0 and sets the length of the list to 0.
+         * This constructor initializes the top pointer to nullptr and sets the length of the list to 0.
          * 
          * @see lstax::stack::stack()
          */
-        linked_list() : top(0), STACK() {};
+        linked_list() : top(nullptr), STACK() {};
         /**
          * @fn lstax::linked_list::~linked_list()
          * @brief Destructor for the linked_list class.
@@ -52,7 +52,7 @@ namespace lstax
          * @see lstax::stack::~stack()
          */
         ~linked_list() {
-            while (this->top != 0) {
+            while (this->top != nullptr) {
                 LINK* temp = this->top;
                 this->top = this->top->next;
                 delete temp;
