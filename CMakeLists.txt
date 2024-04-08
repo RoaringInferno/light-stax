@@ -13,6 +13,7 @@ target_include_directories(light-stax INTERFACE
     src/
     src/link/
     src/linked_list/
+    srd/stack/
 )
 
 
