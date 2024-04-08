@@ -2,7 +2,7 @@
 
 /**
  * @file fifo_list.hpp
- * @brief First-In-First-Out (FIFO) linked list implementation.
+ * @brief A linked list that follows the First In, First Out (FIFO) principle.
 */
 
 #include "linked_list.hpp"
@@ -17,7 +17,7 @@ namespace lstax
     FIFO_LIST_TEMPLATE
     /**
      * @class fifo_list
-     * @brief A First-In-First-Out (FIFO) linked list implementation.
+     * @brief A linked list that follows the First In, First Out (FIFO) principle.
      *
      * This class represents a FIFO linked list, where elements are added to the end of the list and removed from the front.
      * It is implemented using a linked list data structure.
@@ -63,7 +63,7 @@ namespace lstax
          * @see lstax::stack::push()
          */
         void push(const T& _data) override {
-            if (this->length != 0) {
+            if (this->top != nullptr) {
                 LINK* temp = new LINK(_data);
                 this->bottom->next = temp;
                 this->bottom = temp;

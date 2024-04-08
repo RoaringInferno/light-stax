@@ -12,8 +12,8 @@ add_compile_definitions(
 add_library(light-stax INTERFACE)
 target_include_directories(light-stax INTERFACE
     src/
-    src/link/
     src/linked_list/
+    src/stack/
 )
 
 
@@ -21,13 +21,15 @@ if(${TESTING})
     include(CTest)
 
     add_compile_definitions(
-        #"_DEBUG_PRINTLN" # Prints every line. Slows testing by a factor of 10^2
+        "_DEBUG_PRINTLN" # Prints every line. Slows testing by a factor of 10^2
         #"_DEBUG_LIST_LOOPS=100000000" # Heavy performance testing. 10^8 (100 million)
     )
 
     set(UNIT_TESTS
         filo_list
         fifo_list
+        filo_stack
+        fifo_stack
     )
 
     foreach(UNIT_TEST ${UNIT_TESTS})
