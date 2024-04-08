@@ -6,6 +6,7 @@
 */
 
 #include "linked_list.hpp"
+#include "stackexcept.hpp"
 
 #define FILO_LIST_TEMPLATE template<typename T, typename Size_T>
 #define FILO_LIST filo_list<T, Size_T>
@@ -60,8 +61,10 @@ namespace lstax
          * @see lstax::stack::push()
          */
         void push(const T& _data) override {
+            if (++this->length < 1) {
+                throw stack_overflow();
+            }
             this->top = new LINK(_data, this->top);
-            ++this->length;
         };
     };
 } // namespace lstax

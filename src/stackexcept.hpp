@@ -1,6 +1,6 @@
 #pragma once
 
-#include <exception> // Include the necessary header file
+#include <exception>
 
 namespace lstax
 {

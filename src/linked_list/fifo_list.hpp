@@ -63,6 +63,9 @@ namespace lstax
          * @see lstax::stack::push()
          */
         void push(const T& _data) override {
+            if (++this->length < 1) {
+                throw stack_overflow();
+            }
             if (this->length != 0) {
                 LINK* temp = new LINK(_data);
                 this->bottom->next = temp;
