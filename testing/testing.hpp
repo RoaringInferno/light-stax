@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Kernel/sys/_types/_size_t.h>
 #include <cassert>
 #include <iostream>
 
