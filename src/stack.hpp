@@ -2,9 +2,9 @@
 
 /**
  * @file stack.hpp
- * @brief Stack data structure implementation.
+ * @brief Stack _data structure implementation.
  * 
- * This file contains the definition of the stack data structure interface.
+ * This file contains the definition of the stack _data structure interface.
 */
 
 #include "stackexcept.hpp"
@@ -17,12 +17,12 @@ namespace lstax
     STACK_TEMPLATE
     /**
      * @interface stack
-     * @brief A stack data structure interface.
+     * @brief A stack _data structure interface.
      * 
-     * This class represents a stack data structure, where elements are added and removed in a Last-In-First-Out (LIFO) order.
+     * This class represents a stack _data structure, where elements are added and removed in a Last-In-First-Out (LIFO) order.
      * It provides a common interface for stack implementations to follow.
      * 
-     * @tparam T The type of data stored in the stack.
+     * @tparam T The type of _data stored in the stack.
      * @tparam Size_T The type used to represent the size of the stack.
      */
     struct stack
@@ -69,7 +69,7 @@ namespace lstax
          * 
          * This method adds an element to the stack.
          * 
-         * @param _data The data to add to the stack.
+         * @param _data The _data to add to the stack.
         */
         virtual void push(const T& _data) = 0;
         /**

@@ -20,9 +20,9 @@ namespace lstax
      * @brief A linked list that follows the First In, Last Out (FILO) principle.
      *
      * This class represents a FILO linked list, where elements are added to the end of the list and removed from the front.
-     * It is implemented using a linked list data structure.
+     * It is implemented using a linked list _data structure.
      * 
-     * @tparam T The type of data stored in the FILO list.
+     * @tparam T The type of _data stored in the FILO list.
      * @tparam Size_T The type used to represent the size of the list.
      */
     struct filo_list : LINKED_LIST
@@ -52,10 +52,10 @@ namespace lstax
          * @brief Adds an element to the end of the list.
          * 
          * This method adds an element to the end of the list.
-         * It creates a new node with the specified data and sets the next pointer of the current top node to the new node.
+         * It creates a new node with the specified _data and sets the next pointer of the current top node to the new node.
          * The new node becomes the top node of the list.
          * 
-         * @param _data The data to add to the list.
+         * @param _data The _data to add to the list.
          * 
          * @see lstax::stack::push()
          */

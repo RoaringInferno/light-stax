@@ -34,7 +34,7 @@ if(${TESTING})
     foreach(UNIT_TEST ${UNIT_TESTS})
         set(UNIT_TEST_EXEC "${UNIT_TEST}")
         set(UNIT_TEST_SRC "testing/${UNIT_TEST}_test.cpp"
-                src/data.hpp
+                src/_data.hpp
         )
         add_executable("${UNIT_TEST}" ${UNIT_TEST_SRC})
         #target_include_directories("${UNIT_TEST_EXEC}" PUBLIC include/)

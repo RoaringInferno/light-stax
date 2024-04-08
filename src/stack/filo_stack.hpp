@@ -39,7 +39,7 @@ namespace lstax
          * @fn lstax::filo_stack::push(const T& _data)
          * @brief Add an element to the top of the stack.
          * 
-         * @param _data The data to add to the stack.
+         * @param _data The _data to add to the stack.
          * 
          * @see lstax::stack::push()
         */

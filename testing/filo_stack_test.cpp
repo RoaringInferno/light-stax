@@ -15,7 +15,6 @@ int main() {
     DEBUG_PRINT(<< "Pushing\n")
 
     for (unsigned long i = 0; i < test_count; ++i) {
-        DEBUG_PRINT(<< "==== Loop " << i << "\n")
         list.push(i);
         DEBUG_PRINT(<< "\tlist.push("<< i<<")\n")
         assert(list.peek() == i);
@@ -27,7 +26,6 @@ int main() {
     DEBUG_PRINT(<< "Popping\n")
 
     for (unsigned long i = test_count-1; i < test_count; --i) {
-        DEBUG_PRINT(<< "==== Loop " << i << "\n")
         assert(list.peek() == i);
         DEBUG_PRINT(<< "\tlist.peek() == "<<i<<"\n")
         assert(list.length == i+1);

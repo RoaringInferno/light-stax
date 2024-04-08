@@ -21,9 +21,9 @@ namespace lstax
      * @brief A linked list implementation.
      *
      * This class represents a linked list, where elements are added to the end of the list and removed from the front.
-     * It is implemented using a linked list data structure.
+     * It is implemented using a linked list _data structure.
      * 
-     * @tparam T The type of data stored in the list.
+     * @tparam T The type of _data stored in the list.
      * @tparam Size_T The type used to represent the size of the list.
      */
     struct linked_list : STACK {
@@ -85,7 +85,7 @@ namespace lstax
          * @see lstax::stack::peek()
          */
         T peek() const override {
-            return this->top->data;
+            return this->top->data.value;
         };
     };
 } // namespace lstax

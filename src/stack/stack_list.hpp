@@ -2,7 +2,7 @@
 
 /**
  * @file stack_list.hpp
- * @brief A stack of fixed size that uses an array to store its data.
+ * @brief A stack of fixed size that uses an array to store its _data.
 */
 
 #include "stack.hpp"
@@ -16,7 +16,7 @@ namespace lstax
     STACK_LIST_TEMPLATE
     /**
      * @class stack_list
-     * @brief A stack of fixed size that uses an array to store its data.
+     * @brief A stack of fixed size that uses an array to store its _data.
     */
     struct stack_list : public STACK
     {
@@ -50,8 +50,8 @@ namespace lstax
         */
         Size_T top;
         /**
-         * @var lstax::stack_list::data
-         * @brief The data of the stack.
+         * @var lstax::stack_list::_data
+         * @brief The _data of the stack.
         */
         T data[Stack_Size];
 
