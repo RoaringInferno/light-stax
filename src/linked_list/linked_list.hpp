@@ -7,7 +7,6 @@
 
 #include "link.hpp"
 #include "stack.hpp"
-#include "stackexcept.hpp"
 
 #define LINKED_LIST_TEMPLATE template<typename T, typename Size_T>
 #define LINKED_LIST linked_list<T, Size_T>
@@ -55,7 +54,7 @@ namespace lstax
         ~linked_list() {
             while (this->top != nullptr) {
                 LINK* temp = this->top;
-                this->top = this->top->next;
+                this->top = temp->next;
                 delete temp;
             }
         };
@@ -69,13 +68,12 @@ namespace lstax
          * @see lstax::stack::pop()
         */
         void pop() override {
-            if (this->length-- == 0) {
-                throw stack_underflow();
-            };
+            this->_decrement_length();
             LINK* temp = this->top;
             this->top = temp->next;
             delete temp;
         };
+        
         /**
          * @fn lstax::linked_list::peek() const
          * @brief Returns the top element of the list.

@@ -2,7 +2,7 @@
 
 /**
  * @file filo_list.hpp
- * @brief First-In-Last-Out (FILO) linked list implementation.
+ * @brief A linked list that follows the First In, Last Out (FILO) principle.
 */
 
 #include "linked_list.hpp"
@@ -17,7 +17,7 @@ namespace lstax
     FILO_LIST_TEMPLATE
     /**
      * @class filo_list
-     * @brief A First-In-Last-Out (FILO) linked list implementation.
+     * @brief A linked list that follows the First In, Last Out (FILO) principle.
      *
      * This class represents a FILO linked list, where elements are added to the end of the list and removed from the front.
      * It is implemented using a linked list data structure.
