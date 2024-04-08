@@ -7,11 +7,13 @@
  * This file contains the definition of the stack data structure interface.
 */
 
+#include "stackexcept.hpp"
+
 #define STACK_TEMPLATE template<typename T, typename Size_T>
 #define STACK stack<T, Size_T>
 
 namespace lstax
-{
+{    
     STACK_TEMPLATE
     /**
      * @interface stack
@@ -25,6 +27,20 @@ namespace lstax
      */
     struct stack
     {
+        /**
+         * @fn lstax::stack::_decrement()
+         * @brief Decrements the length of the stack.
+         * 
+         * This method decrements the length of the stack.
+         * If the length becomes negative, it throws a stack_underflow exception.
+        */
+        void _decrement_length() {
+            if (this->length-- == 0)
+            {
+                throw stack_underflow();
+            }
+        }
+
         /**
          * @var Size_T lstax::stack::length
          * @brief The length of the stack.

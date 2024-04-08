@@ -54,7 +54,7 @@ namespace lstax
         ~linked_list() {
             while (this->top != nullptr) {
                 LINK* temp = this->top;
-                this->top = this->top->next;
+                this->top = temp->next;
                 delete temp;
             }
         };
@@ -68,11 +68,12 @@ namespace lstax
          * @see lstax::stack::pop()
         */
         void pop() override {
+            this->_decrement_length();
             LINK* temp = this->top;
             this->top = temp->next;
-            --this->length;
             delete temp;
         };
+        
         /**
          * @fn lstax::linked_list::peek() const
          * @brief Returns the top element of the list.
