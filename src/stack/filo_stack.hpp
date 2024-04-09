@@ -49,7 +49,7 @@ namespace lstax
             {
                 ++this->top;
             }
-            this->data[this->top].value = _data;
+            this->data.value[this->top] = _data;
             ++this->length;
         }
 

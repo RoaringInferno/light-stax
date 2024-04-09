@@ -6,7 +6,7 @@
 */
 
 #include "stack.hpp"
-#include "_data.hpp"
+#include "_data_array.hpp"
 
 #define STACK_LIST_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
 #define STACK_LIST stack_list<T, Size_T, Stack_Size>
@@ -56,7 +56,7 @@ namespace lstax
          * @var lstax::stack_list::data
          * @brief The data of the stack.
         */
-        _data<T> data[Stack_Size];
+        _data_array<T, Size_T, Stack_Size> data;
 
         /**
          * @fn lstax::stack_list::stack_list()
@@ -83,7 +83,7 @@ namespace lstax
         */
         T peek() const override
         {
-            return this->data[this->top].value;
+            return this->data.value[this->top];
         }
     };
 }

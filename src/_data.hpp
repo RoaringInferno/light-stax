@@ -96,32 +96,6 @@ namespace lstax
          * It does not perform any specific actions in this implementation.
          */
         ~_data() {};
-
-        bool operator==(const _data& other) const {
-            return this->value == other.value;
-        }
-        bool operator>(const _data& other) const {
-            return this->value > other.value;
-        }
-        _data<T>& operator=(const _data<T>& rhs) {
-            this->value = rhs.value;
-            return *this;
-        }
-        _data<T>& operator+(const _data<T>& rhs) {
-            return new _data<T>(this->value + rhs.value);
-        }
-        _data<T>& operator-(const _data<T>& rhs) {
-            return new _data<T>(this->value - rhs.value);
-        }
-        _data<T>& operator*(const _data<T>& rhs) {
-            return new _data<T>(this->value * rhs.value);
-        }
-        _data<T>& operator/(const _data<T>& rhs) {
-            return new _data<T>(this->value / rhs.value);
-        }
-        _data<T>& operator%(const _data<T>& rhs) {
-            return new _data<T>(this->value % rhs.value);
-        }
     };
 
     DATA_TEMPLATE
@@ -162,32 +136,6 @@ namespace lstax
         ~_data() {
             delete this->value;
         };
-
-        bool operator==(const _data& rhs) const {
-            return (*this->value) == (*rhs.value);
-        }
-        bool operator>(const _data& rhs) const {
-            return (*this->value) > (*rhs.value);
-        }
-        _data<T*>& operator=(const _data<T*>& rhs) {
-            (*this->value) = (*rhs.value);
-            return *this;
-        }
-        _data<T*>& operator+(const _data<T*>& rhs) {
-            return new _data<T*>((*this->value) + (*rhs.value));
-        }
-        _data<T*>& operator-(const _data<T*>& rhs) {
-            return new _data<T*>((*this->value) - (*rhs.value));
-        }
-        _data<T*>& operator*(const _data<T*>& rhs) {
-            return new _data<T*>((*this->value) * (*rhs.value));
-        }
-        _data<T*>& operator/(const _data<T*>& rhs) {
-            return new _data<T*>((*this->value) / (*rhs.value));
-        }
-        _data<T*>& operator%(const _data<T*>& rhs) {
-            return new _data<T*>((*this->value) % (*rhs.value));
-        }
     };
 }
 
