@@ -6,6 +6,7 @@
 */
 
 #include "stack.hpp"
+#include "_data.hpp"
 
 #define STACK_LIST_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
 #define STACK_LIST stack_list<T, Size_T, Stack_Size>
@@ -17,6 +18,8 @@ namespace lstax
     /**
      * @class stack_list
      * @brief A stack of fixed size that uses an array to store its _data.
+     * 
+     * This class staticly allocates an array of _data to store the stack's _data, so larger array sizes will throw segfaults.
     */
     struct stack_list : public STACK
     {
@@ -50,10 +53,10 @@ namespace lstax
         */
         Size_T top;
         /**
-         * @var lstax::stack_list::_data
-         * @brief The _data of the stack.
+         * @var lstax::stack_list::data
+         * @brief The data of the stack.
         */
-        T data[Stack_Size];
+        _data<T> data[Stack_Size];
 
         /**
          * @fn lstax::stack_list::stack_list()
@@ -80,7 +83,7 @@ namespace lstax
         */
         T peek() const override
         {
-            return this->data[this->top];
+            return this->data[this->top].value;
         }
     };
 }

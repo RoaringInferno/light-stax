@@ -22,7 +22,7 @@ namespace lstax
     struct _data_structure {
         /**
          * @var T lstax::_data_structure::value
-         * @brief The _data value.
+         * @brief The data value.
          */
         T value;
         /**
@@ -33,19 +33,28 @@ namespace lstax
          */
         _data_structure() {};
         /**
+         * @fn lstax::_data_structure::_data_structure(const _data_structure& other)
+         * @brief Copy constructor for the _data_structure struct.
+         *
+         * This constructor initializes the value field to the value of the parameter other.
+         *
+         * @param other The _data_structure to copy.
+         */
+        _data_structure(const _data_structure& other) : value(other.value) {};
+        /**
          * @fn lstax::_data_structure::_data_structure(T _value)
          * @brief Constructor for the _data_structure struct.
          *
          * This constructor initializes the value field to the value of the parameter _value.
          *
-         * @param _value The _data value to store.
+         * @param _value The data value to store.
          */
         _data_structure(const T& _value) : value(_value) {};
         /**
          * @fn lstax::_data_structure::~_data_structure()
          * @brief Destructor for the _data_structure struct.
          *
-         * This destructor is responsible for cleaning up the _data value.
+         * This destructor is responsible for cleaning up the data value.
          * It does not perform any specific actions in this implementation.
          */
         ~_data_structure() {};
@@ -99,24 +108,19 @@ namespace lstax
             return *this;
         }
         _data<T>& operator+(const _data<T>& rhs) {
-            this->value += rhs.value;
-            return *this;
+            return new _data<T>(this->value + rhs.value);
         }
         _data<T>& operator-(const _data<T>& rhs) {
-            this->value -= rhs.value;
-            return *this;
+            return new _data<T>(this->value - rhs.value);
         }
         _data<T>& operator*(const _data<T>& rhs) {
-            this->value *= rhs.value;
-            return *this;
+            return new _data<T>(this->value * rhs.value);
         }
         _data<T>& operator/(const _data<T>& rhs) {
-            this->value /= rhs.value;
-            return *this;
+            return new _data<T>(this->value / rhs.value);
         }
         _data<T>& operator%(const _data<T>& rhs) {
-            this->value %= rhs.value;
-            return *this;
+            return new _data<T>(this->value % rhs.value);
         }
     };
 
@@ -147,7 +151,7 @@ namespace lstax
          *
          * @param _value The _data value to store.
          */
-        _data(T* _value) : _data_structure<T*>(_value) {};
+        _data(T *_value) : _data_structure<T*>(_value) {};
         /**
          * @fn lstax::_data::~_data()
          * @brief Destructor for the _data struct.
@@ -170,24 +174,19 @@ namespace lstax
             return *this;
         }
         _data<T*>& operator+(const _data<T*>& rhs) {
-            (*this->value) += (*rhs.value);
-            return *this;
+            return new _data<T*>((*this->value) + (*rhs.value));
         }
         _data<T*>& operator-(const _data<T*>& rhs) {
-            (*this->value) -= (*rhs.value);
-            return *this;
+            return new _data<T*>((*this->value) - (*rhs.value));
         }
         _data<T*>& operator*(const _data<T*>& rhs) {
-            (*this->value) *= (*rhs.value);
-            return *this;
+            return new _data<T*>((*this->value) * (*rhs.value));
         }
         _data<T*>& operator/(const _data<T*>& rhs) {
-            (*this->value) /= (*rhs.value);
-            return *this;
+            return new _data<T*>((*this->value) / (*rhs.value));
         }
         _data<T*>& operator%(const _data<T*>& rhs) {
-            (*this->value) %= (*rhs.value);
-            return *this;
+            return new _data<T*>((*this->value) % (*rhs.value));
         }
     };
 }

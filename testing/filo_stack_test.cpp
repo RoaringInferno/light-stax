@@ -3,8 +3,10 @@
 #include "testing.hpp"
 
 int main() {
-    test::filo_lvalue<lstax::filo_stack<test::Data_T, test::Size_T, test::count>>();
-    test::filo_rvalue<lstax::filo_stack<test::Data_T*, test::Size_T, test::count>>();
+    DEBUG_HEADER_PRINT(<< "filo_stack.hpp\n")
+
+    test::filo_rvalue<lstax::filo_stack<test::Data_T, test::Size_T, test::count>>();
+    test::filo_lvalue<lstax::filo_stack<test::Data_T*, test::Size_T, test::count>>();
 
     return 0;
 }

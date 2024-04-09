@@ -47,9 +47,9 @@ namespace lstax
         {
             if (this->length != 0)
             {
-                this->_increment_top();
+                ++this->top;
             }
-            this->data[this->top] = _data;
+            this->data[this->top].value = _data;
             ++this->length;
         }
 
