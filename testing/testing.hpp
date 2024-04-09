@@ -9,6 +9,11 @@
     #define DEBUG_PRINT(TEXT)
 #endif
 
+/**
+ * @brief The number of loops to run for the tests.
+ * 
+ * NOTE: Because filo and fifo_stack are built on statically-allocated arrays, larger numbers may throw segfaults.
+*/
 #ifndef _DEBUG_LIST_LOOPS
     #define _DEBUG_LIST_LOOPS 100000 // Light performance testing. 10^5 (100 thousand)
 #endif
