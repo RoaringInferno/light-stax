@@ -2,20 +2,9 @@
 Lightweight stack classes for C++
 
 ## TODO
-filo -> stack
-fifo -> queue
-
-stack -> bucket
-stack.hpp -> data_structure.hpp
-
-
-New naming convention:
-- fifo_list -> queue_list
-- filo-stack -> stack_bucket
-
 ### Add
 - Heap
-Stack and Heap base classes
+Stack, Bucket, and Heap base classes
 
 ## Class Contents
 All classes contain a defaut constructor, the ```push```, ```pop```, and ```peek``` member methods, and a ```length``` variable.
