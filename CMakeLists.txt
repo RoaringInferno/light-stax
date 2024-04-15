@@ -10,11 +10,7 @@ add_compile_definitions(
 )
 
 add_library(light-stax INTERFACE)
-target_include_directories(light-stax INTERFACE
-    src/
-    src/linked_list/
-    src/stack/
-)
+add_subdirectory(src/)
 
 
 if(${TESTING})
