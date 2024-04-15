@@ -3,8 +3,10 @@ Lightweight stack classes for C++
 
 ## Class Naming Convention
 Class and file naming follows:
-Class: ${PUSH/PULL_CONVENTION}_${STORAGE_CONVENTION}
-File: ${PUSH/PULL_CONVENTION}_${STORAGE_CONVENTION}.hpp
+
+Class: ```${PUSH/PULL_CONVENTION}_${STORAGE_CONVENTION}```
+
+File: ```${PUSH/PULL_CONVENTION}_${STORAGE_CONVENTION}.hpp```
 
 ### Push/Pull Conventions:
 #### Stack
