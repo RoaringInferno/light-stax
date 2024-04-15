@@ -5,11 +5,11 @@
  * @brief A stack of fixed size that uses an array to store its data.
 */
 
-#include "stack.hpp"
+#include "data_structure.hpp"
 
 #define STACK_LIST_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
 #define STACK_LIST stack_list<T, Size_T, Stack_Size>
-#define STACK stack<T, Size_T>
+#define DATA_STRUCTURE data_structure<T, Size_T>
 
 namespace lstax
 {
@@ -18,7 +18,7 @@ namespace lstax
      * @class stack_list
      * @brief A stack of fixed size that uses an array to store its data.
     */
-    struct stack_list : public STACK
+    struct stack_list : public DATA_STRUCTURE
     {
         /**
          * @fn lstax::stack_list::_increment_top()
@@ -59,15 +59,15 @@ namespace lstax
          * @fn lstax::stack_list::stack_list()
          * @brief Construct a new stack_list object.
          * 
-         * @see lstax::stack::stack()
+         * @see lstax::data_structure::data_structure()
         */
-        stack_list() : top(0), STACK() {}
+        stack_list() : top(0), DATA_STRUCTURE() {}
 
         /**
          * @fn lstax::stack_list::~stack_list()
          * @brief Destroy the stack_list object.
          * 
-         * @see lstax::stack::~stack()
+         * @see lstax::data_structure::~data_structure()
         */
         ~stack_list() {}
 
@@ -76,7 +76,7 @@ namespace lstax
          * @brief Get the top element of the stack.
          * 
          * @return The top element of the stack.
-         * @see lstax::stack::peek() const
+         * @see lstax::data_structure::peek() const
         */
         T peek() const override
         {
