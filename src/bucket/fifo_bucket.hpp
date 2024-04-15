@@ -42,14 +42,14 @@ namespace lstax
          * @fn lstax::fifo_bucket::fifo_stack()
          * @brief Construct a new fifo_bucket object.
          * 
-         * @see lstax::stack_list::stack_list()
+         * @see lstax::bucket::bucket()
          */
         fifo_bucket() : bottom(0), BUCKET() {}
         /**
          * @fn lstax::fifo_bucket::~fifo_stack()
          * @brief Destroy the fifo_bucket object.
          * 
-         * @see lstax::stack_list::~stack_list()
+         * @see lstax::bucket::~bucket()
          */
         ~fifo_bucket() {}
 

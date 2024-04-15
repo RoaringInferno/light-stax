@@ -22,9 +22,9 @@ if(${TESTING})
     )
 
     set(UNIT_TESTS
-        filo_list
+        stack_list
         fifo_list
-        filo_bucket
+        stack_bucket
         fifo_bucket
     )
 

@@ -1,42 +1,42 @@
 #pragma once
 
 /**
- * @file filo_bucket.hpp
+ * @file stack_bucket.hpp
  * @brief A data structure of fixed size that follows the First In, Last Out (FILO) principle.
  */
 
 #include "bucket.hpp"
 
-#define FILO_BUCKET_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
-#define FILO_BUCKET filo_bucket<T, Size_T, Stack_Size>
+#define STACK_BUCKET_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
+#define STACK_BUCKET stack_bucket<T, Size_T, Stack_Size>
 #define BUCKET bucket<T, Size_T, Stack_Size>
 
 namespace lstax
 {
-    FILO_BUCKET_TEMPLATE
+    STACK_BUCKET_TEMPLATE
     /**
-     * @class filo_bucket
-     * @brief A stack of fixed sixe that follows the First In, Last Out (FILO) principle.
+     * @class stack_bucket
+     * @brief A stack of fixed sixe that follows the First In, Last Out (STACK) principle.
      */
-    struct filo_bucket : BUCKET
+    struct stack_bucket : BUCKET
     {
         /**
-         * @fn lstax::filo_bucket::filo_stack()
-         * @brief Construct a new filo_bucket object.
+         * @fn lstax::stack_bucket::filo_stack()
+         * @brief Construct a new stack_bucket object.
          * 
-         * @see lstax::bucket::stack_list()
+         * @see lstax::bucket::bucket()
          */
-        filo_bucket() : BUCKET() {}
+        stack_bucket() : BUCKET() {}
         /**
-         * @fn lstax::filo_bucket::~filo_stack()
-         * @brief Destroy the filo_bucket object.
+         * @fn lstax::stack_bucket::~filo_stack()
+         * @brief Destroy the stack_bucket object.
          * 
-         * @see lstax::bucket::~stack_list()
+         * @see lstax::bucket::~bucket()
          */
-        ~filo_bucket() {}
+        ~stack_bucket() {}
 
         /**
-         * @fn lstax::filo_bucket::push(const T& _data)
+         * @fn lstax::stack_bucket::push(const T& _data)
          * @brief Add an element to the top of the stack.
          * 
          * @param _data The data to add to the stack.
@@ -54,7 +54,7 @@ namespace lstax
         }
 
         /**
-         * @fn lstax::filo_bucket::pop()
+         * @fn lstax::stack_bucket::pop()
          * @brief Remove the top element of the stack.
         */
         void pop() override
@@ -65,6 +65,6 @@ namespace lstax
     };
 }
 
-#undef FILO_BUCKET_TEMPLATE
-#undef FILO_BUCKET
+#undef STACK_BUCKET_TEMPLATE
+#undef STACK_BUCKET
 #undef BUCKET

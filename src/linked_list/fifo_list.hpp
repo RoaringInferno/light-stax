@@ -18,9 +18,6 @@ namespace lstax
     /**
      * @class fifo_list
      * @brief A linked list that follows the First In, First Out (FIFO) principle.
-     *
-     * This class represents a FIFO linked list, where elements are added to the end of the list and removed from the front.
-     * It is implemented using a linked list data structure.
      * 
      * @tparam T The type of data stored in the FIFO list.
      * @tparam Size_T The type used to represent the size of the list.
