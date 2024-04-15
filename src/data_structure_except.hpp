@@ -4,7 +4,7 @@
 
 namespace lstax
 {
-    class stack_exception : public std::exception
+    class data_structure_exception : public std::exception
     {
     public:
         virtual const char* what() const noexcept override
@@ -13,7 +13,7 @@ namespace lstax
         }
     };
 
-    class stack_overflow : public stack_exception
+    class data_structure_overflow : public data_structure_exception
     {
     public:
         const char* what() const noexcept override
@@ -22,7 +22,7 @@ namespace lstax
         }
     };
 
-    class stack_underflow : public stack_exception
+    class data_structure_underflow : public data_structure_exception
     {
     public:
         const char* what() const noexcept override

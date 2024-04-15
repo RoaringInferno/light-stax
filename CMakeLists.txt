@@ -22,10 +22,10 @@ if(${TESTING})
     )
 
     set(UNIT_TESTS
-        filo_list
-        fifo_list
-        filo_stack
-        fifo_stack
+        stack_list
+        queue_list
+        stack_bucket
+        queue_bucket
     )
 
     foreach(UNIT_TEST ${UNIT_TESTS})
