@@ -1,27 +1,27 @@
 #pragma once
 
 /**
- * @file stack_list.hpp
+ * @file bucket.hpp
  * @brief A stack of fixed size that uses an array to store its data.
 */
 
 #include "data_structure.hpp"
 
-#define STACK_LIST_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
-#define STACK_LIST stack_list<T, Size_T, Stack_Size>
+#define BUCKET_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
+#define BUCKET bucket<T, Size_T, Stack_Size>
 #define DATA_STRUCTURE data_structure<T, Size_T>
 
 namespace lstax
 {
-    STACK_LIST_TEMPLATE
+    BUCKET_TEMPLATE
     /**
-     * @class stack_list
+     * @class bucket
      * @brief A stack of fixed size that uses an array to store its data.
     */
-    struct stack_list : public DATA_STRUCTURE
+    struct bucket : public DATA_STRUCTURE
     {
         /**
-         * @fn lstax::stack_list::_increment_top()
+         * @fn lstax::bucket::_increment_top()
          * @brief Increment the top index of the stack.
          */
         void _increment_top()
@@ -33,7 +33,7 @@ namespace lstax
         }
 
         /**
-         * @fn lstax::stack_list::_increment_top()
+         * @fn lstax::bucket::_increment_top()
          * @brief Increment the top index of the stack.
         */
         void _decrement_top()
@@ -45,34 +45,34 @@ namespace lstax
         }
 
         /**
-         * @var lstax::stack_list::top
+         * @var lstax::bucket::top
          * @brief The index of the top element of the stack.
         */
         Size_T top;
         /**
-         * @var lstax::stack_list::data
+         * @var lstax::bucket::data
          * @brief The data of the stack.
         */
         T data[Stack_Size];
 
         /**
-         * @fn lstax::stack_list::stack_list()
-         * @brief Construct a new stack_list object.
+         * @fn lstax::bucket::stack_list()
+         * @brief Construct a new bucket object.
          * 
          * @see lstax::data_structure::data_structure()
         */
-        stack_list() : top(0), DATA_STRUCTURE() {}
+        bucket() : top(0), DATA_STRUCTURE() {}
 
         /**
-         * @fn lstax::stack_list::~stack_list()
-         * @brief Destroy the stack_list object.
+         * @fn lstax::bucket::~stack_list()
+         * @brief Destroy the bucket object.
          * 
          * @see lstax::data_structure::~data_structure()
         */
-        ~stack_list() {}
+        ~bucket() {}
 
         /**
-         * @fn lstax::stack_list::peek() const
+         * @fn lstax::bucket::peek() const
          * @brief Get the top element of the stack.
          * 
          * @return The top element of the stack.
@@ -85,5 +85,5 @@ namespace lstax
     };
 }
 
-#undef STACK_LIST_TEMPLATE
-#undef STACK_LIST
+#undef BUCKET_TEMPLATE
+#undef BUCKET

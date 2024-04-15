@@ -1,27 +1,27 @@
 #pragma once
 
 /**
- * @file fifo_stack.hpp
- * @brief A stack of fixed size that follows the First In, First Out (FIFO) principle.
+ * @file fifo_bucket.hpp
+ * @brief A data structure of fixed size that follows the First In, First Out (FIFO) principle.
  */
 
-#include "stack_list.hpp"
+#include "bucket.hpp"
 
-#define FIFO_STACK_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
-#define FIFO_STACK fifo_stack<T, Size_T, Stack_Size>
-#define STACK_LIST stack_list<T, Size_T, Stack_Size>
+#define FIFO_BUCKET_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
+#define FIFO_BUCKET fifo_bucket<T, Size_T, Stack_Size>
+#define BUCKET bucket<T, Size_T, Stack_Size>
 
 namespace lstax
 {
-    FIFO_STACK_TEMPLATE
+    FIFO_BUCKET_TEMPLATE
     /**
-     * @class fifo_stack
+     * @class fifo_bucket
      * @brief A stack of fixed sixe that follows the First In, First Out (FIFO) principle.
      */
-    struct fifo_stack : STACK_LIST
+    struct fifo_bucket : BUCKET
     {
         /**
-         * @fn lstax::fifo_stack::_increment_bottom()
+         * @fn lstax::fifo_bucket::_increment_bottom()
          * @brief Increment the bottom index of the stack.
          */
         void _increment_bottom() {
@@ -31,7 +31,7 @@ namespace lstax
         }
 
         /**
-         * @val lstax::fifo_stack::bottom
+         * @val lstax::fifo_bucket::bottom
          * @brief The index of the bottom element of the stack.
          * 
          * This is the push point for the stack.
@@ -39,29 +39,29 @@ namespace lstax
         Size_T bottom;
 
         /**
-         * @fn lstax::fifo_stack::fifo_stack()
-         * @brief Construct a new fifo_stack object.
+         * @fn lstax::fifo_bucket::fifo_stack()
+         * @brief Construct a new fifo_bucket object.
          * 
          * @see lstax::stack_list::stack_list()
          */
-        fifo_stack() : bottom(0), STACK_LIST() {}
+        fifo_bucket() : bottom(0), BUCKET() {}
         /**
-         * @fn lstax::fifo_stack::~fifo_stack()
-         * @brief Destroy the fifo_stack object.
+         * @fn lstax::fifo_bucket::~fifo_stack()
+         * @brief Destroy the fifo_bucket object.
          * 
          * @see lstax::stack_list::~stack_list()
          */
-        ~fifo_stack() {}
+        ~fifo_bucket() {}
 
         /**
-         * @fn lstax::fifo_stack::push(const T& _data)
+         * @fn lstax::fifo_bucket::push(const T& _data)
          * @brief Add an element to the top of the stack.
          * 
          * If an element is added and the stack is at capacity, the oldest data will be overwritten.
          * 
          * @param _data The data to add to the stack.
          * 
-         * @see lstax::stack::push()
+         * @see lstax::data_structure::push()
         */
         void push(const T& _data) override
         {
@@ -74,7 +74,7 @@ namespace lstax
         }
 
         /**
-         * @fn lstax::fifo_stack::pop()
+         * @fn lstax::fifo_bucket::pop()
          * @brief Remove the top element of the stack.
         */
         void pop() override
@@ -85,6 +85,6 @@ namespace lstax
     };
 }
 
-#undef FIFO_STACK_TEMPLATE
-#undef FIFO_STACK
-#undef STACK_LIST
+#undef FIFO_BUCKET_TEMPLATE
+#undef FIFO_BUCKET
+#undef BUCKET

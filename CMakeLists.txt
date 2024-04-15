@@ -24,8 +24,8 @@ if(${TESTING})
     set(UNIT_TESTS
         filo_list
         fifo_list
-        filo_stack
-        fifo_stack
+        filo_bucket
+        fifo_bucket
     )
 
     foreach(UNIT_TEST ${UNIT_TESTS})
