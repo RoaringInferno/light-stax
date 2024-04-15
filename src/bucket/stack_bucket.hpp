@@ -56,6 +56,8 @@ namespace lstax
         /**
          * @fn lstax::stack_bucket::pop()
          * @brief Remove the top element of the stack.
+         * 
+         * @see lstax::data_structure::pop()
         */
         void pop() override
         {

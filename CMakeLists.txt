@@ -23,9 +23,9 @@ if(${TESTING})
 
     set(UNIT_TESTS
         stack_list
-        fifo_list
+        queue_list
         stack_bucket
-        fifo_bucket
+        queue_bucket
     )
 
     foreach(UNIT_TEST ${UNIT_TESTS})
