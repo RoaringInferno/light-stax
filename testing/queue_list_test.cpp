@@ -1,4 +1,4 @@
-#include "filo_list.hpp"
+#include "queue_list.hpp"
 
 #include "testing.hpp"
 
@@ -7,7 +7,7 @@ const unsigned long test_count = _DEBUG_LIST_LOOPS;
 int main() {
     DEBUG_PRINT(<< "Constructing\n")
 
-    lstax::filo_list<unsigned long, unsigned long> list;
+    lstax::queue_list<unsigned long, unsigned long> list;
 
     assert(list.top == nullptr);
 
@@ -17,24 +17,24 @@ int main() {
         DEBUG_PRINT(<< "==== Loop " << i << "\n")
         list.push(i);
         DEBUG_PRINT(<< "\tlist.push("<< i<<")\n")
-        assert(list.peek() == i);
-        DEBUG_PRINT(<< "\tlist.peek() == "<<i<<"\n")
-        assert(list.top->data == i);
-        DEBUG_PRINT(<< "\tlist.top->data == "<<i<<"\n")
+        assert(list.peek() == 0);
+        DEBUG_PRINT(<< "\tlist.peek() == 0\n")
+        assert(list.top->data == 0);
+        DEBUG_PRINT(<< "\tlist.top->data == 0\n")
         assert(list.length == i + 1);
         DEBUG_PRINT(<< "\tlist.length == "<<i+1<<"\n")
     }
 
     DEBUG_PRINT(<< "Popping\n")
 
-    for (unsigned long i = test_count-1; i < test_count; --i) {
+    for (unsigned long i = 0; i < test_count; ++i) {
         DEBUG_PRINT(<< "==== Loop " << i << "\n")
         assert(list.peek() == i);
         DEBUG_PRINT(<< "\tlist.peek() == "<<i<<"\n")
         assert(list.top->data == i);
         DEBUG_PRINT(<< "\tlist.top->data == "<<i<<"\n")
-        assert(list.length == i+1);
-        DEBUG_PRINT(<< "\tlist.length == "<<i+1<<"\n")
+        assert(list.length == test_count-i);
+        DEBUG_PRINT(<< "\tlist.length == "<<test_count-i<<"\n")
         list.pop();
         DEBUG_PRINT(<< "\tlist.pop()\n")
     }

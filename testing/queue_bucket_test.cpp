@@ -1,4 +1,4 @@
-#include "fifo_stack.hpp"
+#include "queue_bucket.hpp"
 
 #include "testing.hpp"
 
@@ -7,7 +7,7 @@ const unsigned long test_count = _DEBUG_LIST_LOOPS;
 int main() {
     DEBUG_PRINT(<< "Constructing\n")
 
-    lstax::fifo_stack<unsigned long, unsigned long, test_count> list;
+    lstax::queue_bucket<unsigned long, unsigned long, test_count> list;
 
     assert(list.length == 0);
     assert(list.top == 0);
