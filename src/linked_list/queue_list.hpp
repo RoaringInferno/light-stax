@@ -55,7 +55,7 @@ namespace lstax
          * @fn lstax::queue_list::push(const T& _data)
          * @brief Adds an element to the end of the list.
          * 
-         * @param _data The data to add to the list.
+         * @param _data The _data to add to the list.
          * 
          * @see lstax::stack::push()
          */

@@ -49,10 +49,10 @@ namespace lstax
          * @brief Adds an element to the end of the list.
          * 
          * This method adds an element to the end of the list.
-         * It creates a new node with the specified data and sets the next pointer of the current top node to the new node.
+         * It creates a new node with the specified _data and sets the next pointer of the current top node to the new node.
          * The new node becomes the top node of the list.
          * 
-         * @param _data The data to add to the list.
+         * @param _data The _data to add to the list.
          * 
          * @see lstax::data_structure::push()
          */

@@ -3,12 +3,176 @@
 #include <cassert>
 #include <iostream>
 
-#ifdef _DEBUG_PRINTLN
+#ifdef DEBUG_HEADER_PRINTLN
+    #define DEBUG_HEADER_PRINT(TEXT) std::cout TEXT;
+#else
+    #define DEBUG_HEADER_PRINT(TEXT)
+#endif
+
+#ifdef DEBUG_PRINTLN
     #define DEBUG_PRINT(TEXT) std::cout TEXT;
 #else
     #define DEBUG_PRINT(TEXT)
 #endif
 
-#ifndef _DEBUG_LIST_LOOPS
-    #define _DEBUG_LIST_LOOPS 100000 // Light performance testing. 10^5 (100 thousand)
+/**
+ * @brief The number of loops to run for the tests.
+ * 
+ * NOTE: Because filo and fifo_stack are built on statically-allocated arrays, larger numbers may throw segfaults.
+*/
+#ifndef STATIC_DEBUG_LIST_LOOPS
+    #define STATIC_DEBUG_LIST_LOOPS 10000 // Light testing. 10^6 (10 thousand)
 #endif
+
+#ifndef DYNAMIC_DEBUG_LIST_LOOPS
+    #define DYNAMIC_DEBUG_LIST_LOOPS 1000000 // Heavy testing. 10^6 (1 million)
+#endif
+
+
+namespace test
+{
+    typedef unsigned long Size_T;
+    typedef unsigned long Data_T;
+    typedef unsigned long Count_T;
+}
+
+
+#define TEST_TEMPLATE template<class T, Count_T count>
+
+namespace test
+{
+    TEST_TEMPLATE
+    void fifo_rvalue() {
+        DEBUG_HEADER_PRINT(<< "fifo_rvalue\n")
+
+        DEBUG_HEADER_PRINT(<< "Constructing\n")
+
+        T list;
+
+        assert(list.length == 0);
+
+        DEBUG_HEADER_PRINT(<< "Pushing\n")
+
+        for (unsigned long i = 0; i < count; ++i) {
+            list.push(i);
+            DEBUG_PRINT(<< "\tlist.push("<< i<<")\n")
+            assert(list.peek() == 0);
+            assert(list.length == i + 1);
+        }
+
+        DEBUG_HEADER_PRINT(<< "Popping\n")
+
+        for (unsigned long i = 0; i < count; ++i) {
+            assert(list.peek() == i);
+            DEBUG_PRINT(<< "\tlist.peek() == "<<i<<"\n")
+            assert(list.length == count-i);
+            list.pop();
+        }
+
+        assert(list.length == 0);
+
+        DEBUG_HEADER_PRINT(<< "Done\n")
+    }
+
+    TEST_TEMPLATE
+    void fifo_lvalue() {
+        DEBUG_HEADER_PRINT(<< "fifo_lvalue\n")
+
+        DEBUG_HEADER_PRINT(<< "Constructing\n")
+
+        T list;
+
+        assert(list.length == 0);
+
+        DEBUG_HEADER_PRINT(<< "Pushing\n")
+
+        for (unsigned long i = 0; i < count; ++i) {
+            auto* data = new unsigned long(i);
+            list.push(data);
+            DEBUG_PRINT(<< "\tlist.push(*"<< i<<")\n")
+            assert(*list.peek() == 0);
+            assert(list.length == i + 1);
+        }
+
+        DEBUG_HEADER_PRINT(<< "Popping\n")
+
+        for (unsigned long i = 0; i < count; ++i) {
+            assert(*list.peek() == i);
+            DEBUG_PRINT(<< "\tlist.peek() == *"<<i<<"\n")
+            assert(list.length == count-i);
+            list.pop();
+        }
+
+        assert(list.length == 0);
+
+        DEBUG_HEADER_PRINT(<< "Done\n")
+    }
+
+    TEST_TEMPLATE
+    void filo_rvalue() {
+        DEBUG_HEADER_PRINT(<< "filo_rvalue\n")
+
+        DEBUG_HEADER_PRINT(<< "Constructing\n")
+
+        T list;
+
+        assert(list.length == 0);
+
+        DEBUG_HEADER_PRINT(<< "Pushing\n")
+
+        for (unsigned long i = 0; i < count; ++i) {
+            list.push(i);
+            DEBUG_PRINT(<< "\tlist.push("<< i<<")\n")
+            assert(list.peek() == i);
+            assert(list.length == i + 1);
+        }
+
+        DEBUG_HEADER_PRINT(<< "Popping\n")
+
+        for (unsigned long i = count-1; i < count; --i) {
+            assert(list.peek() == i);
+            DEBUG_PRINT(<< "\tlist.peek() == "<<i<<"\n")
+            assert(list.length == i+1);
+            list.pop();
+        }
+
+        assert(list.length == 0);
+
+        DEBUG_HEADER_PRINT(<< "Done\n")
+    }
+
+    TEST_TEMPLATE
+    void filo_lvalue() {
+        DEBUG_HEADER_PRINT(<< "filo_lvalue\n")
+
+        DEBUG_HEADER_PRINT(<< "Constructing\n")
+        T list;
+
+        assert(list.length == 0);
+
+        DEBUG_HEADER_PRINT(<< "Pushing\n")
+
+        for (unsigned long i = 0; i < count; ++i) {
+            auto* data = new unsigned long(i);
+            list.push(data);
+            DEBUG_PRINT(<< "\tlist.push(*"<< i<<")\n")
+            assert(*list.peek() == i);
+            assert(list.length == i + 1);
+        }
+
+        DEBUG_HEADER_PRINT(<< "Popping\n")
+
+        for (unsigned long i = count-1; i < count; --i) {
+            assert(*list.peek() == i);
+            DEBUG_PRINT(<< "\tlist.peek() == *"<<i<<"\n")
+            assert(list.length == i+1);
+            list.pop();
+        }
+
+        assert(list.length == 0);
+
+        DEBUG_HEADER_PRINT(<< "Done\n")
+    }
+}
+
+#undef TEST_TEMPLATE
