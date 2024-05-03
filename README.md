@@ -7,3 +7,8 @@ All classes contain a defaut constructor, the ```push```, ```pop```, and ```peek
 Link destructors delete their associated _data, but not connected links. If the _data is a pointer, the Link will not destroy it.
 
 Stack destructors delete all links and data. _Data destructor handles lvalue vs rvalue distinctions by template overloading.
+
+lstax allocations use the stack.
+
+## TODO
+Make heap + pointer versions of _data_array.

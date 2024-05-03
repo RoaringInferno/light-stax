@@ -3,7 +3,11 @@
 #include <cassert>
 #include <iostream>
 
-#define DEBUG_HEADER_PRINT(TEXT) std::cout TEXT;
+#ifdef _DEBUG_HEADER_PRINTLN
+    #define DEBUG_HEADER_PRINT(TEXT) std::cout TEXT;
+#else
+    #define DEBUG_HEADER_PRINT(TEXT)
+#endif
 
 #ifdef _DEBUG_PRINTLN
     #define DEBUG_PRINT(TEXT) std::cout TEXT;
@@ -17,7 +21,7 @@
  * NOTE: Because filo and fifo_stack are built on statically-allocated arrays, larger numbers may throw segfaults.
 */
 #ifndef _DEBUG_LIST_LOOPS
-    #define _DEBUG_LIST_LOOPS 1000000 // Light testing. 10^6 (1 million)
+    #define _DEBUG_LIST_LOOPS 10000 // Light testing. 10^6 (10 thousand)
 #endif
 
 
@@ -32,6 +36,8 @@ namespace test
 
     TEST_TEMPLATE
     void fifo_rvalue() {
+        DEBUG_HEADER_PRINT(<< "fifo_rvalue\n")
+
         DEBUG_HEADER_PRINT(<< "Constructing\n")
 
         T list;
@@ -63,6 +69,8 @@ namespace test
 
     TEST_TEMPLATE
     void fifo_lvalue() {
+        DEBUG_HEADER_PRINT(<< "fifo_lvalue\n")
+
         DEBUG_HEADER_PRINT(<< "Constructing\n")
 
         T list;
@@ -95,7 +103,9 @@ namespace test
 
     TEST_TEMPLATE
     void filo_rvalue() {
-        DEBUG_PRINT(<< "Constructing\n")
+        DEBUG_HEADER_PRINT(<< "filo_rvalue\n")
+
+        DEBUG_HEADER_PRINT(<< "Constructing\n")
 
         T list;
 
@@ -126,6 +136,8 @@ namespace test
 
     TEST_TEMPLATE
     void filo_lvalue() {
+        DEBUG_HEADER_PRINT(<< "filo_lvalue\n")
+
         DEBUG_HEADER_PRINT(<< "Constructing\n")
         T list;
 

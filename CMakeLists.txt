@@ -20,6 +20,7 @@ if(${TESTING})
     include(CTest)
 
     add_compile_definitions(
+        "_DEBUG_HEADER_PRINTLN"
         #"_DEBUG_PRINTLN" # Prints every line. Slows testing by a factor of 10^2
         #"_DEBUG_LIST_LOOPS=100000000" # Heavy performance testing. 10^8 (100 million)
     )
@@ -33,9 +34,7 @@ if(${TESTING})
 
     foreach(UNIT_TEST ${UNIT_TESTS})
         set(UNIT_TEST_EXEC "${UNIT_TEST}")
-        set(UNIT_TEST_SRC "testing/${UNIT_TEST}_test.cpp"
-                src/_data.hpp
-        )
+        set(UNIT_TEST_SRC "testing/${UNIT_TEST}_test.cpp")
         add_executable("${UNIT_TEST}" ${UNIT_TEST_SRC})
         #target_include_directories("${UNIT_TEST_EXEC}" PUBLIC include/)
         target_link_libraries("${UNIT_TEST}" PUBLIC light-stax)
