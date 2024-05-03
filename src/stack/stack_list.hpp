@@ -56,7 +56,7 @@ namespace lstax
          * @var lstax::stack_list::data
          * @brief The data of the stack.
         */
-        _data_array<T, Size_T, Stack_Size> data;
+        _data_array_stack<T, Size_T, Stack_Size> data;
 
         /**
          * @fn lstax::stack_list::stack_list()

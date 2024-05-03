@@ -7,42 +7,61 @@
 
 #define DATA_ARRAY_TEMPLATE template<typename T, typename Size_T, Size_T capacity>
 
-namespace lstax
+namespace lstax // Static Allocation
 {
     DATA_ARRAY_TEMPLATE
-    struct _data_array_structure
+    struct _data_array_stack_structure
     {
         T value[capacity];
 
-        _data_array_structure() {};
-        _data_array_structure(const _data_array_structure& other) {
-            for (Size_T i = 0; i < capacity; i++) {
-                this->value[i] = other.value[i];
-            };
-        };
-        _data_array_structure(const T* _data) {
-            for (Size_T i = 0; i < capacity; i++) {
-                this->value[i] = _data[i];
-            };
-        };
+        _data_array_stack_structure() {};
     };
 
     DATA_ARRAY_TEMPLATE
-    struct _data_array : public _data_array_structure<T, Size_T, capacity>
+    struct _data_array_stack : public _data_array_stack_structure<T, Size_T, capacity>
     {
-        _data_array() {};
-        _data_array(const _data_array& other) : _data_array_structure<T, Size_T, capacity>(other) {};
-        _data_array(const T* _data) : _data_array_structure<T, Size_T, capacity>(_data) {};
-        ~_data_array() {};
+        _data_array_stack() : _data_array_stack_structure<T, Size_T, capacity>() {};
+        ~_data_array_stack() {};
     };
 
     DATA_ARRAY_TEMPLATE
-    struct _data_array<T*, Size_T, capacity> : public _data_array_structure<T*, Size_T, capacity>
+    struct _data_array_stack<T*, Size_T, capacity> : public _data_array_stack_structure<T*, Size_T, capacity>
     {
-        _data_array() {};
-        _data_array(const _data_array& other) : _data_array_structure<T*, Size_T, capacity>(other) {};
-        _data_array(const T** _data) : _data_array_structure<T*, Size_T, capacity>(_data) {};
-        ~_data_array() {
+        _data_array_stack() : _data_array_stack_structure<T*, Size_T, capacity> {};
+        ~_data_array_stack() {
+            for (Size_T i = 0; i < capacity; i++) {
+                delete this->value[i];
+            }
+        };
+    };
+}
+
+namespace lstax // Dynamic Allocation
+{
+    DATA_ARRAY_TEMPLATE
+    struct _data_array_heap_structure
+    {
+        T* value = new T[capacity];
+
+        _data_array_heap_structure() {};
+
+        T operator[](Size_T index) {
+            return this->value[index];
+        }
+    };
+
+    DATA_ARRAY_TEMPLATE
+    struct _data_array_heap : public _data_array_heap_structure<T, Size_T, capacity>
+    {
+        _data_array_heap() : _data_array_heap_structure<T, Size_T, capacity> {};
+        ~_data_array_heap() {};
+    };
+
+    DATA_ARRAY_TEMPLATE
+    struct _data_array_heap<T*, Size_T, capacity> : public _data_array_heap_structure<T*, Size_T, capacity>
+    {
+        _data_array_heap() : _data_array_heap_structure<T*, Size_T, capacity> {};
+        ~_data_array_heap() {
             for (Size_T i = 0; i < capacity; i++) {
                 delete this->value[i];
             }
@@ -51,4 +70,3 @@ namespace lstax
 }
 
 #undef DATA_ARRAY_TEMPLATE
-#undef DATA_STRUCTURE
