@@ -44,10 +44,6 @@ namespace lstax // Dynamic Allocation
         T* value = new T[capacity];
 
         _data_array_heap_structure() {};
-
-        T operator[](Size_T index) {
-            return this->value[index];
-        }
     };
 
     DATA_ARRAY_TEMPLATE

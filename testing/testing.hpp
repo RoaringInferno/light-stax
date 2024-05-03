@@ -3,13 +3,13 @@
 #include <cassert>
 #include <iostream>
 
-#ifdef _DEBUG_HEADER_PRINTLN
+#ifdef DEBUG_HEADER_PRINTLN
     #define DEBUG_HEADER_PRINT(TEXT) std::cout TEXT;
 #else
     #define DEBUG_HEADER_PRINT(TEXT)
 #endif
 
-#ifdef _DEBUG_PRINTLN
+#ifdef DEBUG_PRINTLN
     #define DEBUG_PRINT(TEXT) std::cout TEXT;
 #else
     #define DEBUG_PRINT(TEXT)
@@ -20,20 +20,27 @@
  * 
  * NOTE: Because filo and fifo_stack are built on statically-allocated arrays, larger numbers may throw segfaults.
 */
-#ifndef _DEBUG_LIST_LOOPS
-    #define _DEBUG_LIST_LOOPS 10000 // Light testing. 10^6 (10 thousand)
+#ifndef STATIC_DEBUG_LIST_LOOPS
+    #define STATIC_DEBUG_LIST_LOOPS 10000 // Light testing. 10^6 (10 thousand)
 #endif
 
+#ifndef DYNAMIC_DEBUG_LIST_LOOPS
+    #define DYNAMIC_DEBUG_LIST_LOOPS 1000000 // Heavy testing. 10^6 (1 million)
+#endif
 
-#define TEST_TEMPLATE template<class T>
 
 namespace test
 {
     typedef unsigned long Size_T;
     typedef unsigned long Data_T;
     typedef unsigned long Count_T;
-    const Count_T count = _DEBUG_LIST_LOOPS;
+}
 
+
+#define TEST_TEMPLATE template<class T, Count_T count>
+
+namespace test
+{
     TEST_TEMPLATE
     void fifo_rvalue() {
         DEBUG_HEADER_PRINT(<< "fifo_rvalue\n")

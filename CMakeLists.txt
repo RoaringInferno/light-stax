@@ -16,9 +16,9 @@ if(${TESTING})
     include(CTest)
 
     add_compile_definitions(
-        "_DEBUG_HEADER_PRINTLN"
-        #"_DEBUG_PRINTLN" # Prints every line. Slows testing by a factor of 10^2
-        #"_DEBUG_LIST_LOOPS=100000000" # Heavy performance testing. 10^8 (100 million)
+        "DEBUG_HEADER_PRINTLN"
+        #"DEBUG_PRINTLN" # Prints every line. Slows testing by a factor of 10^2
+        #"DEBUG_LIST_LOOPS=100000000" # Heavy performance testing. 10^8 (100 million)
     )
 
     set(UNIT_TESTS
