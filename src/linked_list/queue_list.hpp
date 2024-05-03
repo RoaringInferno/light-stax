@@ -1,61 +1,58 @@
 #pragma once
 
 /**
- * @file fifo_list.hpp
+ * @file queue_list.hpp
  * @brief A linked list that follows the First In, First Out (FIFO) principle.
 */
 
 #include "linked_list.hpp"
 
-#define FIFO_LIST_TEMPLATE template<typename T, typename Size_T>
-#define FIFO_LIST fifo_list<T, Size_T>
+#define QUEUE_LIST_TEMPLATE template<typename T, typename Size_T>
+#define QUEUE_LIST queue_list<T, Size_T>
 #define LINKED_LIST linked_list<T, Size_T>
 #define LINK link<T>
 
 namespace lstax
 {
-    FIFO_LIST_TEMPLATE
+    QUEUE_LIST_TEMPLATE
     /**
-     * @class fifo_list
+     * @class queue_list
      * @brief A linked list that follows the First In, First Out (FIFO) principle.
-     *
-     * This class represents a FIFO linked list, where elements are added to the end of the list and removed from the front.
-     * It is implemented using a linked list _data structure.
      * 
-     * @tparam T The type of _data stored in the FIFO list.
+     * @tparam T The type of data stored in the QUEUE list.
      * @tparam Size_T The type used to represent the size of the list.
      */
-    struct fifo_list : LINKED_LIST
+    struct queue_list : LINKED_LIST
     {
         /**
-         * @var linked_list<T, Size_T>* lstax::fifo_list::bottom
+         * @var linked_list<T, Size_T>* lstax::queue_list::bottom
          * @brief The bottom node of the list. This is the push point.
          */
         LINK* bottom;
 
         
         /**
-         * @fn lstax::fifo_list::fifo_list()
-         * @brief Constructor for the fifo_list class.
+         * @fn lstax::queue_list::queue_list()
+         * @brief Constructor for the queue_list class.
          * 
          * This constructor initializes the top and bottom pointers to nullptr and sets the length of the list to 0.
          * 
          * @see lstax::linked_list::linked_list()
          */
-        fifo_list() : LINKED_LIST() {};
+        queue_list() : LINKED_LIST() {};
         /**
-         * @fn lstax::fifo_list::~fifo_list()
-         * @brief Destructor for the fifo_list class.
+         * @fn lstax::queue_list::~queue_list()
+         * @brief Destructor for the queue_list class.
          * 
-         * This destructor is responsible for cleaning up any resources used by the fifo_list class.
+         * This destructor is responsible for cleaning up any resources used by the queue_list class.
          * It does not perform any specific actions in this implementation.
          * 
          * @see lstax::linked_list::~linked_list()
          */
-        ~fifo_list() {};
+        ~queue_list() {};
         
         /**
-         * @fn lstax::fifo_list::push(const T& _data)
+         * @fn lstax::queue_list::push(const T& _data)
          * @brief Adds an element to the end of the list.
          * 
          * @param _data The _data to add to the list.
@@ -76,7 +73,7 @@ namespace lstax
     };
 } // namespace lstax
 
-#undef FIFO_LIST_TEMPLATE
-#undef FIFO_LIST
+#undef QUEUE_LIST_TEMPLATE
+#undef QUEUE_LIST
 #undef LINKED_LIST
 #undef LINK

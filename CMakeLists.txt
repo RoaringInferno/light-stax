@@ -10,11 +10,7 @@ add_compile_definitions(
 )
 
 add_library(light-stax INTERFACE)
-target_include_directories(light-stax INTERFACE
-    src/
-    src/linked_list/
-    src/stack/
-)
+add_subdirectory(src/)
 
 if(${TESTING})
     include(CTest)
@@ -26,10 +22,10 @@ if(${TESTING})
     )
 
     set(UNIT_TESTS
-        filo_list
-        fifo_list
-        filo_stack
-        fifo_stack
+        stack_list
+        queue_list
+        stack_bucket
+        queue_bucket
     )
 
     foreach(UNIT_TEST ${UNIT_TESTS})

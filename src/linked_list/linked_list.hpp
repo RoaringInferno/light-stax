@@ -6,11 +6,11 @@
 */
 
 #include "link.hpp"
-#include "stack.hpp"
+#include "data_structure.hpp"
 
 #define LINKED_LIST_TEMPLATE template<typename T, typename Size_T>
 #define LINKED_LIST linked_list<T, Size_T>
-#define STACK stack<T, Size_T>
+#define DATA_STRUCTURE data_structure<T, Size_T>
 #define LINK link<T>
 
 namespace lstax
@@ -26,7 +26,7 @@ namespace lstax
      * @tparam T The type of _data stored in the list.
      * @tparam Size_T The type used to represent the size of the list.
      */
-    struct linked_list : STACK {
+    struct linked_list : DATA_STRUCTURE {
         /**
          * @var LINK* lstax::linked_list::top
          * @brief The top node of the list. This is the pop point.
@@ -39,9 +39,9 @@ namespace lstax
          * 
          * This constructor initializes the top pointer to nullptr and sets the length of the list to 0.
          * 
-         * @see lstax::stack::stack()
+         * @see lstax::data_structure::stack()
          */
-        linked_list() : top(nullptr), STACK() {};
+        linked_list() : top(nullptr), DATA_STRUCTURE() {};
         /**
          * @fn lstax::linked_list::~linked_list()
          * @brief Destructor for the linked_list class.
@@ -49,7 +49,7 @@ namespace lstax
          * This destructor is responsible for cleaning up any resources used by the linked_list class.
          * It deletes all nodes in the list.
          * 
-         * @see lstax::stack::~stack()
+         * @see lstax::data_structure::~stack()
          */
         ~linked_list() {
             while (this->top != nullptr) {
@@ -65,7 +65,7 @@ namespace lstax
          * 
          * This method removes an element from the list.
          * 
-         * @see lstax::stack::pop()
+         * @see lstax::data_structure::pop()
         */
         void pop() override {
             this->_decrement_length();
@@ -82,7 +82,7 @@ namespace lstax
          * 
          * @return The top element of the list.
          * 
-         * @see lstax::stack::peek()
+         * @see lstax::data_structure::peek()
          */
         T peek() const override {
             return this->top->data.value;
@@ -92,5 +92,5 @@ namespace lstax
 
 #undef LINKED_LIST_TEMPLATE
 #undef LINKED_LIST
-#undef STACK
+#undef DATA_STRUCTURE
 #undef LINK
