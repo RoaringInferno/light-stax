@@ -7,8 +7,6 @@
  * This file contains the definition of the data_structure data structure interface.
 */
 
-#include "data_structure_except.hpp"
-
 #define DATA_STRUCTURE_TEMPLATE template<typename T, typename Size_T>
 #define DATA_STRUCTURE data_structure<T, Size_T>
 
@@ -35,10 +33,7 @@ namespace lstax
          * If the length becomes negative, it throws a data_structure_underflow exception.
         */
         void _decrement_length() {
-            if (this->length-- == 0)
-            {
-                throw data_structure_underflow();
-            }
+            --this->length;
         }
 
         /**
