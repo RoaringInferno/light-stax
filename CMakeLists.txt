@@ -40,5 +40,6 @@ if(${TESTING})
         #target_include_directories("${UNIT_TEST_EXEC}" PUBLIC include/)
         target_link_libraries("${UNIT_TEST}" PUBLIC light-stax)
         add_test(NAME "${UNIT_TEST_EXEC}" COMMAND "${UNIT_TEST_EXEC}")
+        #When running with Visual Studio, the test directory is "Debug".
     endforeach()
 endif()
