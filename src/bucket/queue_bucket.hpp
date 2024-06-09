@@ -69,7 +69,7 @@ namespace lstax
             {
                 this->_increment_bottom();
             }
-            this->data.value[this->bottom] = _data;
+            this->data[this->bottom] = _data;
             ++this->length;
         }
 
@@ -151,7 +151,7 @@ namespace lstax
             {
                 this->_increment_bottom();
             }
-            this->data.value[this->bottom] = _data;
+            this->data[this->bottom] = _data;
             ++this->length;
         }
 

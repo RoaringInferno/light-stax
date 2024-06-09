@@ -39,12 +39,14 @@ namespace lstax
         LINK* next;
 
         /**
-         * @fn lstax::link::link()
-         * @brief Default constructor for the link struct.
+         * @fn lstax::link::link(LINK* _next = nullptr)
+         * @brief Constructor for the link struct.
          * 
-         * This constructor initializes the _data field to the default value of the type T and the next pointer to nullptr.
-         */
-        link() : next(nullptr) {};
+         * This constructor initializes the next pointer to the value of the parameter _next.
+         * 
+         * @param _next A pointer to the next node in the list.
+        */
+        link(LINK* _next = nullptr) : next(_next) {};
         /**
          * @fn lstax::link::link(const T &_data, LINK* _next = nullptr)
          * @brief Constructor for the link struct.
