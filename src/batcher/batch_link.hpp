@@ -1,5 +1,7 @@
 #pragma once
 
+#include "_data_array.hpp"
+
 /**
  * @file batch_link.hpp
  * @brief Batch link implementation.
@@ -28,7 +30,7 @@ namespace lstax
          * @var T lstax::batch_link::data
          * @brief The data stored in the node.
          */
-        T data[Batch_Size];
+        data_array<T, Batch_Size> data;
         /**
          * @var BATCH_LINK* lstax::batch_link::next
          * @brief A pointer to the next node in the list.
