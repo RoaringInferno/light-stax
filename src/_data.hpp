@@ -58,6 +58,10 @@ namespace lstax
          * It does not perform any specific actions in this implementation.
          */
         ~_data_structure() {};
+
+        T& get_value() {
+            return value;
+        }
     };
 
     DATA_TEMPLATE

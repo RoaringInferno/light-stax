@@ -10,7 +10,6 @@
 #define STACK_LIST_TEMPLATE template<typename T, typename Size_T>
 #define STACK_LIST stack_list<T, Size_T>
 #define LINKED_LIST linked_list<T, Size_T>
-#define LINK link<T>
 
 namespace lstax
 {
@@ -58,7 +57,12 @@ namespace lstax
          */
         void push(const T& _data) override {
             ++this->length;
-            this->top = new LINK(_data, this->top);
+            this->top = new link<T>(_data, this->top);
+        };
+
+        void push() override {
+            ++this->length;
+            this->top = new link<T>(this->top);
         };
     };
 } // namespace lstax
@@ -66,4 +70,3 @@ namespace lstax
 #undef STACK_LIST_TEMPLATE
 #undef STACK_LIST
 #undef LINKED_LIST
-#undef LINK

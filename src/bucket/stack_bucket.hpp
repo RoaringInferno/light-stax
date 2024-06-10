@@ -50,7 +50,7 @@ namespace lstax
             {
                 this->_increment_top();
             }
-            this->data.value[this->top] = _data;
+            this->data[this->top] = _data;
             ++this->length;
         }
 
@@ -112,7 +112,7 @@ namespace lstax
             {
                 this->_increment_top();
             }
-            this->data.value[this->top] = _data;
+            this->data[this->top] = _data;
             ++this->length;
         }
 

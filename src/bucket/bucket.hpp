@@ -74,15 +74,15 @@ namespace lstax
         ~static_bucket() {}
 
         /**
-         * @fn lstax::static_bucket::peek() const
+         * @fn lstax::static_bucket::peek()
          * @brief Get the top element of the stack.
          * 
          * @return The top element of the stack.
-         * @see lstax::data_structure::peek() const
+         * @see lstax::data_structure::peek()
         */
-        T peek() const override
+        T& peek() override
         {
-            return this->data.value[this->top];
+            return this->data[this->top];
         }
     };
 
@@ -146,18 +146,19 @@ namespace lstax
         ~dynamic_bucket() {}
 
         /**
-         * @fn lstax::dynamic_bucket::peek() const
+         * @fn lstax::dynamic_bucket::peek()
          * @brief Get the top element of the stack.
          * 
          * @return The top element of the stack.
-         * @see lstax::data_structure::peek() const
+         * @see lstax::data_structure::peek()
         */
-        T peek() const override
+        T& peek() override
         {
-            return this->data.value[this->top];
+            return this->data[this->top];
         }
     };
 }
 
 #undef BUCKET_TEMPLATE
 #undef BUCKET
+#undef DATA_STRUCTURE

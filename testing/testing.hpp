@@ -28,6 +28,9 @@
     #define DYNAMIC_DEBUG_LIST_LOOPS 1000000 // Heavy testing. 10^6 (1 million)
 #endif
 
+#ifndef BATCHER_BUFFER_SIZE
+    #define BATCHER_BUFFER_SIZE 100
+#endif
 
 namespace test
 {
@@ -42,8 +45,8 @@ namespace test
 namespace test
 {
     TEST_TEMPLATE
-    void fifo_rvalue() {
-        DEBUG_HEADER_PRINT(<< "fifo_rvalue\n")
+    void test_queue_values() {
+        DEBUG_HEADER_PRINT(<< "test_queue_values\n")
 
         DEBUG_HEADER_PRINT(<< "Constructing\n")
 
@@ -75,8 +78,8 @@ namespace test
     }
 
     TEST_TEMPLATE
-    void fifo_lvalue() {
-        DEBUG_HEADER_PRINT(<< "fifo_lvalue\n")
+    void test_queue_pointers() {
+        DEBUG_HEADER_PRINT(<< "test_queue_pointers\n")
 
         DEBUG_HEADER_PRINT(<< "Constructing\n")
 
@@ -109,8 +112,8 @@ namespace test
     }
 
     TEST_TEMPLATE
-    void filo_rvalue() {
-        DEBUG_HEADER_PRINT(<< "filo_rvalue\n")
+    void test_stack_values() {
+        DEBUG_HEADER_PRINT(<< "test_stack_values\n")
 
         DEBUG_HEADER_PRINT(<< "Constructing\n")
 
@@ -142,8 +145,8 @@ namespace test
     }
 
     TEST_TEMPLATE
-    void filo_lvalue() {
-        DEBUG_HEADER_PRINT(<< "filo_lvalue\n")
+    void test_stack_pointers() {
+        DEBUG_HEADER_PRINT(<< "test_stack_pointers\n")
 
         DEBUG_HEADER_PRINT(<< "Constructing\n")
         T list;

@@ -35,6 +35,9 @@ namespace lstax
         void _decrement_length() {
             --this->length;
         }
+        void _increment_length() {
+            ++this->length;
+        }
 
         /**
          * @var Size_T lstax::data_structure::length
@@ -75,14 +78,14 @@ namespace lstax
         */
         virtual void pop() = 0;
         /**
-         * @fn lstax::data_structure::peek() const
+         * @fn lstax::data_structure::peek()
          * @brief Returns the top element of the data_structure.
          * 
          * This method returns the top element of the data_structure without removing it.
          * 
          * @return The top element of the data_structure.
         */
-        virtual T peek() const = 0;
+        virtual T& peek() = 0;
     };
 } // namespace lstax
 

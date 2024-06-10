@@ -10,7 +10,6 @@
 #define QUEUE_LIST_TEMPLATE template<typename T, typename Size_T>
 #define QUEUE_LIST queue_list<T, Size_T>
 #define LINKED_LIST linked_list<T, Size_T>
-#define LINK link<T>
 
 namespace lstax
 {
@@ -28,7 +27,7 @@ namespace lstax
          * @var linked_list<T, Size_T>* lstax::queue_list::bottom
          * @brief The bottom node of the list. This is the push point.
          */
-        LINK* bottom;
+        link<T>* bottom;
 
         
         /**
@@ -61,19 +60,29 @@ namespace lstax
          */
         void push(const T& _data) override {
             if (this->top != nullptr) {
-                LINK* temp = new LINK(_data);
+                link<T>* temp = new link<T>(_data);
                 this->bottom->next = temp;
                 this->bottom = temp;
             } else {
-                this->bottom = new LINK(_data);
+                this->bottom = new link<T>(_data);
                 this->top = this->bottom;
             }
             ++this->length;
         };
+
+        void push() override {
+            if (this->top != nullptr) {
+                link<T>* temp = new link<T>();
+                this->bottom->next = temp;
+                this->bottom = temp;
+            } else {
+                this->bottom = new link<T>();
+                this->top = this->bottom;
+            }
+        }
     };
 } // namespace lstax
 
 #undef QUEUE_LIST_TEMPLATE
 #undef QUEUE_LIST
 #undef LINKED_LIST
-#undef LINK

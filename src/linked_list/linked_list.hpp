@@ -2,7 +2,7 @@
 
 /**
  * @file linked_list.hpp
- * @brief Linked list implementation.
+ * @brief linked list implementation.
 */
 
 #include "link.hpp"
@@ -11,7 +11,6 @@
 #define LINKED_LIST_TEMPLATE template<typename T, typename Size_T>
 #define LINKED_LIST linked_list<T, Size_T>
 #define DATA_STRUCTURE data_structure<T, Size_T>
-#define LINK link<T>
 
 namespace lstax
 {
@@ -28,10 +27,10 @@ namespace lstax
      */
     struct linked_list : DATA_STRUCTURE {
         /**
-         * @var LINK* lstax::linked_list::top
+         * @var link* lstax::linked_list::top
          * @brief The top node of the list. This is the pop point.
          */
-        LINK* top;
+        link<T>* top;
 
         /**
          * @fn lstax::linked_list::linked_list()
@@ -53,7 +52,7 @@ namespace lstax
          */
         ~linked_list() {
             while (this->top != nullptr) {
-                LINK* temp = this->top;
+                link<T>* temp = this->top;
                 this->top = temp->next;
                 delete temp;
             }
@@ -69,13 +68,13 @@ namespace lstax
         */
         void pop() override {
             this->_decrement_length();
-            LINK* temp = this->top;
+            link<T>* temp = this->top;
             this->top = temp->next;
             delete temp;
         };
         
         /**
-         * @fn lstax::linked_list::peek() const
+         * @fn lstax::linked_list::peek()
          * @brief Returns the top element of the list.
          * 
          * This method returns the top element of the list without removing it.
@@ -84,13 +83,14 @@ namespace lstax
          * 
          * @see lstax::data_structure::peek()
          */
-        T peek() const override {
-            return this->top->data.value;
+        T& peek() override {
+            return this->top->data.get_value();
         };
+
+        virtual void push() = 0; // Push that calls default constructor.
     };
 } // namespace lstax
 
 #undef LINKED_LIST_TEMPLATE
 #undef LINKED_LIST
 #undef DATA_STRUCTURE
-#undef LINK
