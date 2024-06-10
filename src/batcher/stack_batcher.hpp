@@ -51,10 +51,10 @@ namespace lstax
         Size_T get_batch_count() const {
             return batch_list.length;
         };
-        void _push_batch() {
+        void _push_batch() override {
             batch_list.push(); // Linked list must hold dereferenced batches
         };
-        void _pop_batch() {
+        void _pop_batch() override {
             batch_list.pop();
         };
     };

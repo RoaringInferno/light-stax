@@ -17,6 +17,9 @@ namespace lstax
         batcher() : DATA_STRUCTURE() {};
         ~batcher() {};
 
+        virtual void _push_batch() = 0;
+        virtual void _pop_batch() = 0;
+
         // Private Methods (top_index)
         void _increment_top_index() {
             this->_top_index++;
