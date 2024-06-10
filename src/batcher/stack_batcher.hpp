@@ -2,7 +2,6 @@
 
 #include "batcher.hpp"
 #include "stack_list.hpp"
-#include "link.hpp"
 
 #define STACK_BATCHER_TEMPLATE template<typename T, typename Size_T, Size_T Batch_Size>
 #define STACK_BATCHER stack_batcher<T, Size_T, Batch_Size>
@@ -49,7 +48,7 @@ namespace lstax
         };
 
         // Interface with linked_list
-        Size_T _get_batch_count() const {
+        Size_T get_batch_count() const {
             return batch_list.length;
         };
         void _push_batch() {

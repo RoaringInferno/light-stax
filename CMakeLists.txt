@@ -27,6 +27,7 @@ if(${TESTING})
         stack_bucket
         queue_bucket
         stack_batcher
+        queue_batcher
     )
 
     foreach(UNIT_TEST ${UNIT_TESTS})
