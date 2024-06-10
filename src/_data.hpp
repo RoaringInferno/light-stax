@@ -7,7 +7,6 @@
 
 #define DATA_TEMPLATE template<typename T>
 
-
 namespace lstax
 {
     DATA_TEMPLATE

@@ -161,3 +161,4 @@ namespace lstax
 
 #undef BUCKET_TEMPLATE
 #undef BUCKET
+#undef DATA_STRUCTURE
