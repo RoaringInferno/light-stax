@@ -59,3 +59,7 @@ namespace lstax
         };
     };
 }
+
+#undef STACK_BATCHER_TEMPLATE
+#undef STACK_BATCHER
+#undef BATCHER
