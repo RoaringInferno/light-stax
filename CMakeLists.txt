@@ -18,7 +18,6 @@ if(${TESTING})
     add_compile_definitions(
         "DEBUG_HEADER_PRINTLN"
         #"DEBUG_PRINTLN" # Prints every line. Slows testing by a factor of 10^2
-        #"DEBUG_LIST_LOOPS=100000000" # Heavy performance testing. 10^8 (100 million)
     )
 
     set(UNIT_TESTS

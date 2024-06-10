@@ -22,10 +22,7 @@ namespace lstax // Static Allocation
             return value[index].value;
         }
     };
-}
 
-namespace lstax // Dynamic Allocation
-{
     DATA_ARRAY_TEMPLATE
     struct _data_array_heap
     {
