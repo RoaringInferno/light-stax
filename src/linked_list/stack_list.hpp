@@ -23,8 +23,6 @@ namespace lstax
      */
     struct stack_list : LINKED_LIST
     {
-        typedef link<T> link;
-
         /**
          * @fn lstax::stack_list::stack_list()
          * @brief Constructor for the stack_list class.
@@ -59,12 +57,12 @@ namespace lstax
          */
         void push(const T& _data) override {
             ++this->length;
-            this->top = new link(_data, this->top);
+            this->top = new link<T>(_data, this->top);
         };
 
         void push() override {
             ++this->length;
-            this->top = new link(this->top);
+            this->top = new link<T>(this->top);
         };
     };
 } // namespace lstax

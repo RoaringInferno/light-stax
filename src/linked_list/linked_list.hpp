@@ -26,13 +26,11 @@ namespace lstax
      * @tparam Size_T The type used to represent the size of the list.
      */
     struct linked_list : DATA_STRUCTURE {
-        typedef link<T> link;
-
         /**
          * @var link* lstax::linked_list::top
          * @brief The top node of the list. This is the pop point.
          */
-        link* top;
+        link<T>* top;
 
         /**
          * @fn lstax::linked_list::linked_list()
@@ -54,7 +52,7 @@ namespace lstax
          */
         ~linked_list() {
             while (this->top != nullptr) {
-                link* temp = this->top;
+                link<T>* temp = this->top;
                 this->top = temp->next;
                 delete temp;
             }
@@ -70,7 +68,7 @@ namespace lstax
         */
         void pop() override {
             this->_decrement_length();
-            link* temp = this->top;
+            link<T>* temp = this->top;
             this->top = temp->next;
             delete temp;
         };

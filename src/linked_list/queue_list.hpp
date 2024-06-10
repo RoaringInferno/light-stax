@@ -23,13 +23,11 @@ namespace lstax
      */
     struct queue_list : LINKED_LIST
     {
-        typedef link<T> link;
-
         /**
          * @var linked_list<T, Size_T>* lstax::queue_list::bottom
          * @brief The bottom node of the list. This is the push point.
          */
-        link* bottom;
+        link<T>* bottom;
 
         
         /**
@@ -62,11 +60,11 @@ namespace lstax
          */
         void push(const T& _data) override {
             if (this->top != nullptr) {
-                link* temp = new link(_data);
+                link<T>* temp = new link<T>(_data);
                 this->bottom->next = temp;
                 this->bottom = temp;
             } else {
-                this->bottom = new link(_data);
+                this->bottom = new link<T>(_data);
                 this->top = this->bottom;
             }
             ++this->length;
@@ -74,11 +72,11 @@ namespace lstax
 
         void push() override {
             if (this->top != nullptr) {
-                link* temp = new link();
+                link<T>* temp = new link<T>();
                 this->bottom->next = temp;
                 this->bottom = temp;
             } else {
-                this->bottom = new link();
+                this->bottom = new link<T>();
                 this->top = this->bottom;
             }
         }
