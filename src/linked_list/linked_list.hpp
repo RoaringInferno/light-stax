@@ -2,21 +2,20 @@
 
 /**
  * @file linked_list.hpp
- * @brief linked list implementation.
+ * @brief linked list interface implementation.
 */
 
 #include "link.hpp"
 #include "data_structure.hpp"
 
 #define LINKED_LIST_TEMPLATE template<typename T, typename Size_T>
-#define LINKED_LIST linked_list<T, Size_T>
 #define DATA_STRUCTURE data_structure<T, Size_T>
 
 namespace lstax
 {
     LINKED_LIST_TEMPLATE
     /**
-     * @class linked_list
+     * @interface linked_list
      * @brief A linked list implementation.
      *
      * This class represents a linked list, where elements are added to the end of the list and removed from the front.
@@ -38,9 +37,10 @@ namespace lstax
          * 
          * This constructor initializes the top pointer to nullptr and sets the length of the list to 0.
          * 
-         * @see lstax::data_structure::stack()
+         * @see lstax::data_structure::data_structure()
          */
         linked_list() : top(nullptr), DATA_STRUCTURE() {};
+
         /**
          * @fn lstax::linked_list::~linked_list()
          * @brief Destructor for the linked_list class.
@@ -48,7 +48,7 @@ namespace lstax
          * This destructor is responsible for cleaning up any resources used by the linked_list class.
          * It deletes all nodes in the list.
          * 
-         * @see lstax::data_structure::~stack()
+         * @see lstax::data_structure::~data_structure()
          */
         ~linked_list() {
             while (this->top != nullptr) {
@@ -79,7 +79,7 @@ namespace lstax
          * 
          * This method returns the top element of the list without removing it.
          * 
-         * @return The top element of the list.
+         * @return A reference to the top element of the list.
          * 
          * @see lstax::data_structure::peek()
          */
@@ -90,5 +90,4 @@ namespace lstax
 } // namespace lstax
 
 #undef LINKED_LIST_TEMPLATE
-#undef LINKED_LIST
 #undef DATA_STRUCTURE

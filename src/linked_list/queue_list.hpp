@@ -8,7 +8,6 @@
 #include "linked_list.hpp"
 
 #define QUEUE_LIST_TEMPLATE template<typename T, typename Size_T>
-#define QUEUE_LIST queue_list<T, Size_T>
 #define LINKED_LIST linked_list<T, Size_T>
 
 namespace lstax
@@ -18,7 +17,7 @@ namespace lstax
      * @class queue_list
      * @brief A linked list that follows the First In, First Out (FIFO) principle.
      * 
-     * @tparam T The type of data stored in the QUEUE list.
+     * @tparam T The type of data stored in the queue_list.
      * @tparam Size_T The type used to represent the size of the list.
      */
     struct queue_list : LINKED_LIST
@@ -56,7 +55,7 @@ namespace lstax
          * 
          * @param _data The _data to add to the list.
          * 
-         * @see lstax::stack::push()
+         * @see lstax::data_structure::push(const T& _data)
          */
         void push(const T& _data) override {
             if (this->top != nullptr) {
@@ -70,6 +69,12 @@ namespace lstax
             ++this->length;
         };
 
+        /**
+         * @fn lstax::queue_list::push()
+         * @brief Adds an element to the end of the list.
+         * 
+         * @see lstax::data_structure::push()
+         */
         void push() override {
             if (this->top != nullptr) {
                 link<T>* temp = new link<T>();
@@ -84,5 +89,4 @@ namespace lstax
 } // namespace lstax
 
 #undef QUEUE_LIST_TEMPLATE
-#undef QUEUE_LIST
 #undef LINKED_LIST
