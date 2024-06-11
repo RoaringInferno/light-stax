@@ -1,5 +1,5 @@
 # light-stax
-Lightweight stack classes for C++
+Easy memory allocators for C++.
 
 ## Naming Conventions
 Class and file naming follows:
