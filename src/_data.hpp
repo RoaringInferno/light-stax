@@ -26,7 +26,7 @@ namespace lstax
      */
     struct _data_structure {
         /**
-         * @var T lstax::_data_structure::value
+         * @var lstax::_data_structure::value
          * @brief The data value.
          */
         T value;

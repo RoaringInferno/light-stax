@@ -26,12 +26,12 @@ namespace lstax
     {
         // Constants
         /**
-         * @var lstax::batch_link::Size_T lstax::batch_link::LOWEST_INDEX
+         * @var lstax::batch_link::LOWEST_INDEX
          * @brief The lowest index of the batch link.
          */
         static const Size_T LOWEST_INDEX = 0;
         /**
-         * @var lstax::batch_link::Size_T lstax::batch_link::HIGHEST_INDEX
+         * @var lstax::batch_link::HIGHEST_INDEX
          * @brief The highest index of the batch link.
         */
         static const Size_T HIGHEST_INDEX = Batch_Size - 1;

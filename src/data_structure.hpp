@@ -44,7 +44,7 @@ namespace lstax
         }
 
         /**
-         * @var Size_T lstax::data_structure::length
+         * @var lstax::data_structure::length
          * @brief The length of the data_structure.
          */
         Size_T length;

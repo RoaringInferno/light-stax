@@ -26,13 +26,13 @@ namespace lstax
     */
     struct queue_batcher : public BATCHER {
         /**
-         * @var lstax::queue_list<lstax::batch_link<T, Size_T, Batch_Size>, Size_T> lstax::queue_batcher::batch_list
+         * @var lstax::queue_batcher::batch_list
          * @brief The linked list of batches in the queue batcher.
         */
         queue_list<batch_link<T, Size_T, Batch_Size>, Size_T> batch_list;
 
         /**
-         * @var Size_T lstax::queue_batcher::_bottom_index
+         * @var stax::queue_batcher::_bottom_index
          * @brief The index of the bottom element in the current batch.
          * @note This index is the batcher's push point, and points to the next available slot in the batch.
         */

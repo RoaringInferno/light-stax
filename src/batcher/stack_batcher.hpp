@@ -27,13 +27,13 @@ namespace lstax
     struct stack_batcher : public BATCHER
     {
         /**
-         * @var lstax::stack_list<lstax::batch_link<T, Size_T, Batch_Size>, Size_T> lstax::stack_batcher::batch_list
+         * @var lstax::stack_batcher::batch_list
          * @brief The linked list of batches in the stack batcher.
         */
         stack_list<batch_link<T, Size_T, Batch_Size>, Size_T> batch_list;
 
         /**
-         * @var Size_T lstax::stack_batcher::_top_index
+         * @var lstax::stack_batcher::_top_index
          * @brief The index of the top element in the current batch.
          * @note This index is the batcher's pop point, and points to the next available slot in the batch.
          * 

@@ -28,7 +28,7 @@ namespace lstax
     struct _data_array_stack
     {
         /**
-         * @var _data<T> lstax::_data_array_stack::value[capacity]
+         * @var lstax::_data_array_stack::value[capacity]
          * @brief The array of data values.
         */
         _data<T> value[capacity];
@@ -62,7 +62,7 @@ namespace lstax
     struct _data_array_heap
     {
         /**
-         * @var _data<T>* lstax::_data_array_heap::value
+         * @var lstax::_data_array_heap::value
          * @brief The array of data values.
         */
         _data<T>* value = new _data<T>[capacity];
