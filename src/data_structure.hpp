@@ -32,10 +32,10 @@ namespace lstax
          * This method decrements the length of the data_structure.
          * If the length becomes negative, it throws a data_structure_underflow exception.
         */
-        void _decrement_length() {
+        void _decrementLength() {
             --this->length;
         }
-        void _increment_length() {
+        void _incrementLength() {
             ++this->length;
         }
 
@@ -70,6 +70,16 @@ namespace lstax
          * @param _data The data to add to the data_structure.
         */
         virtual void push(const T& _data) = 0;
+
+        /**
+         * @fn lstax::data_structure::push()
+         * @brief Adds an element to the data_structure.
+         * 
+         * This method adds an element to the data_structure.
+         * Calls the default constructor of T.
+        */
+        virtual void push() = 0;
+
         /**
          * @fn lstax::data_structure::pop()
          * @brief Removes an element from the data_structure.

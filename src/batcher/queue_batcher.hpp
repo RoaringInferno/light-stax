@@ -29,17 +29,27 @@ namespace lstax
                 this->_reset_bottom_index_empty();
             }
             this->batch_list.bottom->data.value[this->_bottom_index] = _data;
-            this->_increment_bottom_index();
-            this->_increment_length();
+            this->_bottom_index++;
+            this->_incrementLength();
         };
+        void push() override {
+            if (this->_bottom_is_full()) {
+                // Get the next batch
+                this->_push_batch();
+                this->_reset_bottom_index_empty();
+            }
+            this->_bottom_index++;
+            this->_incrementLength();
+        }
+
         void pop() override {
-            this->_increment_top_index();
+            this->_top_index++;
             if (this->_top_is_full()) {
                 // Get the next batch
                 this->_pop_batch();
                 this->_reset_top_index_empty();
             }
-            this->_decrement_length();
+            this->_decrementLength();
         };
         T& peek() override {
             return this->batch_list.peek()[this->_top_index];
@@ -56,13 +66,7 @@ namespace lstax
             batch_list.pop();
         };
 
-        // Private Methods (bottom_index)
-        void _increment_bottom_index() {
-            this->_bottom_index++;
-        };
-        void _decrement_bottom_index() {
-            this->_bottom_index--;
-        };
+        // Private Methods (_bottom_index)
         bool _bottom_is_full() const {
             return this->_bottom_index == Batch_Size;
         };

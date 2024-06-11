@@ -21,22 +21,22 @@ namespace lstax
     struct static_queue_bucket : BUCKET
     {
         /**
-         * @fn lstax::static_queue_bucket::_increment_bottom()
-         * @brief Increment the bottom index of the stack.
+         * @fn lstax::static_queue_bucket::_increment_bottom_index()
+         * @brief Increment the bottom_index index of the stack.
          */
-        void _increment_bottom() {
-            if (++this->bottom == Stack_Size) {
-                this->bottom = 0;
+        void _increment_bottom_index() {
+            if (++this->_bottom_index == Stack_Size) {
+                this->_bottom_index = 0;
             }
         }
 
         /**
-         * @val lstax::static_queue_bucket::bottom
-         * @brief The index of the bottom element of the stack.
+         * @val lstax::static_queue_bucket::bottom_index
+         * @brief The index of the bottom_index element of the stack.
          * 
          * This is the push point for the stack.
         */
-        Size_T bottom;
+        Size_T _bottom_index;
 
         /**
          * @fn lstax::static_queue_bucket::queue_stack()
@@ -44,7 +44,7 @@ namespace lstax
          * 
          * @see lstax::static_bucket::static_bucket()
          */
-        static_queue_bucket() : bottom(0), BUCKET() {}
+        static_queue_bucket() : _bottom_index(0), BUCKET() {}
         /**
          * @fn lstax::static_queue_bucket::~queue_stack()
          * @brief Destroy the static_queue_bucket object.
@@ -67,10 +67,19 @@ namespace lstax
         {
             if (this->length != 0)
             {
-                this->_increment_bottom();
+                this->_increment_bottom_index();
             }
-            this->data[this->bottom] = _data;
-            ++this->length;
+            this->data[this->_bottom_index] = _data;
+            this->_incrementLength();
+        }
+
+        void push() override
+        {
+            if (this->length != 0)
+            {
+                this->_increment_bottom_index();
+            }
+            this->_incrementLength();
         }
 
         /**
@@ -81,8 +90,8 @@ namespace lstax
         */
         void pop() override
         {
-            this->_decrement_length();
-            this->_increment_top();
+            this->_decrementLength();
+            this->_increment_top_index();
         }
     };
 }
@@ -103,22 +112,22 @@ namespace lstax
     struct dynamic_queue_bucket : BUCKET
     {
         /**
-         * @fn lstax::dynamic_queue_bucket::_increment_bottom()
-         * @brief Increment the bottom index of the stack.
+         * @fn lstax::dynamic_queue_bucket::_increment_bottom_index()
+         * @brief Increment the bottom_index index of the stack.
          */
-        void _increment_bottom() {
-            if (++this->bottom == Stack_Size) {
-                this->bottom = 0;
+        void _increment_bottom_index() {
+            if (++this->_bottom_index == Stack_Size) {
+                this->_bottom_index = 0;
             }
         }
 
         /**
-         * @val lstax::dynamic_queue_bucket::bottom
-         * @brief The index of the bottom element of the stack.
+         * @val lstax::dynamic_queue_bucket::bottom_index
+         * @brief The index of the bottom_index element of the stack.
          * 
          * This is the push point for the stack.
         */
-        Size_T bottom;
+        Size_T _bottom_index;
 
         /**
          * @fn lstax::dynamic_queue_bucket::queue_stack()
@@ -126,7 +135,7 @@ namespace lstax
          * 
          * @see lstax::dynamic_bucket::static_bucket()
          */
-        dynamic_queue_bucket() : bottom(0), BUCKET() {}
+        dynamic_queue_bucket() : _bottom_index(0), BUCKET() {}
         /**
          * @fn lstax::dynamic_queue_bucket::~queue_stack()
          * @brief Destroy the dynamic_queue_bucket object.
@@ -149,10 +158,19 @@ namespace lstax
         {
             if (this->length != 0)
             {
-                this->_increment_bottom();
+                this->_increment_bottom_index();
             }
-            this->data[this->bottom] = _data;
-            ++this->length;
+            this->data[this->_bottom_index] = _data;
+            this->_incrementLength();
+        }
+
+        void push() override
+        {
+            if (this->length != 0)
+            {
+                this->_increment_bottom_index();
+            }
+            this->_incrementLength();
         }
 
         /**
@@ -163,8 +181,8 @@ namespace lstax
         */
         void pop() override
         {
-            this->_decrement_length();
-            this->_increment_top();
+            this->_decrementLength();
+            this->_increment_top_index();
         }
     };
 }

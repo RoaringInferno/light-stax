@@ -1,12 +1,28 @@
 # light-stax
 Lightweight stack classes for C++
 
-## Class Naming Convention
+## Naming Conventions
 Class and file naming follows:
 
-Class: ```${PUSH/PULL_CONVENTION}_${STORAGE_CONVENTION}```
+Internal classes: ```_<snake_case>```
 
-File: ```${PUSH/PULL_CONVENTION}_${STORAGE_CONVENTION}.hpp```
+Data Structure classes: ```<push/pull convention>_<storage convention>```
+
+File containing final class: ```<push/pull convention>_<storage convention>.hpp```
+
+Public variables: ```<snake_case>```
+
+Private variables: ```_<snake_case>```
+
+Const variables: ```<MACRO_CASE>```
+
+Template arguments: ```<PascalCase>```
+
+Public methods: ```<snake_case>```
+
+Private methods:
+- ```_<snake_case>``` denotes methods that would typically be made private or protected that reasonably abstract class behavior.
+- ```_<camelCase>``` denotes methods that would typically be made private or protected that serve to ease maintainability.
 
 ## DISCLAIMER
 In this library, each class/struct is exposed IN ITS ENTIRETY. THIS IS INTENTIONAL. Members that would normally be private or protected are denoted with an underscore("_") at the beginning of their names. This is in the interest of modularity, and done because this library is intended to maximize efficiency and be fully mutable.
@@ -35,7 +51,9 @@ Push involves dynamic allocation of an additional array space (does not actually
 Pop involves dynamic freeing of the array space (does not actually free memory).
 No individual overhead; 2 ```Size_T``` global overhead.
 ```Stack_Size``` - ```length``` unused memory space.
-
+#### Batcher
+Allocates buffers along a linked list.
+1/(```BatchSize```) individual overhead ; 1-2 pointer global overhead.
 ## Class Contents
 All classes contain a defaut constructor, the ```push```, ```pop```, and ```peek``` member methods, and a ```length``` variable.
 

@@ -20,13 +20,7 @@ namespace lstax
         virtual void _push_batch() = 0;
         virtual void _pop_batch() = 0;
 
-        // Private Methods (top_index)
-        void _increment_top_index() {
-            this->_top_index++;
-        };
-        void _decrement_top_index() {
-            this->_top_index--;
-        };
+        // Private Methods (_top_index)
         bool _top_is_full() const {
             return this->_top_index == Batch_Size;
         };

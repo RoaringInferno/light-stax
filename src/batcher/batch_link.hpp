@@ -4,7 +4,6 @@
 #include "link.hpp"
 
 #define BATCH_LINK_TEMPLATE template<typename T, typename Size_T, Size_T Batch_Size>
-#define BATCH_LINK batch_link<T, Size_T, Batch_Size>
 
 namespace lstax
 {
@@ -25,4 +24,3 @@ namespace lstax
 } // namespace lstax
 
 #undef BATCH_LINK_TEMPLATE
-#undef BATCH_LINK

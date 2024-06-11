@@ -48,10 +48,19 @@ namespace lstax
         {
             if (this->length != 0)
             {
-                this->_increment_top();
+                this->_increment_top_index();
             }
-            this->data[this->top] = _data;
-            ++this->length;
+            this->data[this->_top_index] = _data;
+            this->_incrementLength();
+        }
+
+        void push() override
+        {
+            if (this->length != 0)
+            {
+                this->_increment_top_index();
+            }
+            this->_incrementLength();
         }
 
         /**
@@ -62,8 +71,8 @@ namespace lstax
         */
         void pop() override
         {
-            this->_decrement_length();
-            this->_decrement_top();
+            this->_decrementLength();
+            this->_decrement_top_index();
         }
     };
 }
@@ -110,10 +119,19 @@ namespace lstax
         {
             if (this->length != 0)
             {
-                this->_increment_top();
+                this->_increment_top_index();
             }
-            this->data[this->top] = _data;
-            ++this->length;
+            this->data[this->_top_index] = _data;
+            this->_incrementLength();
+        }
+
+        void push() override
+        {
+            if (this->length != 0)
+            {
+                this->_increment_top_index();
+            }
+            this->_incrementLength();
         }
 
         /**
@@ -124,8 +142,8 @@ namespace lstax
         */
         void pop() override
         {
-            this->_decrement_length();
-            this->_decrement_top();
+            this->_decrementLength();
+            this->_decrement_top_index();
         }
     };
 }

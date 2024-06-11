@@ -27,8 +27,17 @@ namespace lstax
                 this->_reset_top_index_empty();
             }
             this->batch_list.peek()[this->_top_index] = _data;
-            this->_increment_top_index();
-            this->_increment_length();
+            this->_top_index++;
+            this->_incrementLength();
+        };
+        void push() override {
+            if (this->_top_is_full()) {
+                // Get the next batch
+                this->_push_batch();
+                this->_reset_top_index_empty();
+            }
+            this->_top_index++;
+            this->_incrementLength();
         };
         void pop() override {
             if (this->_top_is_empty()) {
@@ -36,9 +45,9 @@ namespace lstax
                 this->_pop_batch();
                 this->_reset_top_index_full();
             } else {
-                this->_decrement_top_index();
+                this->_top_index--;
             }
-            this->_decrement_length();
+            this->_decrementLength();
         };
         T& peek() override {
             if (this->_top_is_empty()) {

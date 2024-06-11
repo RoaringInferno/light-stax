@@ -67,7 +67,7 @@ namespace lstax
          * @see lstax::data_structure::pop()
         */
         void pop() override {
-            this->_decrement_length();
+            this->_decrementLength();
             link<T>* temp = this->top;
             this->top = temp->next;
             delete temp;
@@ -86,8 +86,6 @@ namespace lstax
         T& peek() override {
             return this->top->data.get_value();
         };
-
-        virtual void push() = 0; // Push that calls default constructor.
     };
 } // namespace lstax
 

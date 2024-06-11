@@ -15,41 +15,36 @@
 namespace lstax
 {
     BUCKET_TEMPLATE
+    struct bucket : public DATA_STRUCTURE
+    {
+        Size_T _top_index;
+
+        bucket() : DATA_STRUCTURE(), _top_index(0) {}
+
+        void _increment_top_index()
+        {
+            if (++this->_top_index == Stack_Size)
+            {
+                this->_top_index = 0;
+            }
+        }
+
+        void _decrement_top_index()
+        {
+            if (this->_top_index-- == 0)
+            {
+                this->_top_index = Stack_Size - 1;
+            }
+        }
+    };
+
+    BUCKET_TEMPLATE
     /**
      * @class static_bucket
      * @brief A stack of fixed size that uses an array to store its data.
     */
-    struct static_bucket : public DATA_STRUCTURE
+    struct static_bucket : public BUCKET
     {
-        /**
-         * @fn lstax::static_bucket::_increment_top()
-         * @brief Increment the top index of the stack.
-         */
-        void _increment_top()
-        {
-            if (++this->top == Stack_Size)
-            {
-                this->top = 0;
-            }
-        }
-
-        /**
-         * @fn lstax::static_bucket::_increment_top()
-         * @brief Increment the top index of the stack.
-        */
-        void _decrement_top()
-        {
-            if (this->top-- == 0)
-            {
-                this->top = Stack_Size - 1;
-            }
-        }
-
-        /**
-         * @var lstax::static_bucket::top
-         * @brief The index of the top element of the stack.
-        */
-        Size_T top;
         
         /**
          * @var lstax::static_bucket::data
@@ -63,7 +58,7 @@ namespace lstax
          * 
          * @see lstax::data_structure::data_structure()
         */
-        static_bucket() : top(0), DATA_STRUCTURE() {}
+        static_bucket() : BUCKET() {}
 
         /**
          * @fn lstax::static_bucket::~stack_list()
@@ -82,7 +77,7 @@ namespace lstax
         */
         T& peek() override
         {
-            return this->data[this->top];
+            return this->data[this->_top_index];
         }
     };
 
@@ -91,38 +86,8 @@ namespace lstax
      * @class dynamic_bucket
      * @brief A stack of fixed size that uses a dynamically allocated array to store its data.
     */
-    struct dynamic_bucket : public DATA_STRUCTURE
+    struct dynamic_bucket : public BUCKET
     {
-        /**
-         * @fn lstax::dynamic_bucket::_increment_top()
-         * @brief Increment the top index of the stack.
-         */
-        void _increment_top()
-        {
-            if (++this->top == Stack_Size)
-            {
-                this->top = 0;
-            }
-        }
-
-        /**
-         * @fn lstax::dynamic_bucket::_increment_top()
-         * @brief Increment the top index of the stack.
-        */
-        void _decrement_top()
-        {
-            if (this->top-- == 0)
-            {
-                this->top = Stack_Size - 1;
-            }
-        }
-
-        /**
-         * @var lstax::dynamic_bucket::top
-         * @brief The index of the top element of the stack.
-        */
-        Size_T top;
-        
         /**
          * @var lstax::dynamic_bucket::data
          * @brief The data of the stack.
@@ -135,7 +100,7 @@ namespace lstax
          * 
          * @see lstax::data_structure::data_structure()
         */
-        dynamic_bucket() : top(0), DATA_STRUCTURE() {}
+        dynamic_bucket() : BUCKET() {}
 
         /**
          * @fn lstax::dynamic_bucket::~stack_list()
@@ -154,7 +119,7 @@ namespace lstax
         */
         T& peek() override
         {
-            return this->data[this->top];
+            return this->data[this->_top_index];
         }
     };
 }
