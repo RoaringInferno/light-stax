@@ -1,8 +1,10 @@
 #pragma once
 
 /**
- * @file static_bucket.hpp
- * @brief A stack of fixed size that uses an array to store its data.
+ * @file bucket.hpp
+ * @brief This file contains the definition of the bucket class template.
+ * 
+ * It also contains the definitions of two bucket structures: static_bucket and dynamic_bucket.
 */
 
 #include "_data_array.hpp"
@@ -15,12 +17,32 @@
 namespace lstax
 {
     BUCKET_TEMPLATE
+    /**
+     * @interface bucket
+     * @brief A stack of fixed size that uses an array to store its data.
+    */
     struct bucket : public DATA_STRUCTURE
     {
+        /**
+         * @var lstax::bucket::_top_index
+         * @brief The index of the top element in the stack.
+        */
         Size_T _top_index;
 
+        /**
+         * @fn lstax::bucket::bucket()
+         * @brief Construct a new bucket object.
+         * 
+         * @see lstax::data_structure::data_structure()
+        */
         bucket() : DATA_STRUCTURE(), _top_index(0) {}
 
+        /**
+         * @fn lstax::bucket::_increment_top_index()
+         * @brief Increments the top index of the stack.
+         * 
+         * @see lstax::bucket::_top_index
+        */
         void _increment_top_index()
         {
             if (++this->_top_index == Stack_Size)
@@ -29,6 +51,12 @@ namespace lstax
             }
         }
 
+        /**
+         * @fn lstax::bucket::_decrement_top_index()
+         * @brief Decrements the top index of the stack.
+         * 
+         * @see lstax::bucket::_top_index
+        */
         void _decrement_top_index()
         {
             if (this->_top_index-- == 0)
@@ -40,7 +68,7 @@ namespace lstax
 
     BUCKET_TEMPLATE
     /**
-     * @class static_bucket
+     * @interface static_bucket
      * @brief A stack of fixed size that uses an array to store its data.
     */
     struct static_bucket : public BUCKET
@@ -56,7 +84,7 @@ namespace lstax
          * @fn lstax::static_bucket::stack_list()
          * @brief Construct a new static_bucket object.
          * 
-         * @see lstax::data_structure::data_structure()
+         * @see lstax::bucket::bucket()
         */
         static_bucket() : BUCKET() {}
 
@@ -64,7 +92,7 @@ namespace lstax
          * @fn lstax::static_bucket::~stack_list()
          * @brief Destroy the static_bucket object.
          * 
-         * @see lstax::data_structure::~data_structure()
+         * @see lstax::bucket::~bucket()
         */
         ~static_bucket() {}
 
@@ -83,7 +111,7 @@ namespace lstax
 
     BUCKET_TEMPLATE
     /**
-     * @class dynamic_bucket
+     * @interface dynamic_bucket
      * @brief A stack of fixed size that uses a dynamically allocated array to store its data.
     */
     struct dynamic_bucket : public BUCKET
@@ -98,7 +126,7 @@ namespace lstax
          * @fn lstax::dynamic_bucket::stack_list()
          * @brief Construct a new dynamic_bucket object.
          * 
-         * @see lstax::data_structure::data_structure()
+         * @see lstax::bucket::bucket()
         */
         dynamic_bucket() : BUCKET() {}
 
@@ -106,7 +134,7 @@ namespace lstax
          * @fn lstax::dynamic_bucket::~stack_list()
          * @brief Destroy the dynamic_bucket object.
          * 
-         * @see lstax::data_structure::~data_structure()
+         * @see lstax::bucket::~bucket()
         */
         ~dynamic_bucket() {}
 
