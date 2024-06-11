@@ -81,11 +81,9 @@ namespace lstax
     };
 }
 
-#undef STACK_BUCKET
-#undef BUCKET
+#undef STATIC_BUCKET
 
-#define STACK_BUCKET dynamic_stack_bucket<T, Size_T, Stack_Size>
-#define BUCKET dynamic_bucket<T, Size_T, Stack_Size>
+#define DYNAMIC_BUCKET dynamic_bucket<T, Size_T, Stack_Size>
 
 namespace lstax
 {
@@ -94,20 +92,20 @@ namespace lstax
      * @class dynamic_stack_bucket
      * @brief A stack of fixed sixe that follows the First In, Last Out (STACK) principle.
      */
-    struct dynamic_stack_bucket : STATIC_BUCKET
+    struct dynamic_stack_bucket : DYNAMIC_BUCKET
     {
         /**
          * @fn lstax::dynamic_stack_bucket::filo_stack()
          * @brief Construct a new dynamic_stack_bucket object.
          * 
-         * @see lstax::static_bucket::static_bucket()
+         * @see lstax::dynamic_bucket::dynamic_bucket()
          */
-        dynamic_stack_bucket() : STATIC_BUCKET() {}
+        dynamic_stack_bucket() : DYNAMIC_BUCKET() {}
         /**
          * @fn lstax::dynamic_stack_bucket::~filo_stack()
          * @brief Destroy the dynamic_stack_bucket object.
          * 
-         * @see lstax::static_bucket::~static_bucket()
+         * @see lstax::dynamic_bucket::~dynamic_bucket()
          */
         ~dynamic_stack_bucket() {}
 
@@ -152,5 +150,5 @@ namespace lstax
     };
 }
 
-#undef STATIC_BUCKET
+#undef DYNAMIC_BUCKET
 #undef STACK_BUCKET_TEMPLATE
