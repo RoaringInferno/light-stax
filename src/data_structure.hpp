@@ -26,21 +26,25 @@ namespace lstax
     struct data_structure
     {
         /**
-         * @fn lstax::data_structure::_decrement()
+         * @fn lstax::data_structure::_decrementLength()
          * @brief Decrements the length of the data_structure.
-         * 
-         * This method decrements the length of the data_structure.
-         * If the length becomes negative, it throws a data_structure_underflow exception.
+         * @note This method is used internally for ease of maintenance.
         */
-        void _decrement_length() {
+        void _decrementLength() {
             --this->length;
         }
-        void _increment_length() {
+
+        /**
+         * @fn lstax::data_structure::_incrementLength()
+         * @brief Increments the length of the data_structure.
+         * @note This method is used internally for ease of maintenance.
+        */
+        void _incrementLength() {
             ++this->length;
         }
 
         /**
-         * @var Size_T lstax::data_structure::length
+         * @var lstax::data_structure::length
          * @brief The length of the data_structure.
          */
         Size_T length;
@@ -52,6 +56,7 @@ namespace lstax
          * This constructor initializes the length of the data_structure to 0.
         */
         data_structure() : length(0) {};
+        
         /**
          * @fn lstax::data_structure::~data_structure()
          * @brief Destructor for the data_structure class.
@@ -70,6 +75,16 @@ namespace lstax
          * @param _data The data to add to the data_structure.
         */
         virtual void push(const T& _data) = 0;
+
+        /**
+         * @fn lstax::data_structure::push()
+         * @brief Adds an element to the data_structure.
+         * 
+         * This method adds an element to the data_structure.
+         * Calls the default constructor of T.
+        */
+        virtual void push() = 0;
+
         /**
          * @fn lstax::data_structure::pop()
          * @brief Removes an element from the data_structure.
@@ -77,13 +92,14 @@ namespace lstax
          * This method removes an element from the data_structure.
         */
         virtual void pop() = 0;
+
         /**
          * @fn lstax::data_structure::peek()
          * @brief Returns the top element of the data_structure.
          * 
          * This method returns the top element of the data_structure without removing it.
          * 
-         * @return The top element of the data_structure.
+         * @return A reference to the top element of the data_structure.
         */
         virtual T& peek() = 0;
     };

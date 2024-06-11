@@ -8,9 +8,7 @@
 #include "bucket.hpp"
 
 #define STACK_BUCKET_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
-
-#define STACK_BUCKET static_stack_bucket<T, Size_T, Stack_Size>
-#define BUCKET static_bucket<T, Size_T, Stack_Size>
+#define STATIC_BUCKET static_bucket<T, Size_T, Stack_Size>
 
 namespace lstax
 {
@@ -19,7 +17,7 @@ namespace lstax
      * @class static_stack_bucket
      * @brief A stack of fixed sixe that follows the First In, Last Out (STACK) principle.
      */
-    struct static_stack_bucket : BUCKET
+    struct static_stack_bucket : STATIC_BUCKET
     {
         /**
          * @fn lstax::static_stack_bucket::filo_stack()
@@ -27,7 +25,7 @@ namespace lstax
          * 
          * @see lstax::static_bucket::static_bucket()
          */
-        static_stack_bucket() : BUCKET() {}
+        static_stack_bucket() : STATIC_BUCKET() {}
         /**
          * @fn lstax::static_stack_bucket::~filo_stack()
          * @brief Destroy the static_stack_bucket object.
@@ -42,16 +40,31 @@ namespace lstax
          * 
          * @param _data The data to add to the stack.
          * 
-         * @see lstax::data_structure::push()
+         * @see lstax::data_structure::push(const T& _data)
         */
         void push(const T& _data) override
         {
             if (this->length != 0)
             {
-                this->_increment_top();
+                this->_increment_top_index();
             }
-            this->data[this->top] = _data;
-            ++this->length;
+            this->data[this->_top_index] = _data;
+            this->_incrementLength();
+        }
+
+        /**
+         * @fn lstax::static_stack_bucket::push()
+         * @brief Add an element to the top of the stack.
+         * 
+         * @see lstax::data_structure::push()
+        */
+        void push() override
+        {
+            if (this->length != 0)
+            {
+                this->_increment_top_index();
+            }
+            this->_incrementLength();
         }
 
         /**
@@ -62,17 +75,15 @@ namespace lstax
         */
         void pop() override
         {
-            this->_decrement_length();
-            this->_decrement_top();
+            this->_decrementLength();
+            this->_decrement_top_index();
         }
     };
 }
 
-#undef STACK_BUCKET
-#undef BUCKET
+#undef STATIC_BUCKET
 
-#define STACK_BUCKET dynamic_stack_bucket<T, Size_T, Stack_Size>
-#define BUCKET dynamic_bucket<T, Size_T, Stack_Size>
+#define DYNAMIC_BUCKET dynamic_bucket<T, Size_T, Stack_Size>
 
 namespace lstax
 {
@@ -81,20 +92,20 @@ namespace lstax
      * @class dynamic_stack_bucket
      * @brief A stack of fixed sixe that follows the First In, Last Out (STACK) principle.
      */
-    struct dynamic_stack_bucket : BUCKET
+    struct dynamic_stack_bucket : DYNAMIC_BUCKET
     {
         /**
          * @fn lstax::dynamic_stack_bucket::filo_stack()
          * @brief Construct a new dynamic_stack_bucket object.
          * 
-         * @see lstax::static_bucket::static_bucket()
+         * @see lstax::dynamic_bucket::dynamic_bucket()
          */
-        dynamic_stack_bucket() : BUCKET() {}
+        dynamic_stack_bucket() : DYNAMIC_BUCKET() {}
         /**
          * @fn lstax::dynamic_stack_bucket::~filo_stack()
          * @brief Destroy the dynamic_stack_bucket object.
          * 
-         * @see lstax::static_bucket::~static_bucket()
+         * @see lstax::dynamic_bucket::~dynamic_bucket()
          */
         ~dynamic_stack_bucket() {}
 
@@ -110,10 +121,19 @@ namespace lstax
         {
             if (this->length != 0)
             {
-                this->_increment_top();
+                this->_increment_top_index();
             }
-            this->data[this->top] = _data;
-            ++this->length;
+            this->data[this->_top_index] = _data;
+            this->_incrementLength();
+        }
+
+        void push() override
+        {
+            if (this->length != 0)
+            {
+                this->_increment_top_index();
+            }
+            this->_incrementLength();
         }
 
         /**
@@ -124,12 +144,11 @@ namespace lstax
         */
         void pop() override
         {
-            this->_decrement_length();
-            this->_decrement_top();
+            this->_decrementLength();
+            this->_decrement_top_index();
         }
     };
 }
 
-#undef STACK_BUCKET
-#undef BUCKET
+#undef DYNAMIC_BUCKET
 #undef STACK_BUCKET_TEMPLATE

@@ -2,7 +2,12 @@
 
 /**
  * @file _data.hpp
- * @brief A wrapper for _data to allow for custom cleanup.
+ * @brief This file contains the definition of the _data_structure and _data classes.
+ * 
+ * These classes are wrappers for _data to allow for custom cleanup when the _data is no longer needed.
+ * The _data_structure class is a base class that stores a value of type T.
+ * The _data class is a wrapper for _data to allow for custom cleanup of the _data value.
+ * The _data<T*> class is a wrapper for _data pointers to allow for custom cleanup of the _data value.
  */
 
 #define DATA_TEMPLATE template<typename T>
@@ -11,7 +16,7 @@ namespace lstax
 {
     DATA_TEMPLATE
     /**
-     * @struct _data_structure
+     * @interface _data_structure
      * @brief A simple _data structure.
      *
      * This struct is a simple _data structure that stores a value of type T.
@@ -21,10 +26,11 @@ namespace lstax
      */
     struct _data_structure {
         /**
-         * @var T lstax::_data_structure::value
+         * @var lstax::_data_structure::value
          * @brief The data value.
          */
         T value;
+
         /**
          * @fn lstax::_data_structure::_data_structure()
          * @brief Default constructor for the _data_structure struct.
@@ -32,6 +38,7 @@ namespace lstax
          * This constructor initializes the value field to the default value of the type T.
          */
         _data_structure() {};
+
         /**
          * @fn lstax::_data_structure::_data_structure(const _data_structure& other)
          * @brief Copy constructor for the _data_structure struct.
@@ -41,6 +48,7 @@ namespace lstax
          * @param other The _data_structure to copy.
          */
         _data_structure(const _data_structure& other) : value(other.value) {};
+
         /**
          * @fn lstax::_data_structure::_data_structure(T _value)
          * @brief Constructor for the _data_structure struct.
@@ -50,6 +58,7 @@ namespace lstax
          * @param _value The data value to store.
          */
         _data_structure(const T& _value) : value(_value) {};
+        
         /**
          * @fn lstax::_data_structure::~_data_structure()
          * @brief Destructor for the _data_structure struct.
@@ -59,6 +68,12 @@ namespace lstax
          */
         ~_data_structure() {};
 
+        /**
+         * @fn lstax::_data_structure::get_value()
+         * @brief Returns a reference to the data value.
+         * 
+         * @return The data value.
+        */
         T& get_value() {
             return value;
         }
@@ -83,6 +98,7 @@ namespace lstax
          * This constructor initializes the value field to the default value of the type T.
          */
         _data() : _data_structure<T>() {};
+
         /**
          * @fn lstax::_data::_data(T* _value)
          * @brief Constructor for the _data struct.
@@ -92,6 +108,7 @@ namespace lstax
          * @param _value The _data value to store.
          */
         _data(const T& _value) : _data_structure<T>(_value) {};
+
         /**
          * @fn lstax::_data::~_data()
          * @brief Destructor for the _data struct.
@@ -121,6 +138,7 @@ namespace lstax
          * This constructor initializes the _data value to nullptr.
          */
         _data() : _data_structure<T*>() {};
+
         /**
          * @fn lstax::_data::_data(T* _value)
          * @brief Constructor for the _data struct.
@@ -130,6 +148,7 @@ namespace lstax
          * @param _value The _data value to store.
          */
         _data(T *_value) : _data_structure<T*>(_value) {};
+        
         /**
          * @fn lstax::_data::~_data()
          * @brief Destructor for the _data struct.

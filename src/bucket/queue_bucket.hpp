@@ -8,8 +8,7 @@
 #include "bucket.hpp"
 
 #define QUEUE_BUCKET_TEMPLATE template <typename T, typename Size_T, Size_T Stack_Size>
-#define QUEUE_BUCKET static_queue_bucket<T, Size_T, Stack_Size>
-#define BUCKET static_bucket<T, Size_T, Stack_Size>
+#define STATIC_BUCKET static_bucket<T, Size_T, Stack_Size>
 
 namespace lstax
 {
@@ -18,25 +17,25 @@ namespace lstax
      * @class static_queue_bucket
      * @brief A stack of fixed sixe that follows the First In, First Out (FIFO) principle.
      */
-    struct static_queue_bucket : BUCKET
+    struct static_queue_bucket : STATIC_BUCKET
     {
         /**
-         * @fn lstax::static_queue_bucket::_increment_bottom()
-         * @brief Increment the bottom index of the stack.
+         * @fn lstax::static_queue_bucket::_increment_bottom_index()
+         * @brief Increment the bottom_index index of the stack.
          */
-        void _increment_bottom() {
-            if (++this->bottom == Stack_Size) {
-                this->bottom = 0;
+        void _increment_bottom_index() {
+            if (++this->_bottom_index == Stack_Size) {
+                this->_bottom_index = 0;
             }
         }
 
         /**
-         * @val lstax::static_queue_bucket::bottom
-         * @brief The index of the bottom element of the stack.
+         * @val lstax::static_queue_bucket::bottom_index
+         * @brief The index of the bottom_index element of the stack.
          * 
          * This is the push point for the stack.
         */
-        Size_T bottom;
+        Size_T _bottom_index;
 
         /**
          * @fn lstax::static_queue_bucket::queue_stack()
@@ -44,7 +43,8 @@ namespace lstax
          * 
          * @see lstax::static_bucket::static_bucket()
          */
-        static_queue_bucket() : bottom(0), BUCKET() {}
+        static_queue_bucket() : _bottom_index(0), STATIC_BUCKET() {}
+        
         /**
          * @fn lstax::static_queue_bucket::~queue_stack()
          * @brief Destroy the static_queue_bucket object.
@@ -61,16 +61,27 @@ namespace lstax
          * 
          * @param _data The _data to add to the stack.
          * 
-         * @see lstax::data_structure::push()
+         * @see lstax::data_structure::push(const T& _data)
         */
         void push(const T& _data) override
         {
-            if (this->length != 0)
-            {
-                this->_increment_bottom();
-            }
-            this->data[this->bottom] = _data;
-            ++this->length;
+            this->data[this->_bottom_index] = _data;
+            this->_increment_bottom_index();
+            this->_incrementLength();
+        }
+
+        /**
+         * @fn lstax::static_queue_bucket::push()
+         * @brief Add an element to the top of the stack.
+         * 
+         * If an element is added and the stack is at capacity, the oldest _data will be overwritten.
+         * 
+         * @see lstax::data_structure::push()
+        */
+        void push() override
+        {
+            this->_increment_bottom_index();
+            this->_incrementLength();
         }
 
         /**
@@ -81,17 +92,15 @@ namespace lstax
         */
         void pop() override
         {
-            this->_decrement_length();
-            this->_increment_top();
+            this->_decrementLength();
+            this->_increment_top_index();
         }
     };
 }
 
-#undef BUCKET
-#undef QUEUE_BUCKET
+#undef STATIC_BUCKET
 
-#define BUCKET dynamic_bucket<T, Size_T, Stack_Size>
-#define QUEUE_BUCKET dynamic_queue_bucket<T, Size_T, Stack_Size>
+#define DYNAMIC_BUCKET dynamic_bucket<T, Size_T, Stack_Size>
 
 namespace lstax
 {
@@ -100,38 +109,39 @@ namespace lstax
      * @class queue_bucket
      * @brief A stack of fixed sixe that follows the First In, First Out (FIFO) principle.
      */
-    struct dynamic_queue_bucket : BUCKET
+    struct dynamic_queue_bucket : DYNAMIC_BUCKET
     {
         /**
-         * @fn lstax::dynamic_queue_bucket::_increment_bottom()
-         * @brief Increment the bottom index of the stack.
+         * @fn lstax::dynamic_queue_bucket::_increment_bottom_index()
+         * @brief Increment the bottom_index index of the stack.
          */
-        void _increment_bottom() {
-            if (++this->bottom == Stack_Size) {
-                this->bottom = 0;
+        void _increment_bottom_index() {
+            if (++this->_bottom_index == Stack_Size) {
+                this->_bottom_index = 0;
             }
         }
 
         /**
-         * @val lstax::dynamic_queue_bucket::bottom
-         * @brief The index of the bottom element of the stack.
+         * @val lstax::dynamic_queue_bucket::bottom_index
+         * @brief The index of the bottom_index element of the stack.
          * 
          * This is the push point for the stack.
         */
-        Size_T bottom;
+        Size_T _bottom_index;
 
         /**
          * @fn lstax::dynamic_queue_bucket::queue_stack()
          * @brief Construct a new dynamic_queue_bucket object.
          * 
-         * @see lstax::dynamic_bucket::static_bucket()
+         * @see lstax::dynamic_bucket::dynamic_bucket()
          */
-        dynamic_queue_bucket() : bottom(0), BUCKET() {}
+        dynamic_queue_bucket() : _bottom_index(0), DYNAMIC_BUCKET() {}
+
         /**
          * @fn lstax::dynamic_queue_bucket::~queue_stack()
          * @brief Destroy the dynamic_queue_bucket object.
          * 
-         * @see lstax::dynamic_bucket::~static_bucket()
+         * @see lstax::dynamic_bucket::~dynamic_bucket()
          */
         ~dynamic_queue_bucket() {}
 
@@ -143,16 +153,27 @@ namespace lstax
          * 
          * @param _data The _data to add to the stack.
          * 
-         * @see lstax::data_structure::push()
+         * @see lstax::data_structure::push(const T& _data)
         */
         void push(const T& _data) override
         {
-            if (this->length != 0)
-            {
-                this->_increment_bottom();
-            }
-            this->data[this->bottom] = _data;
-            ++this->length;
+            this->data[this->_bottom_index] = _data;
+            this->_increment_bottom_index();
+            this->_incrementLength();
+        }
+
+        /**
+         * @fn lstax::dynamic_queue_bucket::push()
+         * @brief Add an element to the top of the stack.
+         * 
+         * If an element is added and the stack is at capacity, the oldest _data will be overwritten.
+         * 
+         * @see lstax::data_structure::push()
+        */
+        void push() override
+        {
+            this->_increment_bottom_index();
+            this->_incrementLength();
         }
 
         /**
@@ -163,12 +184,11 @@ namespace lstax
         */
         void pop() override
         {
-            this->_decrement_length();
-            this->_increment_top();
+            this->_decrementLength();
+            this->_increment_top_index();
         }
     };
 }
 
-#undef BUCKET
-#undef QUEUE_BUCKET
+#undef DYNAMIC_BUCKET
 #undef QUEUE_BUCKET_TEMPLATE

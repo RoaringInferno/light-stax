@@ -1,8 +1,10 @@
 #pragma once
 
 /**
- * @file static_bucket.hpp
- * @brief A stack of fixed size that uses an array to store its data.
+ * @file bucket.hpp
+ * @brief This file contains the definition of the bucket class template.
+ * 
+ * It also contains the definitions of two bucket structures: static_bucket and dynamic_bucket.
 */
 
 #include "_data_array.hpp"
@@ -16,40 +18,61 @@ namespace lstax
 {
     BUCKET_TEMPLATE
     /**
-     * @class static_bucket
+     * @interface bucket
      * @brief A stack of fixed size that uses an array to store its data.
     */
-    struct static_bucket : public DATA_STRUCTURE
+    struct bucket : public DATA_STRUCTURE
     {
         /**
-         * @fn lstax::static_bucket::_increment_top()
-         * @brief Increment the top index of the stack.
-         */
-        void _increment_top()
+         * @var lstax::bucket::_top_index
+         * @brief The index of the top element in the stack.
+        */
+        Size_T _top_index;
+
+        /**
+         * @fn lstax::bucket::bucket()
+         * @brief Construct a new bucket object.
+         * 
+         * @see lstax::data_structure::data_structure()
+        */
+        bucket() : DATA_STRUCTURE(), _top_index(0) {}
+
+        /**
+         * @fn lstax::bucket::_increment_top_index()
+         * @brief Increments the top index of the stack.
+         * 
+         * @see lstax::bucket::_top_index
+        */
+        void _increment_top_index()
         {
-            if (++this->top == Stack_Size)
+            if (++this->_top_index == Stack_Size)
             {
-                this->top = 0;
+                this->_top_index = 0;
             }
         }
 
         /**
-         * @fn lstax::static_bucket::_increment_top()
-         * @brief Increment the top index of the stack.
+         * @fn lstax::bucket::_decrement_top_index()
+         * @brief Decrements the top index of the stack.
+         * 
+         * @see lstax::bucket::_top_index
         */
-        void _decrement_top()
+        void _decrement_top_index()
         {
-            if (this->top-- == 0)
+            if (this->_top_index-- == 0)
             {
-                this->top = Stack_Size - 1;
+                this->_top_index = Stack_Size - 1;
             }
         }
+    };
 
-        /**
-         * @var lstax::static_bucket::top
-         * @brief The index of the top element of the stack.
-        */
-        Size_T top;
+    BUCKET_TEMPLATE
+    /**
+     * @interface static_bucket
+     * @brief A stack of fixed size that uses an array to store its data.
+    */
+    struct static_bucket : public BUCKET
+    {
         
         /**
          * @var lstax::static_bucket::data
@@ -61,15 +84,15 @@ namespace lstax
          * @fn lstax::static_bucket::stack_list()
          * @brief Construct a new static_bucket object.
          * 
-         * @see lstax::data_structure::data_structure()
+         * @see lstax::bucket::bucket()
         */
-        static_bucket() : top(0), DATA_STRUCTURE() {}
+        static_bucket() : BUCKET() {}
 
         /**
          * @fn lstax::static_bucket::~stack_list()
          * @brief Destroy the static_bucket object.
          * 
-         * @see lstax::data_structure::~data_structure()
+         * @see lstax::bucket::~bucket()
         */
         ~static_bucket() {}
 
@@ -82,47 +105,17 @@ namespace lstax
         */
         T& peek() override
         {
-            return this->data[this->top];
+            return this->data[this->_top_index];
         }
     };
 
     BUCKET_TEMPLATE
     /**
-     * @class dynamic_bucket
+     * @interface dynamic_bucket
      * @brief A stack of fixed size that uses a dynamically allocated array to store its data.
     */
-    struct dynamic_bucket : public DATA_STRUCTURE
+    struct dynamic_bucket : public BUCKET
     {
-        /**
-         * @fn lstax::dynamic_bucket::_increment_top()
-         * @brief Increment the top index of the stack.
-         */
-        void _increment_top()
-        {
-            if (++this->top == Stack_Size)
-            {
-                this->top = 0;
-            }
-        }
-
-        /**
-         * @fn lstax::dynamic_bucket::_increment_top()
-         * @brief Increment the top index of the stack.
-        */
-        void _decrement_top()
-        {
-            if (this->top-- == 0)
-            {
-                this->top = Stack_Size - 1;
-            }
-        }
-
-        /**
-         * @var lstax::dynamic_bucket::top
-         * @brief The index of the top element of the stack.
-        */
-        Size_T top;
-        
         /**
          * @var lstax::dynamic_bucket::data
          * @brief The data of the stack.
@@ -133,15 +126,15 @@ namespace lstax
          * @fn lstax::dynamic_bucket::stack_list()
          * @brief Construct a new dynamic_bucket object.
          * 
-         * @see lstax::data_structure::data_structure()
+         * @see lstax::bucket::bucket()
         */
-        dynamic_bucket() : top(0), DATA_STRUCTURE() {}
+        dynamic_bucket() : BUCKET() {}
 
         /**
          * @fn lstax::dynamic_bucket::~stack_list()
          * @brief Destroy the dynamic_bucket object.
          * 
-         * @see lstax::data_structure::~data_structure()
+         * @see lstax::bucket::~bucket()
         */
         ~dynamic_bucket() {}
 
@@ -154,7 +147,7 @@ namespace lstax
         */
         T& peek() override
         {
-            return this->data[this->top];
+            return this->data[this->_top_index];
         }
     };
 }
