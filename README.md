@@ -54,11 +54,12 @@ No individual overhead; 2 ```Size_T``` global overhead.
 #### Batcher
 Allocates buffers along a linked list.
 1/(```BatchSize```) individual overhead ; 1-2 pointer global overhead.
-## Class Contents
-All classes contain a defaut constructor, the ```push```, ```pop```, and ```peek``` member methods, and a ```length``` variable.
 
-Link destructors delete their associated _data, but not connected links. If the _data is a pointer, the Link will not destroy it.
+## Efficiency Notes
+Buckets are best for problems with a high push/pop requirement with a fixed ceiling.
 
-Stack destructors delete all links and data. _Data destructor handles lvalue vs rvalue distinctions by template overloading.
+Batchers are best for problems with a high push/pop requirement with a heavily mutable ceiling.
 
-lstax allocations use the stack.
+Lists are best for problems with a low push/pop requirement with a mutable ceiling, where high memory efficiency is required.
+
+None of these data structures are indexable. If an indexable data structure is needed, use a ```std::vector<T>```. If rapid access is required, save pointers to objects as you push them.

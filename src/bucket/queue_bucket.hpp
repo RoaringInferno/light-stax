@@ -65,20 +65,14 @@ namespace lstax
         */
         void push(const T& _data) override
         {
-            if (this->length != 0)
-            {
-                this->_increment_bottom_index();
-            }
             this->data[this->_bottom_index] = _data;
+            this->_increment_bottom_index();
             this->_incrementLength();
         }
 
         void push() override
         {
-            if (this->length != 0)
-            {
-                this->_increment_bottom_index();
-            }
+            this->_increment_bottom_index();
             this->_incrementLength();
         }
 
@@ -156,20 +150,14 @@ namespace lstax
         */
         void push(const T& _data) override
         {
-            if (this->length != 0)
-            {
-                this->_increment_bottom_index();
-            }
             this->data[this->_bottom_index] = _data;
+            this->_increment_bottom_index();
             this->_incrementLength();
         }
 
         void push() override
         {
-            if (this->length != 0)
-            {
-                this->_increment_bottom_index();
-            }
+            this->_increment_bottom_index();
             this->_incrementLength();
         }
 
